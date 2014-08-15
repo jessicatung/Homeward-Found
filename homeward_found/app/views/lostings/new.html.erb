@@ -1,0 +1,37 @@
+<div class="container">
+<h3>Lost</h3>
+<%= form_for @losting, {action: "create"} do |f| %>
+<%= f.label :name, "Pet name:" %>
+<%= f.text_field :name %>
+<br>
+<%= f.label :type, "Animal type:" %>
+<%= f.select :type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
+<br>
+<%= f.label :size, "Size:" %>
+<%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
+<br>
+<%= f.label :coat_type, "Coat type:" %>
+<%= f.text_field :coat_type %>
+<br>
+<%= f.label :coat_length, "Coat length:" %>
+<%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
+<br>
+<%= f.label :breed, "Breed:" %>
+<%= f.select :breed, options_for_select([["still working on it"]]) %>
+<br>
+<%= f.label :location, "Last location:" %>
+<%= f.text_field :location %>
+<br>
+<%= f.label :tag, "Tag:" %>
+<%= f.text_field :tag %>
+<br>
+<%= f.label :detail, "Details:" %>
+<%= f.text_area :detail %>
+<br>
+<%= f.label :date_lost, "Date lost:" %>
+<%= f.date_select :date_lost %>
+<br><br>
+<%= f.submit %>
+<% end %>
+
+</div>

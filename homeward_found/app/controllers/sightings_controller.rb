@@ -8,7 +8,15 @@ class SightingsController < ApplicationController
   end
 
   def create
+    sighting = Sighting.new(strong_params)
 
+    if sighting.save
+      # trigger search algorithm
+      redirect_to root_path
+    else
+      # errors
+      redirect_to new_sighting_path
+    end
   end
 
   private

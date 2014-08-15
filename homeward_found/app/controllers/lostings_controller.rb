@@ -8,7 +8,15 @@ class LostingsController < ApplicationController
   end
 
   def create
+    losting = Losting.new(strong_params)
 
+    if losting.save
+      # trigger search algorithm
+      redirect_to root_path
+    else
+      # errors
+      redirect_to new_losting_path
+    end
   end
 
   def edit
