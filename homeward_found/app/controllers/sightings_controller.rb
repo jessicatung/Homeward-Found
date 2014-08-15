@@ -3,7 +3,7 @@ class SightingsController < ApplicationController
   def index
   end
 
-  def new
+  def new # dont need this later
     @sighting = Sighting.new
   end
 

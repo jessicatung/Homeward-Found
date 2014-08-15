@@ -3,7 +3,7 @@ class LostingsController < ApplicationController
 
   end
 
-  def new
+  def new # dont need this later
     @losting = Losting.new
   end
 
