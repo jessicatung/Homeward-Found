@@ -1,4 +1,4 @@
-class LostingController < ApplicationController
+class LostingsController < ApplicationController
   def index
 
   end

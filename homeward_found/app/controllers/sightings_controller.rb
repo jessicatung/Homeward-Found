@@ -1,4 +1,4 @@
-class SightingController < ApplicationController
+class SightingsController < ApplicationController
 
   def index
   end
