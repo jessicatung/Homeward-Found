@@ -1,6 +1,6 @@
 class LostingController < ApplicationController
   def index
-    @lostings = Losting.all
+
   end
 
   def new
