@@ -1,14 +1,14 @@
 <div class="container">
 <h3>Sighting</h3>
 <%= form_for @sighting, {action: "create"} do |f| %>
-<%= f.label :type, "Animal type:" %>
-<%= f.select :type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
+<%= f.label :animal_type, "Animal type:" %>
+<%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
 <br>
 <%= f.label :size, "Size:" %>
 <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
 <br>
-<%= f.label :coat_type, "Coat type:" %>
-<%= f.text_field :coat_type %>
+<%= f.label :coat_color, "Coat type:" %>
+<%= f.text_field :coat_color %>
 <br>
 <%= f.label :coat_length, "Coat length:" %>
 <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>

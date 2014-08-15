@@ -22,7 +22,7 @@ class SightingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:type, :size, :breed, :coat_type, :coat_length, :location, :tag, :detail, :found, :date_seen)
+    params.require(:losting).permit(:animal_type, :size, :breed, :coat_color, :coat_length, :location, :tag, :detail, :found, :date_seen)
   end
 
 end
