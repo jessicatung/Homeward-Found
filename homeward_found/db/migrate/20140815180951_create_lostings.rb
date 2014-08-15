@@ -3,10 +3,10 @@ class CreateLostings < ActiveRecord::Migration
     create_table :lostings do |t|
       t.belongs_to :user
       t.string :name
-      t.string :type
+      t.string :animal_type
       t.string :size
       t.string :breed
-      t.string :coat_type
+      t.string :coat_color
       t.string :coat_length
       t.string :location
       t.string :tag

@@ -2,10 +2,10 @@ class CreateSightings < ActiveRecord::Migration
   def change
     create_table :sightings do |t|
       t.belongs_to :user
-      t.string :type
+      t.string :animal_type
       t.string :size
       t.string :breed
-      t.string :coat_type
+      t.string :coat_color
       t.string :coat_length
       t.string :location
       t.string :tag
