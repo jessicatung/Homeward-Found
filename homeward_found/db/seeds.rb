@@ -21,7 +21,7 @@ lostings_users = User.limit(15)
 sightings_users = User.limit(5)
 
 lostings_users.each do |user|
-  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: (rand*5).days.ago)
+  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: Time.now.strftime("%Y-%m-%d %H:%M:%S"))
 end
 
 sightings_users.each do |user|

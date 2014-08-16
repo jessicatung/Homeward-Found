@@ -12,7 +12,7 @@ class CreateLostings < ActiveRecord::Migration
       t.string :tag
       t.text :detail
       # t. picture
-      t.date :date_lost
+      t.datetime :date_lost
       t.timestamps
     end
   end

@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140816010450) do
     t.string   "location"
     t.string   "tag"
     t.text     "detail"
-    t.date     "date_lost"
+    t.datetime "date_lost"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"
