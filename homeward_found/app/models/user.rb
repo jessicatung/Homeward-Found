@@ -1,4 +1,31 @@
 class User < ActiveRecord::Base
   has_many :lostings
   has_many :sightings
+  # EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  # attr_accessor :password
+
+  # validates :email, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
+  # validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
+  # validates :password, :confirmation => true #password_confirmation attr
+  # validates_length_of :password, :in => 6..20, :on => :create
+
+
+  include BCrypt
+
+  def password
+    @password ||= Password.new(password)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password = @password
+  end
+
+  def authenticate(email, password)
+    authenticate_or_request_with_http_basic do |u, p|
+      u == email &&
+      Digest::SHA1.hexdigest(p) == password
+    end
+  end
+
 end

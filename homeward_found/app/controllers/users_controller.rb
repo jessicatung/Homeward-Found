@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include SessionsHelper
 
   def new # dont need this later
     @user = User.new
@@ -19,13 +20,12 @@ class UsersController < ApplicationController
   end
 
   def login
-    # verify
   end
 
   private
 
   def strong_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password_hash)
   end
 
 end
