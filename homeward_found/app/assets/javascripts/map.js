@@ -3,11 +3,11 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
-  $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477))
+  $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
 });
 
 function MapController(model){
-  this.model = model
+  this.model = model;
 }
 
 MapController.prototype = {
@@ -20,12 +20,11 @@ MapController.prototype = {
   },
 
   initialize: function(position){
-    this.model.createMap(position)
+    this.model.createMap(position);
   }
 }
 
 function MapModel(){
-  var map;
   this.map;
   this.markers = [];
   this.iterator = 0;
@@ -86,8 +85,8 @@ MapModel.prototype = {
           position: self.lostings[self.iterator],
           map: map,
           draggable: false,
-      // icon: image,
-      animation: google.maps.Animation.DROP
+          // icon: image,
+          animation: google.maps.Animation.DROP
     }));
         self.iterator++;
       }, i * (200 * i));
@@ -102,8 +101,8 @@ MapModel.prototype = {
       position: this.lostings.last,
       map: this.map,
       draggable: false,
-        // icon: image,
-        animation: google.maps.Animation.DROP
+      // icon: image,
+      animation: google.maps.Animation.DROP
       }));
   },
   placeMarker: function(location){
