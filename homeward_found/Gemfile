@@ -27,6 +27,8 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'paperclip', '~> 4.2'
+
 group :development do
   gem 'better_errors'
   gem 'rails_db_info'
@@ -44,3 +46,15 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'rspec-rails', '~>2.14'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+end
