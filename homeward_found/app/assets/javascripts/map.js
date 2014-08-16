@@ -3,7 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
-  $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
+  // $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
 });
 
 function MapController(model){
@@ -50,7 +50,7 @@ MapModel.prototype = {
 
 
     this.map = new google.maps.Map($("#my_map")[0], mapOptions)
-    this.addNewMarker(mapLatitude, mapLongitude)
+    // this.addNewMarker(mapLatitude, mapLongitude)
     this.addInitialMarkers(this.map);
     this.setMapBounds()
 
