@@ -8,7 +8,15 @@ class LostingsController < ApplicationController
   end
 
   def create
+    losting = Losting.new(strong_params)
 
+    if losting.save
+      # trigger search algorithm
+      redirect_to root_path
+    else
+      # errors
+      redirect_to new_losting_path
+    end
   end
 
   def edit
@@ -26,6 +34,6 @@ class LostingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:name, :type, :size, :breed, :coat_type, :coat_length, :location, :tag, :detail, :date_lost)
+    params.require(:losting).permit(:name, :animal_type, :size, :breed, :coat_color, :coat_length, :location, :tag, :detail, :date_lost)
   end
 end

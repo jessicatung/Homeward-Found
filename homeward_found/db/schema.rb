@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20140815181023) do
 
   create_table "lostings", force: true do |t|
     t.integer  "user_id"
-    t.string   "name"
+
+    t.string   "pet_name"
     t.string   "animal_type"
     t.string   "size"
     t.string   "breed"
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140815181023) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
