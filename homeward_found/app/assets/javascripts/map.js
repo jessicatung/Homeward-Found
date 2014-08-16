@@ -39,8 +39,9 @@ function MapModel(){
 }
 
 MapModel.prototype = {
+
   createMap: function(position){
-  var self = this
+    var self = this;
     var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     mapOptions = {
       zoom: 13,
@@ -49,8 +50,8 @@ MapModel.prototype = {
     this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
     this.addInitialMarkers(this.map);
     google.maps.event.addListener(this.map, 'click', function(event) {
-    self.placeMarker(event.latLng);
-});
+      self.placeMarker(event.latLng);
+    });
   },
   // setMapBounds: function(){
 
@@ -88,7 +89,7 @@ MapModel.prototype = {
   addNewMarker: function(lat, lon){
     var newMarkerCoordinate = new google.maps.LatLng(lat, lon)
     this.lostings.push(newMarkerCoordinate);
-
+    console.log(this.lostings)
     this.markers.push(new google.maps.Marker({
       position: this.lostings.last,
       map: this.map,
@@ -99,9 +100,10 @@ MapModel.prototype = {
   },
   placeMarker: function(location){
     var marker = new google.maps.Marker({
-    position: location,
-    map: this.map
-});
+      position: location,
+      map: this.map
+    });
+    this.addNewMarker(marker.position.k, marker.position.B)
   }
 }
 
