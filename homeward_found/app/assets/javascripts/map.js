@@ -28,7 +28,7 @@ function MapModel(){
   this.map;
   this.markers = [];
   this.iterator = 0;
-
+  this.lostings = [];
   this.lostings = [
   new google.maps.LatLng(37.7846330,-122.3974140),
   new google.maps.LatLng(37.7959230,-122.3920520),

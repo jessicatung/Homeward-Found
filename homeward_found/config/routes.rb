@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'lostings/recent', to: 'lostings#recent'
   resources :users, only: [:new, :create]
   resources :lostings
   resources :sightings, except: [:edit, :update, :destroy]
