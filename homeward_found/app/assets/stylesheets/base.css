@@ -21,6 +21,8 @@ header h1{
   /*font-weight: 700;*/
   font-size: 70px;
   color: #2d97af;
+  text-shadow: 2px 2px 1px #bad3ed;
+          font-weight: bold;
 }
 
 header img{
