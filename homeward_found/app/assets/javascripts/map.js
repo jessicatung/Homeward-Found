@@ -40,19 +40,27 @@ function MapModel(){
 MapModel.prototype = {
 
   createMap: function(position){
-    var self = this;
-    var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-    mapOptions = {
-      zoom: 13,
-      center: currentLocation
-    }
-    this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
+    var self = this,
+        mapLatitude = position.coords.latitude,
+        mapLongitude = position.coords.longitude,
+        currentLocation = new google.maps.LatLng(mapLatitude, mapLongitude),
+        mapOptions = {
+          zoom: 13,
+          center: currentLocation
+        };
+
+
+    this.map = new google.maps.Map($("#my_map")[0], mapOptions)
+    this.addNewMarker(mapLatitude, mapLongitude)
     this.addInitialMarkers(this.map);
     this.setMapBounds()
+
+
     google.maps.event.addListener(this.map, 'click', function(event) {
       self.placeMarker(event.latLng);
     });
   },
+
   setMapBounds: function(){
     var lastValidCenter = this.map.getCenter();
     var allowedBounds = new google.maps.LatLngBounds(
@@ -68,8 +76,10 @@ MapModel.prototype = {
      map.panTo(lastValidCenter);
     });
   },
+
   addInitialMarkers: function(map){
     var self = this;
+
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.markers.push(new google.maps.Marker({
@@ -87,7 +97,7 @@ MapModel.prototype = {
   addNewMarker: function(lat, lon){
     var newMarkerCoordinate = new google.maps.LatLng(lat, lon)
     this.lostings.push(newMarkerCoordinate);
-    console.log(this.lostings)
+
     this.markers.push(new google.maps.Marker({
       position: this.lostings.last,
       map: this.map,
