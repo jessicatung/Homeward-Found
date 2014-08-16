@@ -2,7 +2,7 @@ class CreateLostings < ActiveRecord::Migration
   def change
     create_table :lostings do |t|
       t.belongs_to :user
-      t.string :name
+      t.string :pet_name
       t.string :animal_type
       t.string :size
       t.string :breed

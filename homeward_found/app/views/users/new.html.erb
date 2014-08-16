@@ -1,0 +1,15 @@
+<div class="container">
+
+<%= form_for @user, {action: "create"} do |f| %>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<br>
+<%= f.label :password, "Password:" %>
+<%= f.password_field :password %>
+<br>
+<%=f.label :password_confirmation %>
+<%=f.password_field :password_confirmation %>
+<br>
+<%= f.submit "Sign up" %>
+<% end %>
+</div>

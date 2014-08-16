@@ -100,3 +100,26 @@ aside{
   overflow: hidden;
   border-right: 1px solid blue;
 }
+
+label{
+  text-align: right;
+  float: left;
+  margin: 0 20px 0 0;
+  width: 150px;
+  font-weight: 400;
+}
+
+
+.container{
+  margin: 20px;
+  width: 50%;
+  border: 1px solid gray;
+}
+
+.container form{
+  margin: 20px;
+}
+
+.container h3{
+  margin: 20px;
+}

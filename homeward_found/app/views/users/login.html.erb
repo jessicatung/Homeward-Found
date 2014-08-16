@@ -1,0 +1,12 @@
+<div class="container">
+
+<%= form_for :users, url: {controller: "sessions", action: "create"}  do |f| %>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<br>
+<%= f.label :password, "Password:" %>
+<%= f.password_field :password %>
+<br>
+<%= f.submit "Login" %>
+<% end %>
+</div>
