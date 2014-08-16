@@ -12,9 +12,8 @@ class LostingsController < ApplicationController
 
     if losting.save
       algorithm = Algorithm.new(losting, Sighting.all)
-      puts "AJSDFOIJASDIFJWOIJEFOINVIOENIN"
-      p algorithm.search
       # trigger search algorithm
+      p algorithm.search
       redirect_to root_path
     else
       # errors
