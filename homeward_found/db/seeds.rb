@@ -8,9 +8,9 @@ cat_breed = %w{persian siamese bengal ragdoll burmese tabby}
 dog_breed = %w{labrador shepherd bulldog terrier poodle retriever beagle boxer dobermann}
 coat_color = %w{black brown white grey calico}
 coat_length = %w{hairless short medium long}
-location = ["2nd and Folsom St., San Francisco CA", "83 McAllister St., San Francisco CA", "633 Folsom St., San Francisco CA", "Market St. and New Montgomery St., San Francisco CA"]
+location = ["2nd and Folsom St., San Francisco CA", "83 McAllister St., San Francisco CA", "633 Folsom St., San Francisco CA", "Market St. and New Montgomery St., San Francisco CA", "Golden Gate Park, San Francisco CA", "Dolores Park, San Francisco CA", "Alamo Park, San Francisco CA", "Mission and 16th, San Francisco CA", "Crissy Field, San Francisco CA", "Pier 39, San Francisco CA"]
 tag = %w{none owner vet}
-date = ["08-15-2014", "08-14-2014", "08-13-2014", "08-16-2014", "08-17-2014", "08-18-2014"]
+
 found = %w{true false}
 
 20.times do
@@ -21,11 +21,11 @@ lostings_users = User.limit(15)
 sightings_users = User.limit(5)
 
 lostings_users.each do |user|
-  user.lostings.create(name: name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: date.sample)
+  user.lostings.create(name: name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: (rand*5).days.ago)
 end
 
 sightings_users.each do |user|
-  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, found: found.sample)
+  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, found: found.sample, date_seen: Time.now.strftime("%Y-%m-%d %H:%M:%S"))
 end
 
 
