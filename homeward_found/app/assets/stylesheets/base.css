@@ -68,7 +68,6 @@ label{
   font-weight: 400;
 }
 
-
 .container{
   margin: 20px;
   width: 50%;
@@ -81,6 +80,7 @@ label{
 
 .container h3{
   margin: 20px;
+}
 
 #my_map {
   width: 500px;
