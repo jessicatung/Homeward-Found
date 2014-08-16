@@ -27,7 +27,7 @@ MapController.prototype = {
     };
 
     var map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
-    this.model.drop(map);
+    this.model.addInitialMarkers(map);
   }
 }
 
@@ -64,6 +64,22 @@ MapModel.prototype = {
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.addMarker("cat", map);
+      }, i * (200 * i));
+    }
+  },
+
+  addInitialMarkers: function(map){
+    var self = this
+    for (var i = 0; i < this.lostings.length; i++) {
+      setTimeout(function() {
+        self.markers.push(new google.maps.Marker({
+          position: self.lostings[self.iterator],
+          map: map,
+          draggable: false,
+      // icon: image,
+      animation: google.maps.Animation.DROP
+    }));
+      self.iterator++;
       }, i * (200 * i));
     }
   }
