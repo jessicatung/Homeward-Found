@@ -59,6 +59,7 @@ aside{
   border-right: 1px solid blue;
 }
 
+
 label{
   text-align: right;
   float: left;
@@ -80,4 +81,8 @@ label{
 
 .container h3{
   margin: 20px;
+
+#my_map {
+  width: 500px;
+  height: 500px;
 }
