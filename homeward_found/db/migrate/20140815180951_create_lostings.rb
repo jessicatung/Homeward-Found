@@ -8,11 +8,12 @@ class CreateLostings < ActiveRecord::Migration
       t.string :breed
       t.string :coat_color
       t.string :coat_length
-      t.string :location
+      t.decimal :Lat
+      t.decimal :Lng
       t.string :tag
       t.text :detail
       # t. picture
-      t.date :date_lost
+      t.datetime :event_date
       t.timestamps
     end
   end
