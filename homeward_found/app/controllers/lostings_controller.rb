@@ -31,6 +31,12 @@ class LostingsController < ApplicationController
 
   end
 
+  def recent
+    Losting.ordered_json
+    lostings = Losting.ordered_json
+    render json: lostings
+  end
+
   private
 
   def strong_params
