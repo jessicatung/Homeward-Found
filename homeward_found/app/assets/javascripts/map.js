@@ -3,6 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
+  $("#my_map").on("click", mapModel.dragMarker)
   $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477))
 });
 
@@ -39,6 +40,7 @@ function MapModel(){
 
 MapModel.prototype = {
   createMap: function(position){
+  var self = this
     var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     mapOptions = {
       zoom: 13,
@@ -46,6 +48,9 @@ MapModel.prototype = {
     }
     this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
     this.addInitialMarkers(this.map);
+    google.maps.event.addListener(this.map, 'click', function(event) {
+    self.placeMarker(event.latLng);
+});
   },
   // setMapBounds: function(){
 
@@ -91,6 +96,12 @@ MapModel.prototype = {
         // icon: image,
         animation: google.maps.Animation.DROP
       }));
+  },
+  placeMarker: function(location){
+    var marker = new google.maps.Marker({
+    position: location,
+    map: this.map
+});
   }
 }
 
