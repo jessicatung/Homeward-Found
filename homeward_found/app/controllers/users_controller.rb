@@ -6,15 +6,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(strong_params)
-     @user.password_confirmation = @user.password
-      if @user.save
-        session[:user_id] = @user.id
-        # flash[:notice] = "Welcome to the site!"
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
         redirect_to root_path
       else
         # flash[:alert] = "There was a problem creating your account. Please try again."
-        binding.pry
         redirect_to new_user_path
       end
     end
@@ -24,8 +21,8 @@ class UsersController < ApplicationController
 
     private
 
-    def strong_params
-      params.require(:user).permit(:email, :password)
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 
   end
