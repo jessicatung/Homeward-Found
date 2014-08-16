@@ -32,8 +32,8 @@ MapController.prototype = {
 
 function MapModel(){
   var map;
-  var markers = [];
-  var iterator = 0;
+  this.markers = [];
+  this.iterator = 0;
   this.lostings = [
   new google.maps.LatLng(37.7846330,-122.3974140),
   new google.maps.LatLng(37.7959230,-122.3920520),
@@ -44,12 +44,12 @@ function MapModel(){
 MapModel.prototype = {
   addMarker: function(){
     this.markers.push(new google.maps.Marker({
-      position: this.lostings[iterator],
+      position: this.lostings[this.iterator],
       map: map,
       draggable: false,
       animation: google.maps.Animation.DROP
     }));
-    iterator++;
+    this.iterator++;
   },
   drop: function(){
     // debugger
