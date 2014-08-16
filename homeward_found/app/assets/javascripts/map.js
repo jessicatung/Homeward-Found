@@ -3,6 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
+  mapModel.getLostings()
   // $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
 });
 
@@ -29,11 +30,11 @@ function MapModel(){
   this.markers = [];
   this.iterator = 0;
   this.lostings = [];
-  this.lostings = [
-  new google.maps.LatLng(37.7846330,-122.3974140),
-  new google.maps.LatLng(37.7959230,-122.3920520),
-  new google.maps.LatLng(37.7698250,-122.4667820),
-  ];
+  // this.lostings = [
+  // new google.maps.LatLng(37.7846330,-122.3974140),
+  // new google.maps.LatLng(37.7959230,-122.3920520),
+  // new google.maps.LatLng(37.7698250,-122.4667820),
+  // ];
 }
 
 MapModel.prototype = {
@@ -51,6 +52,7 @@ MapModel.prototype = {
 
     this.map = new google.maps.Map($("#my_map")[0], mapOptions)
     // this.addNewMarker(mapLatitude, mapLongitude)
+    // this.getLostings()
     this.addInitialMarkers(this.map);
     this.setMapBounds()
 
@@ -60,25 +62,9 @@ MapModel.prototype = {
     });
   },
 
-  setMapBounds: function(){
-    var lastValidCenter = this.map.getCenter();
-    var allowedBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03),
-      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03)
-      );
-
-    var map = this.map
-    google.maps.event.addListener(this.map, 'center_changed', function() {
-      if (allowedBounds.contains(lastValidCenter)) {
-        lastValidCenter
-      }
-     map.panTo(lastValidCenter);
-    });
-  },
 
   addInitialMarkers: function(map){
     var self = this;
-
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.markers.push(new google.maps.Marker({
@@ -88,6 +74,7 @@ MapModel.prototype = {
           // icon: image,
           animation: google.maps.Animation.DROP
     }));
+
         self.iterator++;
       }, i * (200 * i));
     }
@@ -105,12 +92,41 @@ MapModel.prototype = {
       animation: google.maps.Animation.DROP
       }));
   },
+
   placeMarker: function(location){
     var marker = new google.maps.Marker({
       position: location,
       map: this.map
     });
     this.addNewMarker(marker.position.k, marker.position.B)
+  },
+
+  getLostings: function(){
+    $.ajax({
+      method: "GET",
+      url: "/lostings/recent"
+    }).done(function(data){
+    for(var i = 0; i < data.length; i++){
+      var position = new google.maps.LatLng(data[i].Lat, data[i].Lng)
+      this.lostings.push(position)
+    }
+    }.bind(this))
+  },
+
+  setMapBounds: function(){
+    var lastValidCenter = this.map.getCenter();
+    var allowedBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03),
+      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03)
+      );
+
+    var map = this.map
+    google.maps.event.addListener(this.map, 'center_changed', function() {
+      if (allowedBounds.contains(lastValidCenter)) {
+        lastValidCenter
+      }
+     map.panTo(lastValidCenter);
+    });
   }
 }
 
