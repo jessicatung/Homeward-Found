@@ -18,10 +18,6 @@
 
 $(document).ready(function() {
 
-  LOC = ""
-
-  var sanFran = new google.maps.LatLng(37.7749290,-122.4194160);
-
   var lostings = [
   new google.maps.LatLng(37.7846330,-122.3974140),
   new google.maps.LatLng(37.7959230,-122.3920520),
