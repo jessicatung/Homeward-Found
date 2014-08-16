@@ -1,11 +1,11 @@
 <div class="container">
 <h3>Lost</h3>
 <%= form_for @losting, {action: "create"} do |f| %>
-<%= f.label :name, "Pet name:" %>
-<%= f.text_field :name %>
+<%= f.label :pet_name, "Pet name:" %>
+<%= f.text_field :pet_name %>
 <br>
-<%= f.label :type, "Animal type:" %>
-<%= f.select :type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
+<%= f.label :animal_type, "Animal type:" %>
+<%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
 <br>
 <%= f.label :size, "Size:" %>
 <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
