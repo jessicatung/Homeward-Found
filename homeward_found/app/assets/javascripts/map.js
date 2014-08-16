@@ -3,6 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
+  // $("h1").on("click", mapModel.addMarker("cat", ))
 });
 
 function MapController(model){
@@ -25,8 +26,8 @@ MapController.prototype = {
       center: currentLocation
     };
 
-    map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
-    this.model.drop();
+    var map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
+    this.model.drop(map);
   }
 }
 
@@ -42,21 +43,27 @@ function MapModel(){
 }
 
 MapModel.prototype = {
-  addMarker: function(){
+  addMarker: function(animal, map){
+
+    image = "http://placekitten.com/g/50/50"
+    if (animal === "dog") {
+      image = "http://placepuppy.it/50/50"
+    }
+
     this.markers.push(new google.maps.Marker({
       position: this.lostings[this.iterator],
       map: map,
       draggable: false,
+      icon: image,
       animation: google.maps.Animation.DROP
     }));
     this.iterator++;
   },
-  drop: function(){
-    // debugger
+  drop: function(map){
     var self = this
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
-        self.addMarker();
+        self.addMarker("cat", map);
       }, i * (200 * i));
     }
   }
