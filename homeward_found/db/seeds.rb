@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-name = %w{fido lucky bob spot clifford molly ginger}
+pet_name = %w{fido lucky bob spot clifford molly ginger}
 type = %w{cat dog}
 size = %w{small medium large}
 cat_breed = %w{persian siamese bengal ragdoll burmese tabby}
@@ -21,7 +21,7 @@ lostings_users = User.limit(15)
 sightings_users = User.limit(5)
 
 lostings_users.each do |user|
-  user.lostings.create(name: name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: (rand*5).days.ago)
+  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, location: location.sample, tag: tag.sample, date_lost: (rand*5).days.ago)
 end
 
 sightings_users.each do |user|
