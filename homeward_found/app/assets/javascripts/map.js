@@ -12,7 +12,7 @@ function MapController(model){
 MapController.prototype = {
   getLocation: function(){
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.initialize);
+      navigator.geolocation.getCurrentPosition(this.initialize.bind(this));
     } else {
       console.log( "Geolocation is not supported by this browser.");
     }
@@ -25,8 +25,7 @@ MapController.prototype = {
       center: currentLocation
     };
 
-    map = new google.maps.Map(document.getElementById('my_map'), mapOptions);
-    // debugger
+    map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
     this.model.drop();
   }
 }
@@ -35,29 +34,32 @@ function MapModel(){
   var map;
   var markers = [];
   var iterator = 0;
-  var lostings = [
+  this.lostings = [
   new google.maps.LatLng(37.7846330,-122.3974140),
   new google.maps.LatLng(37.7959230,-122.3920520),
   new google.maps.LatLng(37.7698250,-122.4667820),
   ];
-  var self = this;
+}
 
-  this.addMarker = function(){
-    markers.push(new google.maps.Marker({
-      position: lostings[iterator],
+MapModel.prototype = {
+  addMarker: function(){
+    this.markers.push(new google.maps.Marker({
+      position: this.lostings[iterator],
       map: map,
       draggable: false,
       animation: google.maps.Animation.DROP
     }));
     iterator++;
-  };
-  this.drop = function(){
-    for (var i = 0; i < lostings.length; i++) {
+  },
+  drop: function(){
+    // debugger
+    var self = this
+    for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.addMarker();
       }, i * (200 * i));
     }
-  };
+  }
 }
 
 
