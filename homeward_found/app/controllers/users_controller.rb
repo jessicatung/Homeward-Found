@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       # flash[:error]
-
       redirect_to new_user_path
     end
 

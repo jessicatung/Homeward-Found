@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :lostings
   resources :sightings, except: [:edit, :update, :destroy]
   resources :sessions, only: [:create, :destroy]
+  delete "delete_session", to: "sessions#destroy", as: "delete_session"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
