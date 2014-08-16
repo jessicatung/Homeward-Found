@@ -16,8 +16,10 @@
 <%= f.label :breed, "Breed:" %>
 <%= f.select :breed, options_for_select([["still working on it"]]) %>
 <br>
-<%= f.label :location, "Last location:" %>
-<%= f.text_field :location %>
+<%= f.label :Lat, "Seen lat:" %>
+<%= f.text_field :Lat %>
+<%= f.label :Lng, "Seen lng:" %>
+<%= f.text_field :Lng %>
 <br>
 <%= f.label :tag, "Tag:" %>
 <%= f.text_field :tag %>
@@ -25,8 +27,8 @@
 <%= f.label :detail, "Details:" %>
 <%= f.text_area :detail %>
 <br>
-<%= f.label :date_seen, "Date seen:" %>
-<%= f.date_select :date_seen %>
+<%= f.label :event_date, "Date seen:" %>
+<%= f.date_select :event_date %>
 <br>
 <%= f.label :found, "In my possession:" %>
 <%= f.check_box :found, checked: false %>

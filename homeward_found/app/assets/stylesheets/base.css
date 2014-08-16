@@ -102,6 +102,7 @@ aside{
   border-right: 1px solid blue;
 }
 
+
 label{
   text-align: right;
   float: left;
@@ -109,7 +110,6 @@ label{
   width: 150px;
   font-weight: 400;
 }
-
 
 .container{
   margin: 20px;
@@ -123,4 +123,9 @@ label{
 
 .container h3{
   margin: 20px;
+}
+
+#my_map {
+  width: 500px;
+  height: 500px;
 }
