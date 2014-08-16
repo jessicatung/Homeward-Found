@@ -11,7 +11,6 @@ coat_length = %w{hairless short medium long}
 tag = %w{none owner vet}
 longs = [-122.7, -122.701, -122.702, -122.703, -122.704, -122.705, -122.706, -122.707, -122.708, -122.709]
 
-
 found = %w{true false}
 
 20.times do
