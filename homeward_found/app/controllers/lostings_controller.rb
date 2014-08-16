@@ -31,6 +31,10 @@ class LostingsController < ApplicationController
 
   end
 
+  def recent
+
+  end
+
   private
 
   def strong_params

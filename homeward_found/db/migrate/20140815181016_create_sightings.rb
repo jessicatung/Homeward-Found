@@ -12,7 +12,7 @@ class CreateSightings < ActiveRecord::Migration
       t.string :tag
       t.text :detail
       # t. picture
-      t.datetime :date_seen
+      t.datetime :event_date
       t.boolean :found
       t.timestamps
     end

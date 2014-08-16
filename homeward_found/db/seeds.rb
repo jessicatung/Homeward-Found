@@ -21,11 +21,11 @@ lostings_users = User.limit(15)
 sightings_users = User.limit(5)
 
 lostings_users.each do |user|
-  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, date_lost: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
+  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
 end
 
 sightings_users.each do |user|
-  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, found: found.sample, date_seen: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
+  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, found: found.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
 end
 
 
