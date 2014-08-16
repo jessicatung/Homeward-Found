@@ -15,6 +15,7 @@ class Algorithm
     @mapped_collection = @collection.map do |match|
       score = 100
       score = 0 if @listing.animal_type != match.animal_type
+
       score -= 10 if @listing.size != match.size
       score -= 5 if @listing.breed != match.breed
       score -= 20 if @listing.coat_color != match.coat_color
@@ -24,6 +25,7 @@ class Algorithm
       score -= points if points > 0
 
       date_index = (match.event_date - @listing.event_date).to_i.abs
+
       points = date_index * 30
       score -= points if points > 0
 
@@ -62,13 +64,4 @@ class Algorithm
   end
 
 end
-
-
-
-
-
-
-
-
-
 
