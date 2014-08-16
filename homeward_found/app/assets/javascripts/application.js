@@ -36,25 +36,20 @@ $(document).ready(function() {
 //------
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(makeMap);
+    navigator.geolocation.getCurrentPosition(initialize);
   } else {
     console.log( "Geolocation is not supported by this browser.");
   }
 }
 
-getLocation()
-
-function makeMap(position) {
-  LOC = position
-  console.log(LOC.coords.latitude)
-  console.log(LOC.coords.longitude)
-}
-
-
-function initialize() {
+function initialize(position) {
+  console.log('HERE IS THE LOCATION')
+  console.log(position)
+  var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+  console.log(position.coords.longitude)
   var mapOptions = {
     zoom: 13,
-    center: sanFran
+    center: currentLocation
   };
 
   map = new google.maps.Map(document.getElementById('my_map'),
@@ -98,7 +93,8 @@ function addMarker() {
   iterator++;
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+// google.maps.event.addDomListener(window, 'load', initialize);
+getLocation();
 
 });
 
