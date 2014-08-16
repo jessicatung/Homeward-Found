@@ -41,9 +41,25 @@
   <div class="section group">
     <div class="col_no_mar span_2_of_12">
     <aside>
+      <div id="event-container">
       <ul>
-        <li>YO</li>
-      </ul>
+      <script id="event-template" type="text/x-handlebars-template">
+      {{#each lostings}}
+      <li class="event">
+        // <img class="avatar" src={{this.avatar_url}} alt="">
+        <div class="event-content">
+          <p>
+          <span class="pet-name">{{pet_name}}</span>
+          <span class="pet-type">{{animal_type}}</span>
+          <span class="pet-size">{{breed}}</span>
+          <span class="pet-name">{{event_date}}</span>
+          </p>
+        </div>
+      </li>
+    {{/each}}
+    </script>
+    </ul>
+    </div>
     </aside>
     </div>
     <div class="col_no_mar span_10_of_12">
