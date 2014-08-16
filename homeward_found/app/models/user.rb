@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
     self.password = @password
   end
 
-  def authenticate(email, password)
-    authenticate_or_request_with_http_basic do |u, p|
-      u == email &&
-      Digest::SHA1.hexdigest(p) == password
-    end
-  end
+  # def authenticate(email, password)
+  #   authenticate_or_request_with_http_basic do |u, p|
+  #     u == email &&
+  #     Digest::SHA1.hexdigest(p) == password
+  #   end
+  # end
 
 end

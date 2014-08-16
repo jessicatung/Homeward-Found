@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(strong_params)
-
     if user.save
       session[:user_id] = user.id
       redirect_to root_path
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
   private
 
   def strong_params
-    params.require(:user).permit(:email, :password_hash)
+    params.require(:user).permit(:email, :password)
   end
 
 end
