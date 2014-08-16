@@ -3,7 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
-  $("h1").on("click", mapModel.addNewMarker(new google.maps.LatLng(37.780514, -122.415477)))
+  $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477))
 });
 
 function MapController(model){
@@ -21,6 +21,7 @@ MapController.prototype = {
 
   initialize: function(position){
     this.model.createMap(position)
+    // this.model.setMapBounds()
     // var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     // var mapOptions = {
     //   zoom: 13,
@@ -56,30 +57,47 @@ MapModel.prototype = {
     this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
     this.addInitialMarkers(this.map);
   },
-  addMarker: function(animal, map){
+  // setMapBounds: function(){
 
-    image = "http://placekitten.com/g/50/50"
-    if (animal === "dog") {
-      image = "http://placepuppy.it/50/50"
-    }
+  //   var allowedBounds = new google.maps.LatLngBounds(
+  //     new google.maps.LatLng(37.717462, -122.541557),
+  //     new google.maps.LatLng(37.817099, -122.378865)
+  //     );
 
-    this.markers.push(new google.maps.Marker({
-      position: this.lostings[this.iterator],
-      map: map,
-      draggable: false,
-      icon: image,
-      animation: google.maps.Animation.DROP
-    }));
-    this.iterator++;
-  },
-  drop: function(map){
-    var self = this;
-    for (var i = 0; i < this.lostings.length; i++) {
-      setTimeout(function() {
-        self.addMarker("cat", map);
-      }, i * (200 * i));
-    }
-  },
+  //   var lastValidCenter = this.map.getCenter();
+
+  //   google.maps.event.addListener(this.map, 'center_changed', function() {
+  //     if (allowedBounds.contains(this.map.getCenter())) {
+  //       lastValidCenter = this.map.getCenter();
+  //       return;
+  //     }
+  //     this.map.panTo(lastValidCenter);
+  //   });
+  // },
+  // addMarker: function(animal, map){
+
+  //   image = "http://placekitten.com/g/50/50"
+  //   if (animal === "dog") {
+  //     image = "http://placepuppy.it/50/50"
+  //   }
+
+  //   this.markers.push(new google.maps.Marker({
+  //     position: this.lostings[this.iterator],
+  //     map: map,
+  //     draggable: false,
+  //     icon: image,
+  //     animation: google.maps.Animation.DROP
+  //   }));
+  //   this.iterator++;
+  // },
+  // drop: function(map){
+  //   var self = this;
+  //   for (var i = 0; i < this.lostings.length; i++) {
+  //     setTimeout(function() {
+  //       self.addMarker("cat", map);
+  //     }, i * (200 * i));
+  //   }
+  // },
 
   addInitialMarkers: function(map){
     var self = this;
@@ -97,19 +115,19 @@ MapModel.prototype = {
     }
   },
 
-  addNewMarker: function(location){
-      // var newMarkerCoordinate = new google.maps.LatLng(37.780514, -122.415477)
-      this.lostings.push(location);
+  addNewMarker: function(lat, lon){
+    var newMarkerCoordinate = new google.maps.LatLng(lat, lon)
+    this.lostings.push(newMarkerCoordinate);
 
-      this.markers.push(new google.maps.Marker({
-        position: this.lostings.last,
-        map: this.map,
-        draggable: false,
-        icon: image,
+    this.markers.push(new google.maps.Marker({
+      position: this.lostings.last,
+      map: this.map,
+      draggable: false,
+        // icon: image,
         animation: google.maps.Animation.DROP
       }));
-    }
   }
+}
 
 
 // =========== Original Code ==============================
