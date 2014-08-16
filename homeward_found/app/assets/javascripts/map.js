@@ -3,7 +3,7 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
-  // $("h1").on("click", mapModel.addMarker("cat", ))
+  $("h1").on("click", mapModel.addNewMarker(new google.maps.LatLng(37.780514, -122.415477)))
 });
 
 function MapController(model){
@@ -20,21 +20,25 @@ MapController.prototype = {
   },
 
   initialize: function(position){
-    var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-    var mapOptions = {
-      zoom: 13,
-      center: currentLocation
-    };
+    this.model.createMap(position)
+    // var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+    // var mapOptions = {
+    //   zoom: 13,
+    //   center: currentLocation
+    // };
 
-    var map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
-    this.model.addInitialMarkers(map);
+    // var map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
+    // this.model.map
+    // this.model.addInitialMarkers(map);
   }
 }
 
 function MapModel(){
   var map;
+  this.map;
   this.markers = [];
   this.iterator = 0;
+
   this.lostings = [
   new google.maps.LatLng(37.7846330,-122.3974140),
   new google.maps.LatLng(37.7959230,-122.3920520),
@@ -43,6 +47,15 @@ function MapModel(){
 }
 
 MapModel.prototype = {
+  createMap: function(position){
+    var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+    mapOptions = {
+      zoom: 13,
+      center: currentLocation
+    }
+    this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
+    this.addInitialMarkers(this.map);
+  },
   addMarker: function(animal, map){
 
     image = "http://placekitten.com/g/50/50"
@@ -60,7 +73,7 @@ MapModel.prototype = {
     this.iterator++;
   },
   drop: function(map){
-    var self = this
+    var self = this;
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.addMarker("cat", map);
@@ -69,7 +82,7 @@ MapModel.prototype = {
   },
 
   addInitialMarkers: function(map){
-    var self = this
+    var self = this;
     for (var i = 0; i < this.lostings.length; i++) {
       setTimeout(function() {
         self.markers.push(new google.maps.Marker({
@@ -79,11 +92,24 @@ MapModel.prototype = {
       // icon: image,
       animation: google.maps.Animation.DROP
     }));
-      self.iterator++;
+        self.iterator++;
       }, i * (200 * i));
     }
+  },
+
+  addNewMarker: function(location){
+      // var newMarkerCoordinate = new google.maps.LatLng(37.780514, -122.415477)
+      this.lostings.push(location);
+
+      this.markers.push(new google.maps.Marker({
+        position: this.lostings.last,
+        map: this.map,
+        draggable: false,
+        icon: image,
+        animation: google.maps.Animation.DROP
+      }));
+    }
   }
-}
 
 
 // =========== Original Code ==============================
