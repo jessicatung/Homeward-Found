@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20140815181023) do
   create_table "lostings", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "animal_type"
     t.string   "size"
     t.string   "breed"
-    t.string   "coat_type"
+    t.string   "coat_color"
     t.string   "coat_length"
     t.string   "location"
     t.string   "tag"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20140815181023) do
 
   create_table "sightings", force: true do |t|
     t.integer  "user_id"
-    t.string   "type"
+    t.string   "animal_type"
     t.string   "size"
     t.string   "breed"
-    t.string   "coat_type"
+    t.string   "coat_color"
     t.string   "coat_length"
     t.string   "location"
     t.string   "tag"
