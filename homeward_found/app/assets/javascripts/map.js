@@ -3,7 +3,6 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapController = new MapController(mapModel);
   mapController.getLocation();
-  $("#my_map").on("click", mapModel.dragMarker)
   $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477))
 });
 
@@ -49,27 +48,26 @@ MapModel.prototype = {
     }
     this.map = new google.maps.Map(document.getElementById('my_map'), mapOptions)
     this.addInitialMarkers(this.map);
+    this.setMapBounds()
     google.maps.event.addListener(this.map, 'click', function(event) {
       self.placeMarker(event.latLng);
     });
   },
-  // setMapBounds: function(){
+  setMapBounds: function(){
 
-  //   var allowedBounds = new google.maps.LatLngBounds(
-  //     new google.maps.LatLng(37.717462, -122.541557),
-  //     new google.maps.LatLng(37.817099, -122.378865)
-  //     );
-
-  //   var lastValidCenter = this.map.getCenter();
-
-  //   google.maps.event.addListener(this.map, 'center_changed', function() {
-  //     if (allowedBounds.contains(this.map.getCenter())) {
-  //       lastValidCenter = this.map.getCenter();
-  //       return;
-  //     }
-  //     this.map.panTo(lastValidCenter);
-  //   });
-  // },
+    var allowedBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(37.717462, -122.541557),
+      new google.maps.LatLng(37.817099, -122.378865)
+      );
+    var lastValidCenter = this.map.getCenter();
+    var map = this.map
+    google.maps.event.addListener(this.map, 'center_changed', function() {
+      if (allowedBounds.contains(lastValidCenter)) {
+        lastValidCenter
+      }
+     map.panTo(lastValidCenter);
+    });
+  },
   addInitialMarkers: function(map){
     var self = this;
     for (var i = 0; i < this.lostings.length; i++) {
