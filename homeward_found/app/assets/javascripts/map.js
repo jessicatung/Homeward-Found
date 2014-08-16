@@ -54,12 +54,12 @@ MapModel.prototype = {
     });
   },
   setMapBounds: function(){
-
-    var allowedBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(37.717462, -122.541557),
-      new google.maps.LatLng(37.817099, -122.378865)
-      );
     var lastValidCenter = this.map.getCenter();
+    var allowedBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03),
+      new google.maps.LatLng(lastValidCenter.k - 0.03, lastValidCenter.B - 0.03)
+      );
+
     var map = this.map
     google.maps.event.addListener(this.map, 'center_changed', function() {
       if (allowedBounds.contains(lastValidCenter)) {
