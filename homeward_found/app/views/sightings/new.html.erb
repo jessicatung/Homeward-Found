@@ -7,7 +7,7 @@
 <%= f.label :size, "Size:" %>
 <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
 <br>
-<%= f.label :coat_color, "Coat type:" %>
+<%= f.label :coat_color, "Coat color:" %>
 <%= f.text_field :coat_color %>
 <br>
 <%= f.label :coat_length, "Coat length:" %>
@@ -28,7 +28,7 @@
 <%= f.text_area :detail %>
 <br>
 <%= f.label :event_date, "Date seen:" %>
-<%= f.date_select :event_date %>
+<%= f.datetime_select :event_date %>
 <br>
 <%= f.label :found, "In my possession:" %>
 <%= f.check_box :found, checked: false %>
