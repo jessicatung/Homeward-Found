@@ -1,6 +1,8 @@
 class LostingsController < ApplicationController
-  def index
 
+  def index
+    lostings = Losting.all
+    render json: lostings
   end
 
   def new # dont need this later
@@ -12,25 +14,12 @@ class LostingsController < ApplicationController
 
     if losting.save
       algorithm = Algorithm.new(losting, Sighting.all)
-      lostings = algorithm.search
-      #filter
-      render json: lostings
+      ordered_lostings = algorithm.search
+      top_results = ordered_lostings[0..19]
+      render json: top_results
     else
       # errors
-      redirect_to new_losting_path
     end
-  end
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
   end
 
   def recent
@@ -42,6 +31,18 @@ class LostingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:pet_name, :animal_type, :size, :breed, :coat_color, :coat_length, :Lat, :Lng, :tag, :detail, :event_date)
+    params.require(:losting).permit(
+      :pet_name,
+      :animal_type,
+      :size,
+      :breed,
+      :coat_color,
+      :coat_length,
+      :Lat,
+      :Lng,
+      :tag,
+      :detail,
+      :event_date
+      )
   end
 end
