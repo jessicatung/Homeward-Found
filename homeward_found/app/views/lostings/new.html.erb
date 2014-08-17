@@ -1,39 +1,74 @@
 <div class="container">
-<h3>Lost</h3>
-<%= form_for @losting, {action: "create"} do |f| %>
-<%= f.label :pet_name, "Pet name:" %>
-<%= f.text_field :pet_name %>
-<br>
-<%= f.label :animal_type, "Animal type:" %>
-<%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
-<br>
-<%= f.label :size, "Size:" %>
-<%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
-<br>
-<%= f.label :coat_color, "Coat color:" %>
-<%= f.text_field :coat_color %>
-<br>
-<%= f.label :coat_length, "Coat length:" %>
-<%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
-<br>
-<%= f.label :breed, "Breed:" %>
-<%= f.select :breed, options_for_select([["still working on it"]]) %>
-<br>
-<%= f.label :Lat, "Last lat:" %>
-<%= f.text_field :Lat %>
-<%= f.label :Lng, "Last lng:" %>
-<%= f.text_field :Lng %>
-<br>
-<%= f.label :tag, "Tag:" %>
-<%= f.text_field :tag %>
-<br>
-<%= f.label :detail, "Details:" %>
-<%= f.text_area :detail %>
-<br>
-<%= f.label :event_date, "Date lost:" %>
-<%= f.datetime_select :event_date %>
-<br><br>
-<%= f.submit %>
-<% end %>
+  <h3>Lost</h3>
+  <%= form_for @losting, {action: "create", remote: true} do |f| %>
+  <%= f.label :pet_name, "Pet name:" %>
+  <%= f.text_field :pet_name %>
+  <br>
+  <%= f.label :animal_type, "Animal type:" %>
+  <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
+  <br>
+  <div id="cat" style="display: none;">
+
+
+    <%= f.label :size, "Size:" %>
+    <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
+    <br>
+    <%= f.label :coat_color, "Coat color:" %>
+    <%= f.text_field :coat_color %>
+    <br>
+    <%= f.label :coat_length, "Coat length:" %>
+    <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
+    <br>
+    <%= f.label :breed, "Breed:" %>
+    <%= f.select :breed, options_for_select(@cat_breeds) %>
+    <br>
+    <%= f.label :Lat, "Last lat:" %>
+    <%= f.text_field :Lat %>
+    <%= f.label :Lng, "Last lng:" %>
+    <%= f.text_field :Lng %>
+    <br>
+    <%= f.label :tag, "Tag:" %>
+    <%= f.text_field :tag %>
+    <br>
+    <%= f.label :detail, "Details:" %>
+    <%= f.text_area :detail %>
+    <br>
+    <%= f.label :event_date, "Date lost:" %>
+    <%= f.datetime_select :event_date %>
+    <br><br>
+  </div>
+
+  <div id="dog" style="display: none;">
+
+    <%= f.label :size, "Size:" %>
+    <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
+    <br>
+    <%= f.label :coat_color, "Coat color:" %>
+    <%= f.text_field :coat_color %>
+    <br>
+    <%= f.label :coat_length, "Coat length:" %>
+    <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
+    <br>
+    <%= f.label :breed, "Breed:" %>
+    <%= f.select :breed, options_for_select(@dog_breeds) %>
+    <br>
+    <%= f.label :Lat, "Last lat:" %>
+    <%= f.text_field :Lat %>
+    <%= f.label :Lng, "Last lng:" %>
+    <%= f.text_field :Lng %>
+    <br>
+    <%= f.label :tag, "Tag:" %>
+    <%= f.text_field :tag %>
+    <br>
+    <%= f.label :detail, "Details:" %>
+    <%= f.text_area :detail %>
+    <br>
+    <%= f.label :event_date, "Date lost:" %>
+    <%= f.datetime_select :event_date %>
+    <br><br>
+  </div>
+
+  <%= f.submit %>
+  <% end %>
 
 </div>

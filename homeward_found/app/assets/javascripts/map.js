@@ -2,9 +2,13 @@
 $(document).ready(function() {
   var mapModel = new MapModel();
   var mapView = new MapView()
+  var formModel = new FormModel();
+  var formController = new FormController(formModel);
+  formController.initialize()
   var mapController = new MapController(mapModel);
   mapController.getLocation();
   mapModel.getLostings()
+  // $("#losting_animal_type").on("change", formModel.animalCheck)
   // mapModel.getSightings()
   // $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
 });

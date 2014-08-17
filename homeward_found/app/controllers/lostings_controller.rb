@@ -1,10 +1,29 @@
 class LostingsController < ApplicationController
+  include HTTParty
+  require 'json'
   def index
 
   end
 
   def new # dont need this later
     @losting = Losting.new
+    @cat_breeds = []
+    @dog_breeds = []
+    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=cat&format=json")
+    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=dog&format=json")
+
+    cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
+    cat_breeds.each do |k,v|
+      @cat_breeds << k.values
+    end
+    @cat_breeds.flatten
+
+    dog_breeds = responseDog["petfinder"]["breeds"]["breed"]
+    dog_breeds.each do |k,v|
+      @dog_breeds << k.values
+    end
+    @dog_breeds.flatten
+
   end
 
   def create
