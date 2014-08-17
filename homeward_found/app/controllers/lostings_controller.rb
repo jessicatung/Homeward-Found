@@ -12,8 +12,7 @@ class LostingsController < ApplicationController
 
     if losting.save
       algorithm = Algorithm.new(losting, Sighting.all)
-
-      algorithm.search.as_json
+      render json: algorithm.search
     else
       # errors
       redirect_to new_losting_path
