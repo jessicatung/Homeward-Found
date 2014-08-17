@@ -47,9 +47,11 @@ FormController.prototype = {
     if(lostingAnimalType === "cat" || sightingAnimalType === "cat"){
       $("#dog").css("display", "none");
       $("#cat").css("display", "block");
+      $(".info").css("display", "block")
     } else if (lostingAnimalType === "dog" || sightingAnimalType === "dog"){
       $("#cat").css("display", "none");
       $("#dog").css("display", "block");
+      $(".info").css("display", "block")
     }
   },
   changeCheck: function(){

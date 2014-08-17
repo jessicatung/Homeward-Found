@@ -28,9 +28,7 @@ class LostingsController < ApplicationController
 
   def create
     losting = Losting.new(strong_params)
-    binding.pry
     if losting.save
-      binding.pry
       algorithm = Algorithm.new(losting, Sighting.all)
       lostings = algorithm.search
       #filter
