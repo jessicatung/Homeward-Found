@@ -74,6 +74,7 @@ MapModel.prototype = {
   addInitialLostingMarkers: function(map){
     var self = this;
     for (var i = 0; i < this.lostings.length; i++) {
+
       setTimeout(function() {
         self.markers.push(new google.maps.Marker({
           position: new google.maps.LatLng(parseFloat(self.lostings[self.iterator].Lat), parseFloat(self.lostings[self.iterator].Lng)),
