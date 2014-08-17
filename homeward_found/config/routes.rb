@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'lostings/recent', to: 'lostings#recent'
+
   resources :users, only: [:new, :create]
   resources :lostings
   resources :sightings, except: [:edit, :update, :destroy]
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   get 'login', to: 'users#login', as: "login"
   root 'home#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
