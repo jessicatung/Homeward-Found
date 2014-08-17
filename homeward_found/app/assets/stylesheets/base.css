@@ -4,12 +4,13 @@ body{
   overflow: hidden;
 }
 
-body, html, #my_map {
+body, html {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
 }
+
 
 header{
   /*background-color: #007BB8;*/
@@ -104,10 +105,16 @@ nav ul li a:hover{
   background: rgba(0,0,0.1);
 }
 
+
+
 #aside_nav{
   background-color: #EEF5F8;
   overflow: hidden;
   border-right: 1px solid blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
 }
 
@@ -157,11 +164,20 @@ width: 33.3%;
   line-height: 0;
   height: 0;
 }
-aside #event-container{
-  width: 100%;
-  height: 100%;
+
+aside{
+/*position: relative;*/
 }
-aside #event-template{
+.aside_container{
+   position: relative;
+  padding-bottom: 65.25%;
+  overflow: hidden;
+  height: 0;
+}
+
+aside #event-container{
+  position: absolute;
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
 }
@@ -189,13 +205,19 @@ label{
 }
 
 .body_container{
-  width: 100%;
-  height: 100%;
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  overflow: hidden;
+  height: 0;
 }
 
 #my_map {
-  position: relative;
-  height: 600px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 footer{
