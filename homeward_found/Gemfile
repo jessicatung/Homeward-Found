@@ -29,9 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'paperclip', '~> 4.2'
 
-# group :assets do
-#   gem 'handlebars_assets'
-# end
+
+gem 'handlebars_assets'
+
 
 group :development do
   gem 'better_errors'

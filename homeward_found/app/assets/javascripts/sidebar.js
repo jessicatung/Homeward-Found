@@ -2,7 +2,6 @@ $( document ).ready(function () {
   var riverView       = new RiverView ();
   var riverController = new RiverController ( riverView );
   riverController.start();
-
 })
 
 // === River Controller ===================================
@@ -15,7 +14,7 @@ RiverController.prototype = {
     var request = $.ajax({
       url: "/lostings/recent",
       type: "GET"
-    }).done( this.view.render )
+    }).done(this.view.render)
   }
 }
 
@@ -24,10 +23,11 @@ function RiverView () {
 }
 
 RiverView.prototype = {
-  render: function ( data ) {
-    var source = $( "#event-template" ).html();
-    var template = Handlebars.compile( source )
-    $( '#event-collection' ).append( template (data))
-    debugger
+  render: function ( dataArray ) {
+    $.each(dataArray,function(index, data) {
+      var source = $( "#event-template" ).html();
+      var template = Handlebars.compile( source )
+      $( '#event-container' ).append(template(data))
+    });
   }
 }

@@ -42,28 +42,26 @@
     <div class="col_no_mar span_2_of_12">
     <aside>
       <div id="event-container">
-      <ul>
+      <h3>Recent Lostings</h3>
+      <ul id="#event-collection">
       <script id="event-template" type="text/x-handlebars-template">
-      {{#each lostings}}
       <li class="event">
-        // <img class="avatar" src={{this.avatar_url}} alt="">
         <div class="event-content">
           <p>
-          <span class="pet-name">{{pet_name}}</span>
-          <span class="pet-type">{{animal_type}}</span>
+          <span class="pet-name">{{pet_name}}</span><br>
+          <span class="pet-color">{{coat_color}}</span>
           <span class="pet-size">{{breed}}</span>
-          <span class="pet-name">{{event_date}}</span>
+          <span class="pet-type">{{animal_type}}</span><br>
+          <span class="event-date">{{event_date}}</span>
           </p>
         </div>
-      </li>
-    {{/each}}
+      </li><hr>
     </script>
     </ul>
     </div>
     </aside>
     </div>
     <div class="col_no_mar span_10_of_12">
-
       <%= yield %>
     </div>
 
