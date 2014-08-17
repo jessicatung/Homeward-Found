@@ -11,8 +11,10 @@ class SightingsController < ApplicationController
     sighting = Sighting.new(strong_params)
 
     if sighting.save
-      # trigger search algorithm
-      redirect_to root_path
+      algorithm = Algorithm.new(sighting, Losting.all)
+      algorithm.search
+      #for results with a high score, future feature would be to send message to the user of a hit
+      render json: sighting
     else
       # errors
       redirect_to new_sighting_path
