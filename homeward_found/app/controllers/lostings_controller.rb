@@ -40,6 +40,6 @@ class LostingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:pet_name, :animal_type, :size, :breed, :coat_color, :coat_length, :location, :tag, :detail, :date_lost)
+    params.require(:losting).permit(:pet_name, :animal_type, :size, :breed, :coat_color, :coat_length, :location, :tag, :detail, :date_lost, :avatar)
   end
 end

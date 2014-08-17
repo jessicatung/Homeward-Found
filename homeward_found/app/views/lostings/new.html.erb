@@ -32,6 +32,9 @@
 <br>
 <%= f.label :event_date, "Date lost:" %>
 <%= f.date_select :event_date %>
+<br>
+<%= f.label :avatar, "Pet Image:" %>
+<%= f.file_field :avatar %>
 <br><br>
 <%= f.submit %>
 <% end %>
