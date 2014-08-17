@@ -32,8 +32,8 @@ class LostingsController < ApplicationController
   end
 
   def recent
+    Losting.ordered_json
     lostings = Losting.ordered_json
-    lostings = JSON.parse(lostings)
     render json: lostings
   end
 

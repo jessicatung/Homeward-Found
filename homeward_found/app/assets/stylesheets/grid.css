@@ -28,7 +28,7 @@
   clear:both;
 }
 .group {
-    zoom:1; /* For IE 6/7 */
+    zoom:1;  For IE 6/7
 }
 
 
@@ -41,7 +41,8 @@
     width: 91.58%;
 }
 .span_10_of_12 {
-    width: 83.16%;
+    /*width: 83.16%;*/
+    width: 84.17%;
 }
 
 .span_9_of_12 {
