@@ -1,6 +1,6 @@
 <div class="container">
 <h3>Sighting</h3>
-<%= form_for @sighting, {action: "create"} do |f| %>
+<%= form_for @sighting, url: {action: "create"}, html: { :multipart => true } do |f| %>
 <%= f.label :animal_type, "Animal type:" %>
 <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]]) %>
 <br>
