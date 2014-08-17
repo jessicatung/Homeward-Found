@@ -9,7 +9,7 @@ dog_breed = %w{labrador shepherd bulldog terrier poodle retriever beagle boxer d
 coat_color = %w{black brown white grey calico}
 coat_length = %w{hairless short medium long}
 tag = %w{none owner vet}
-longs = [-122.7, -122.701, -122.702, -122.703, -122.704, -122.705, -122.706, -122.707, -122.708, -122.709]
+longs = [-122.411295, -122.408849, -122.409849, -122.397733, -122.4, -122.75, -122.738, -122.433396, -122.44, -122.45]
 
 found = %w{true false}
 
@@ -21,11 +21,11 @@ lostings_users = User.limit(15)
 sightings_users = User.limit(5)
 
 lostings_users.each do |user|
-  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
+  user.lostings.create(pet_name: pet_name.sample, animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.785126, Lng: longs.sample)
 end
 
 sightings_users.each do |user|
-  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, found: found.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.8, Lng: longs.sample)
+  user.sightings.create(animal_type: type.sample, size: size.sample, coat_color: coat_color.sample, coat_length: coat_length.sample, tag: tag.sample, found: found.sample, event_date: Time.now.strftime("%Y-%m-%d %H:%M:%S"), Lat: 37.785126, Lng: longs.sample)
 end
 
 
