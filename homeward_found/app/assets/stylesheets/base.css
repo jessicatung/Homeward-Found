@@ -25,7 +25,6 @@ header{
 header h1{
   /*font-weight: 700;*/
   font-size: 70px;
-  color: #2d97af;
   text-shadow: 2px 2px 1px #bad3ed;
   font-weight: bold;
 }
@@ -37,7 +36,7 @@ header nav ul li a img{
 
 
 header nav span{
-  font-size: 15px;
+  /*font-size: 15px;*/
 }
 
 
@@ -95,9 +94,14 @@ nav > ul > li > a{
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  color: #d3eced;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+nav ul li a:hover{
+  background: #32a9c3;
+  background: rgba(0,0,0.1);
 }
 
 #aside_nav{
