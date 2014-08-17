@@ -23,6 +23,7 @@ RouteController.prototype = {
   initialize: function(){
     $("#sighting").on("click", this.sightingForm);
     $("#lost").on("click", this.lostingForm);
+    $("#home").on("click", this.homePage);
 
   },
   lostingForm: function(e){
@@ -41,6 +42,16 @@ RouteController.prototype = {
      url: "/sightings/new"
    }).done(function(data){
     $("#event-container").html(data)
+  })
+ },
+ homePage: function(e){
+e.preventDefault()
+    $.ajax({
+     method: "get",
+     url: "/"
+   }).done(function(data){
+    debugger
+    // $(document).html(data)
   })
  }
 }
@@ -156,6 +167,8 @@ MapModel.prototype = {
       position: location,
       map: this.map
     });
+    $("#losting_Lat").val(location.k)
+    $("#losting_Lng").val(location.B)
     this.addNewMarker(marker.position.k, marker.position.B)
   },
 

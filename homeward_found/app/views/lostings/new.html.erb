@@ -21,10 +21,8 @@
     <%= f.label :breed, "Breed:" %>
     <%= f.select :breed, options_for_select(@cat_breeds) %>
     <br>
-    <%= f.label :Lat, "Last lat:" %>
-    <%= f.text_field :Lat %>
-    <%= f.label :Lng, "Last lng:" %>
-    <%= f.text_field :Lng %>
+    <%= f.hidden_field :Lat %>
+    <%= f.hidden_field :Lng %>
     <br>
     <%= f.label :tag, "Tag:" %>
     <%= f.text_field :tag %>

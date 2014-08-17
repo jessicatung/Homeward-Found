@@ -2,7 +2,7 @@
     <div class="section group">
       <nav>
         <ul>
-          <li class="span_3_of_12"><a href="/"><span>Homeward Found</span></a></li>
+          <li class="span_3_of_12"><a id="home"><span>Homeward Found</span></a></li>
           <li class="span_2_of_12"><a id="lost">Lost</a></li>
           <li class="span_2_of_12"><a id="sighting">Sighting</a></li>
           <li class="span_2_of_12"><a href="/login">Login</a></li>
@@ -23,24 +23,7 @@
           </ul>
         </div>
 
-        <div id="event-container">
-          <h3>Recent Lostings</h3>
-          <ul id="event-collection">
-            <script id="event-template" type="text/x-handlebars-template">
-            <li class="event">
-            <div class="event-content">
-            <p>
-            <span class="pet-name">{{pet_name}}</span><br>
-            <span class="pet-color">{{coat_color}}</span>
-            <span class="pet-size">{{breed}}</span>
-            <span class="pet-type">{{animal_type}}</span><br>
-            <span class="event-date">{{event_date}}</span>
-            </p>
-            </div>
-            </li><hr>
-            </script>
-          </ul>
-        </div>
+        <%= render "event" %>
       </aside>
     </div>
 
