@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  default from: 'pet_locator@homewardfound.com'
+  default from: 'homewardfounddbc@gmail.com'
 
   def possible_match_notification(user)
     @user = user
