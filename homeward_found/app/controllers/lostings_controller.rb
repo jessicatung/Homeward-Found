@@ -11,11 +11,12 @@ class LostingsController < ApplicationController
 
   def create
     losting = Losting.new(strong_params)
+    User.find(session[:user_id]).lostings << losting
 
     if losting.save
       algorithm = Algorithm.new(losting, Sighting.all)
-      ordered_lostings = algorithm.search
-      top_results = ordered_lostings[0..19]
+      ordered_sightings = algorithm.search
+      top_results = ordered_sightings[0..19]
       render json: top_results
     else
       # errors
