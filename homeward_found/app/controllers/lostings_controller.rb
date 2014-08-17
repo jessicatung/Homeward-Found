@@ -11,8 +11,8 @@ class LostingsController < ApplicationController
     losting = Losting.new(strong_params)
 
     if losting.save
-      # trigger search algorithm
-      redirect_to root_path
+      algorithm = Algorithm.new(losting, Sighting.all)
+      render json: algorithm.search
     else
       # errors
       redirect_to new_losting_path
@@ -32,8 +32,8 @@ class LostingsController < ApplicationController
   end
 
   def recent
+    Losting.ordered_json
     lostings = Losting.ordered_json
-    lostings = JSON.parse(lostings)
     render json: lostings
   end
 
