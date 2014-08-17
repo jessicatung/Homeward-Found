@@ -1,4 +1,50 @@
+<header>
+    <div class="section group">
+      <nav>
+        <ul>
+          <li class="span_3_of_12"><a href="/"><span>Homeward Found</span></a></li>
+          <li class="span_2_of_12"><a id="lost">Lost</a></li>
+          <li class="span_2_of_12"><a id="sighting">Sighting</a></li>
+          <li class="span_2_of_12"><a href="/login">Login</a></li>
+          <li class="span_3_of_12"><a href="#">SEACH BAR SPACE</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <div class="section group">
+    <div class="col_no_mar span_3_of_12 aside_container">
+      <aside>
+        <div id="aside_nav">
+          <ul>
+            <li><a href="#">Lost</a></li>
+            <li><a href="#">Sighting</a></li>
+            <li><a href="#">All</a></li>
+          </ul>
+        </div>
+
+        <div id="event-container">
+          <h3>Recent Lostings</h3>
+          <ul id="event-collection">
+            <script id="event-template" type="text/x-handlebars-template">
+            <li class="event">
+            <div class="event-content">
+            <p>
+            <span class="pet-name">{{pet_name}}</span><br>
+            <span class="pet-color">{{coat_color}}</span>
+            <span class="pet-size">{{breed}}</span>
+            <span class="pet-type">{{animal_type}}</span><br>
+            <span class="event-date">{{event_date}}</span>
+            </p>
+            </div>
+            </li><hr>
+            </script>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="col_no_mar span_9_of_12 body_container">
 <% if logged_in? %>
 <h1>Welcome back, <%= current_user.email %>.</h1>
 
@@ -7,3 +53,9 @@
 
 <div id="my_map"></div>
 
+</div>
+  </div>
+
+  <div class="section group">
+    <footer class="col_no_mar span_12_of_12"><p>copyright homewardfound</p></footer>
+  </div>

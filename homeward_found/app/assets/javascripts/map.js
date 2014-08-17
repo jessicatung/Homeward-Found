@@ -3,6 +3,8 @@ $(document).ready(function() {
   var mapModel = new MapModel();
   var mapView = new MapView()
   var formModel = new FormModel();
+  var routeController = new RouteController()
+  routeController.initialize()
   var formController = new FormController(formModel);
   formController.initialize()
   var mapController = new MapController(mapModel);
@@ -12,6 +14,36 @@ $(document).ready(function() {
   // mapModel.getSightings()
   // $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
 });
+
+function RouteController(){
+
+}
+
+RouteController.prototype = {
+  initialize: function(){
+    $("#sighting").on("click", this.sightingForm);
+    $("#lost").on("click", this.lostingForm);
+
+  },
+  lostingForm: function(e){
+    e.preventDefault()
+    $.ajax({
+      method: "get",
+      url: "/lostings/new"
+    }).done(function(data){
+      $("#event-container").html(data)
+    })
+  },
+  sightingForm: function(e){
+    e.preventDefault()
+    $.ajax({
+     method: "get",
+     url: "/sightings/new"
+   }).done(function(data){
+    $("#event-container").html(data)
+  })
+ }
+}
 
 function MapController(model){
   this.model = model;

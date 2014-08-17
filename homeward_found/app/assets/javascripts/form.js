@@ -16,14 +16,14 @@ FormModel.prototype = {
   },
   catSelect: function(){
     debugger
-    if($("#losting_animal_type").val() === "cat"){
+    if($("#losting_animal_type").val() === "cat" || $("#sighting_animal_type").val() === "cat"){
 
-    $.ajax({
-      method: "GET",
-      url: "http://api.petfinder.com/breed.list?key=" + ENV['PET_FINDER_API_KEY'] + "&animal=cat&format=json"
-    }).done(function(data){
-      debugger
-    })
+      $.ajax({
+        method: "GET",
+        url: "http://api.petfinder.com/breed.list?key=" + ENV['PET_FINDER_API_KEY'] + "&animal=cat&format=json"
+      }).done(function(data){
+        $("#event-container").html(data)
+      })
 
     }
   },
@@ -35,28 +35,26 @@ FormModel.prototype = {
 
 function FormController(model){
   this.model = model;
-  }
+}
 FormController.prototype = {
   initialize: function(){
-    // this.animalCheck()
-    // this.animalCheck().bind(this.model)
     this.changeCheck()
   },
 
   animalCheck: function(event, type){
-    var animalType = $("#losting_animal_type").val()
-    if(animalType === "cat"){
-      console.log(animalType)
+    var lostingAnimalType = $("#losting_animal_type").val()
+    var sightingAnimalType = $("#sighting_animal_type").val()
+    if(lostingAnimalType === "cat" || sightingAnimalType === "cat"){
       $("#dog").css("display", "none");
       $("#cat").css("display", "block");
-    } else if (animalType === "dog"){
-      console.log(animalType)
+    } else if (lostingAnimalType === "dog" || sightingAnimalType === "dog"){
       $("#cat").css("display", "none");
       $("#dog").css("display", "block");
     }
   },
   changeCheck: function(){
-  $("#losting_animal_type").on("change", this.animalCheck)
+    $("#losting_animal_type").on("change", this.animalCheck)
+    $("#sighting_animal_type").on("change", this.animalCheck)
   }
 
 }

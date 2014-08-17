@@ -1,4 +1,3 @@
-<div class="container">
   <h3>Lost</h3>
   <%= form_for @losting, {action: "create", remote: true} do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
@@ -7,7 +6,7 @@
   <%= f.label :animal_type, "Animal type:" %>
   <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
   <br>
-  <div id="cat" style="display: none;">
+<div id="cat" style="display: none;">
 
 
     <%= f.label :size, "Size:" %>
@@ -70,5 +69,3 @@
 
   <%= f.submit %>
   <% end %>
-
-</div>
