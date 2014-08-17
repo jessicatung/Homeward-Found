@@ -12,9 +12,10 @@ class SightingsController < ApplicationController
 
     if sighting.save
       algorithm = Algorithm.new(sighting, Losting.all)
-      algorithm.search
+      sightings = algorithm.search
+      #filter
       #for results with a high score, future feature would be to send message to the user of a hit
-      render json: sighting
+      render json: sightings
     else
       # errors
       redirect_to new_sighting_path
@@ -24,7 +25,7 @@ class SightingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:animal_type, :size, :breed, :coat_color, :coat_length, :location, :tag, :detail, :found, :date_seen)
+    params.require(:losting).permit(:animal_type, :size, :breed, :coat_color, :coat_length, :Lat, :Lng, :event_date, :tag, :detail, :found)
   end
 
 end
