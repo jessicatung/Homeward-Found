@@ -1,8 +1,7 @@
 class Algorithm
-
+  # will make this "not too wide, not too tall if time allows"
   def initialize (listing, collection)
-    # @listing = listing
-    @listing = Losting.new(animal_type: "cat", size: "small", breed: "still working on it", coat_color: "black", coat_length: "long", Lat: 37.8, Lng: -122.703, event_date: "2014-08-15 10:00:00")
+    @listing = listing
     @collection = collection
   end
 
