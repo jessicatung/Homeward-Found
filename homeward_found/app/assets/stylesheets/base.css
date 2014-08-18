@@ -243,3 +243,114 @@ footer p{
   font-weight: bold;
 }
 
+/*--------- start login form stuff --------------------------- */
+
+#logindiv{
+  opacity:0.92;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
+  z-index: 999;
+}
+
+#logindiv .form {
+  border-radius:2px;
+  padding:20px 30px;
+  box-shadow:0 0 15px;
+  font-size:14px;
+  font-weight:bold;
+  width:350px;
+  /*margin:20px 250px 0 35px;*/
+  margin: auto;
+  /*overflow: hidden;*/
+}
+
+#logindiv .form label {
+  font-family: sans-serif;
+}
+
+#logindiv .form h3 {
+  font-family: sans-serif;
+}
+
+#logindiv #login{
+    width:350px;
+    margin:0px;
+    background-color:white;
+    font-family: sans-serif;
+    position: relative;
+    border: 5px solid rgb(90, 158, 181);
+    left: 50%;
+    top: 50%;
+    margin-left:-210px;
+    margin-top:-158px;
+}
+
+#logindiv input[type=button]{
+    background-color:#123456;
+    border:1px solid white;
+    font-family: sans-serif;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+#logindiv input{
+    width:20%;
+    height:35px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

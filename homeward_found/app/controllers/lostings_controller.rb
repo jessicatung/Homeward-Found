@@ -1,6 +1,8 @@
 class LostingsController < ApplicationController
+
   include HTTParty
   require 'json'
+
   def index
 
   end
@@ -9,8 +11,8 @@ class LostingsController < ApplicationController
     @losting = Losting.new
     @cat_breeds = []
     @dog_breeds = []
-    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=cat&format=json")
-    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=dog&format=json")
+    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
+    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
 
     cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
     cat_breeds.each do |k,v|
@@ -28,27 +30,16 @@ class LostingsController < ApplicationController
 
   def create
     losting = Losting.new(strong_params)
+    User.find(session[:user_id]).lostings << losting
+
     if losting.save
-      # algorithm = Algorithm.new(losting, Sighting.all)
-      # lostings = algorithm.search
-      #filter
-      # render json: lostings
+      algorithm = Algorithm.new(losting, Sighting.all)
+      ordered_sightings = algorithm.search
+      top_results = ordered_sightings[0..19]
+      render json: top_results
     else
       # errors
-      redirect_to new_losting_path
     end
-  end
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
   end
 
   def recent
@@ -60,6 +51,18 @@ class LostingsController < ApplicationController
   private
 
   def strong_params
-    params.require(:losting).permit(:pet_name, :animal_type, :size, :breed, :coat_color, :coat_length, :Lat, :Lng, :tag, :detail, :event_date)
+    params.require(:losting).permit(
+      :pet_name,
+      :animal_type,
+      :size,
+      :breed,
+      :coat_color,
+      :coat_length,
+      :Lat,
+      :Lng,
+      :tag,
+      :detail,
+      :event_date
+      )
   end
 end

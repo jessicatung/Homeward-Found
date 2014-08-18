@@ -1,14 +1,16 @@
 class SightingsController < ApplicationController
 
   def index
+    sightings = Sighting.all
+    render json: sightings
   end
 
   def new # dont need this later
     @sighting = Sighting.new
     @cat_breeds = []
     @dog_breeds = []
-    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=cat&format=json")
-    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=#{ENV['PET_FINDER_API_KEY']}&animal=dog&format=json")
+    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
+    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
 
     cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
     cat_breeds.each do |k,v|
@@ -33,14 +35,36 @@ class SightingsController < ApplicationController
       # render json: sightings
     else
       # errors
-      redirect_to new_sighting_path
     end
+  end
+
+  def recent
+    Sighting.ordered_json
+    sightings = Sighting.ordered_json
+    render json: sightings
   end
 
   private
 
+  def notify_user
+    user = User.find(@ordered_lostings[0].user_id)
+    NotificationMailer.possible_match_notification(user).deliver
+  end
+
   def strong_params
-    params.require(:sighting).permit(:animal_type, :size, :breed, :coat_color, :coat_length, :Lat, :Lng, :event_date, :tag, :detail, :found)
+    params.require(:sighting).permit(
+      :animal_type,
+      :size,
+      :breed,
+      :coat_color,
+      :coat_length,
+      :Lat,
+      :Lng,
+      :event_date,
+      :tag,
+      :detail,
+      :found
+      )
   end
 
 end

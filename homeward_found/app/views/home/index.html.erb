@@ -1,44 +1,87 @@
 <header>
-    <div class="section group">
-      <nav>
-        <ul>
-          <li class="span_3_of_12"><a id="home"><span>Homeward Found</span></a></li>
-          <li class="span_2_of_12"><a id="lost">Lost</a></li>
-          <li class="span_2_of_12"><a id="sighting">Sighting</a></li>
-          <li class="span_2_of_12"><a href="/login">Login</a></li>
-          <li class="span_3_of_12"><a href="#">SEACH BAR SPACE</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
   <div class="section group">
-    <div class="col_no_mar span_3_of_12 aside_container">
-      <aside>
-        <div id="aside_nav">
-          <ul>
-            <li><a id="lost_side">Lost</a></li>
-            <li><a id="sight_side">Sighting</a></li>
-            <li><a id="all_side">All</a></li>
-          </ul>
-        </div>
+    <nav>
+      <ul>
+        <li class="span_3_of_12"><a id="home"><span>Homeward Found</span></a></li>
+        <li class="span_2_of_12"><a id="lost">Lost</a></li>
+        <li class="span_2_of_12"><a id="sighting">Sighting</a></li>
+        <li class="span_2_of_12"><a href="/login">Login</a></li>
+        <li class="span_3_of_12"><a href="#">SEACH BAR SPACE</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-        <%= render "event" %>
-      </aside>
-    </div>
 
-    <div class="col_no_mar span_9_of_12 body_container">
-<% if logged_in? %>
-<h1>Welcome back, <%= current_user.email %>.</h1>
 
-<%= link_to "Logout", delete_session_path, method: :delete %>
-<% end %>
+<!-- form stuff -->
 
-<div id="my_map"></div>
+<div id="logindiv">
+
+  <!-- Login form -->
+
+  <%= form_for :users, url: {controller: "sessions", action: "create"} do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.label :password, "Password: " %>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.submit "Login" %>
+  <% end %>
+
+  <!-- Create Account Form -->
+
+  <%= form_for @user, {action: "create"} do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.label :password, "Password:" %>
+  <%= f.password_field :password %>
+  <br>
+  <%=f.label :password_confirmation %>
+  <%=f.password_field :password_confirmation %>
+  <br>
+  <%= f.submit "Sign up" %>
+  <% end %>
 
 </div>
+
+<!-- end form stuff -->
+<div class="section group">
+  <div class="col_no_mar span_3_of_12 aside_container">
+    <aside>
+      <div id="aside_nav">
+        <ul>
+          <li><a id="lost_side">Lost</a></li>
+          <li><a id="sight_side">Sighting</a></li>
+          <li><a id="all_side">All</a></li>
+        </ul>
+      </div>
+
+      <%= render "event" %>
+    </aside>
   </div>
 
-  <div class="section group">
-    <footer class="col_no_mar span_12_of_12"><p>copyright homewardfound</p></footer>
+  <div class="col_no_mar span_9_of_12 body_container">
+    <% if logged_in? %>
+    <h1>Welcome back, <%= current_user.email %>.</h1>
+
+    <%= link_to "Logout", delete_session_path, method: :delete %>
+    <% end %>
+
+    <% if logged_in? %>
+    <script>
+    $("#logindiv").remove()
+    </script>
+    <% end %>
+
+
+    <div id="my_map"></div>
+
   </div>
+</div>
+
+<div class="section group">
+  <footer class="col_no_mar span_12_of_12"><p>copyright homewardfound</p></footer>
+</div>
