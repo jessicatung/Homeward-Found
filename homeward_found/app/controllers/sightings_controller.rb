@@ -3,6 +3,7 @@ class SightingsController < ApplicationController
   def index
     # sightings = Sighting.all
     # render json: sightings
+    render partial: "index"
   end
 
   def new # dont need this later
@@ -23,6 +24,7 @@ class SightingsController < ApplicationController
       @dog_breeds << k.values
     end
     @dog_breeds.flatten
+    render :partial => "new"
   end
 
   def create

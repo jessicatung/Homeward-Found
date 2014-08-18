@@ -1,3 +1,8 @@
+<script>
+  var formController = new FormController()
+  formController.initialize()
+</script>
+
   <h3>Lost</h3>
   <%= form_for @losting, {remote: true} do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
