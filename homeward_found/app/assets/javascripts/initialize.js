@@ -15,8 +15,8 @@ $(document).ready(function() {
 
 
   //  ---------------------------- FORM
-  var formController = new FormController();
-  formController.initialize()
+  // var formController = new FormController();
+  // formController.initialize()
 
 
   //  ---------------------------- RIVER
