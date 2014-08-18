@@ -16,7 +16,7 @@ MapController.prototype = {
     this.model.createMap(position);
     this.markers.initializeMarkers(this.model.map)
     this.markers.setAllMap(this.model.map)
-    this.markers.showMarkers(this.model.map)
+    this.markers.showMarkers(this.model)
     // this.lostings.getLostings()
     // this.lostings.addInitialLostingMarkers(this.model.map)
   }
