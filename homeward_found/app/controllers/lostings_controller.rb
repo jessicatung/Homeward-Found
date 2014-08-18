@@ -9,19 +9,24 @@ class LostingsController < ApplicationController
 
   def new # dont need this later
     @losting = Losting.new
+    # This is not core to a controller, this processing logic, while good belongs in a class
     @cat_breeds = []
     @dog_breeds = []
+    # These strings could be constants inside of the class mentioned 3 lines
+    # above
     responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
     responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
 
+    # These two could be DRYed out in the class I mentioned above.
     cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
+    # You hurt me.  This is what #each_with_object or #inject is for.
     cat_breeds.each do |k,v|
       @cat_breeds << k.values
     end
     @cat_breeds.flatten
 
     dog_breeds = responseDog["petfinder"]["breeds"]["breed"]
-    dog_breeds.each do |k,v|
+    dog_breeds.each do |k,v| # See above.
       @dog_breeds << k.values
     end
     @dog_breeds.flatten
@@ -33,11 +38,22 @@ class LostingsController < ApplicationController
     User.find(session[:user_id]).lostings << losting
 
     if losting.save
+      # Eek, this name is not very helpful.  Algorithm?  Can we be more
+      # descriptive?  NaiveAlgorithm?
+      # WeightedLogarithmicScaleBasedOnGeolocAlogirthm?
       algorithm = Algorithm.new(losting, Sighting.all)
-      ordered_sightings = algorithm.search
-      top_results = ordered_sightings[0..19]
+      ordered_sightings = algorithm.search # Why can't Algorithm fire this off by default?
+      top_results = ordered_sightings[0..19] # I don't feel like the controller should know this implementation detail  Could you have Algorithm take an argument that does this?  Or better yet, could this be the default?
+
+      # Imagine this call:  Algorithm.new(losting, Sighting, result_count: 20)
+      #
+      # That could swallow up all these implementation manipulations.
+      #
+      # The golden glow of OO-enlightenment is coming for you.  Fight hard
+      # here.
       render json: top_results
     else
+      # No.  Don't do this.  Makes me sad.  Blow up spectacularly is better
       # errors
     end
   end

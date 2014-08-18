@@ -1,5 +1,6 @@
 class SightingsController < ApplicationController
 
+  # Apply comments from LostingsController here
   def index
     # sightings = Sighting.all
     # render json: sightings
