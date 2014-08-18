@@ -93,8 +93,8 @@ MapModel.prototype = {
 
   addNewMarker: function(lat, lon){
     var newMarkerCoordinate = new google.maps.LatLng(lat, lon)
-    this.lostings.push(newMarkerCoordinate);
 
+    this.lostings.push(newMarkerCoordinate);
     this.markers.push(new google.maps.Marker({
       position: this.lostings.last,
       map: this.map,
@@ -105,15 +105,14 @@ MapModel.prototype = {
   },
 
   placeMarker: function(location){
-    // this.markers = []
     if($("form")[0].className === "new_losting"){
       var marker = new google.maps.Marker({
         position: location,
         map: this.map
       });
-
       $("#losting_Lat").val(location.k)
       $("#losting_Lng").val(location.B)
+
       this.addNewMarker(marker.position.k, marker.position.B)
 
     } else if ($("form")[0].className === "new_sighting"){
@@ -124,7 +123,6 @@ MapModel.prototype = {
       $("#sighting_Lat").val(location.k)
       $("#sighting_Lng").val(location.B)
       this.addNewMarker(marker.position.k, marker.position.B)
-
     }
   },
 
