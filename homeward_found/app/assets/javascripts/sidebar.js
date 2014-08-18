@@ -9,6 +9,12 @@ RiverController.prototype = {
       url: "/lostings/recent",
       type: "GET"
     }).done(this.view.render)
+  },
+  startSightings: function(){
+    var reponse = $.ajax({
+      url: "/sightings/recent",
+      type: "GET"
+    }).done(this.view.render)
   }
 }
 
