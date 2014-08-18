@@ -300,14 +300,13 @@ input[type=button]{
 }
 
 input{
-    width:100%;
+    width:20%;
     height:35px;
     margin-top:5px;
     border:1px solid #999;
     border-radius:3px;
     padding:5px;
 }
-
 
 
 
