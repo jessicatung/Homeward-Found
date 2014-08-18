@@ -4,6 +4,7 @@ class LostingsController < ApplicationController
   require 'json'
 
   def index
+
     render partial: "index"
   end
 

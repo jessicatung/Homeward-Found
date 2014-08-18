@@ -1,19 +1,18 @@
 <script>
-    var riverView       = new RiverView ();
+  var riverView       = new RiverView ();
   var riverController = new RiverController ( riverView );
   riverController.startLostings();
 </script>
 
-<div id="event-container">
+
   <ul id="event-collection">
     <script id="event-template" type="text/x-handlebars-template">
     <li class="event">
     <div class="event-content">
-    <h3>{{pet_name}}</h3>
+    <h3><a href="/lostings/{{id}}">{{pet_name}}</a></h3>
     <p>{{coat_color}} {{breed}} {{animal_type}}</p>
     <p>{{event_date}}</p>
     </div>
     </li><hr>
     </script>
 </ul>
-</div>

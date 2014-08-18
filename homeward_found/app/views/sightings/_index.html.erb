@@ -4,16 +4,13 @@
   riverController.startSightings();
 </script>
 
-<div id="event-container">
   <ul id="event-collection">
     <script id="event-template" type="text/x-handlebars-template">
     <li class="event">
     <div class="event-content">
-    <h3>{{pet_name}}</h3>
-    <p>{{coat_color}} {{breed}} {{animal_type}}</p>
+    <h4><a href="/sightings/{{id}}">{{coat_color}} {{breed}} {{animal_type}}</a></h4>
     <p>{{event_date}}</p>
     </div>
     </li><hr>
     </script>
 </ul>
-</div>
