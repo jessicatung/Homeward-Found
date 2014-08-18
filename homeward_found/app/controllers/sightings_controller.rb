@@ -23,6 +23,7 @@ class SightingsController < ApplicationController
       @dog_breeds << k.values
     end
     @dog_breeds.flatten
+    render :partial => "new"
   end
 
   def create
