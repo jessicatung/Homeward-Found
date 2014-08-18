@@ -30,6 +30,7 @@ end
 
 def create
   losting = Losting.new(strong_params)
+  losting.pet_name = losting.pet_name.capitalize
   User.find(session[:user_id]).lostings << losting
 
   if losting.save

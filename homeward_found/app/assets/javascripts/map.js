@@ -108,8 +108,9 @@ MapModel.prototype = {
     if($("form")[0].className === "new_losting"){
       var marker = new google.maps.Marker({
         position: location,
-        map: this.map
-      });
+        map: this.map,
+        icon: this.animalType($("#losting_animal_type"))
+        });
       $("#losting_Lat").val(location.k)
       $("#losting_Lng").val(location.B)
 
@@ -118,7 +119,8 @@ MapModel.prototype = {
     } else if ($("form")[0].className === "new_sighting"){
       var marker = new google.maps.Marker({
         position: location,
-        map: this.map
+        map: this.map,
+        icon: this.animalType($("#sighting_animal_type"))
       });
       $("#sighting_Lat").val(location.k)
       $("#sighting_Lng").val(location.B)
