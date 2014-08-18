@@ -27,11 +27,11 @@ class SightingsController < ApplicationController
     sighting = Sighting.new(strong_params)
     binding.pry
     if sighting.save
-      algorithm = Algorithm.new(sighting, Losting.all)
-      sightings = algorithm.search
+      # algorithm = Algorithm.new(sighting, Losting.all)
+      # sightings = algorithm.search
       #filter
       #for results with a high score, future feature would be to send message to the user of a hit
-      render json: sightings
+      # render json: sightings
     else
       # errors
       redirect_to new_sighting_path

@@ -29,10 +29,10 @@ class LostingsController < ApplicationController
   def create
     losting = Losting.new(strong_params)
     if losting.save
-      algorithm = Algorithm.new(losting, Sighting.all)
-      lostings = algorithm.search
+      # algorithm = Algorithm.new(losting, Sighting.all)
+      # lostings = algorithm.search
       #filter
-      render json: lostings
+      # render json: lostings
     else
       # errors
       redirect_to new_losting_path
