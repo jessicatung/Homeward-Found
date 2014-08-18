@@ -16,10 +16,12 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9wB74qE2kN-soCB_PFNsPajbg-BK-OE">
   </script>
 
-
-
 </head>
+
+
+
 <body>
+
   <header>
     <div class="section group">
       <nav>
@@ -33,6 +35,41 @@
       </nav>
     </div>
   </header>
+
+  <!-- form stuff -->
+
+  <div id="logindiv">
+
+    <!-- Login form -->
+
+    <%= form_for :users, url: {controller: "sessions", action: "create"} do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :password, "Password: " %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.submit "Login" %>
+    <% end %>
+
+    <!-- Create Account Form -->
+
+    <%= form_for @user, {action: "create"} do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :password, "Password:" %>
+    <%= f.password_field :password %>
+    <br>
+    <%=f.label :password_confirmation %>
+    <%=f.password_field :password_confirmation %>
+    <br>
+    <%= f.submit "Sign up" %>
+    <% end %>
+
+  </div>
+
+  <!-- end form stuff -->
 
   <div class="section group">
     <div class="col_no_mar span_3_of_12 aside_container">
