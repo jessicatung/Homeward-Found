@@ -105,27 +105,17 @@ MapModel.prototype = {
   },
 
   placeMarker: function(location){
-    if($("form")[0].className === "new_losting"){
-      var marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        icon: this.animalType($("#losting_animal_type"))
-        });
-      $("#losting_Lat").val(location.k)
-      $("#losting_Lng").val(location.B)
+    var formType = $("form").parent().attr("id")
 
-      this.addNewMarker(marker.position.k, marker.position.B)
+    var marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      icon: this.animalType($("#" + formType + "_animal_type"))
+    });
+    $("#" + formType + "_Lat").val(location.k)
+    $("#" + formType + "_Lng").val(location.B)
 
-    } else if ($("form")[0].className === "new_sighting"){
-      var marker = new google.maps.Marker({
-        position: location,
-        map: this.map,
-        icon: this.animalType($("#sighting_animal_type"))
-      });
-      $("#sighting_Lat").val(location.k)
-      $("#sighting_Lng").val(location.B)
-      this.addNewMarker(marker.position.k, marker.position.B)
-    }
+    this.addNewMarker(marker.position.k, marker.position.B)
   },
 
   getLostings: function(){
