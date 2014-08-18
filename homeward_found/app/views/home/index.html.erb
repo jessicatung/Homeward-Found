@@ -9,7 +9,7 @@
   <div class="section group">
     <nav>
       <ul>
-        <li class="span_3_of_12"><a id="home"><span>Homeward Found</span></a></li>
+        <li class="span_3_of_12"><a id="home"><%= image_tag "logo.png", id: "logo" %><span>Homeward Found</span></a></li>
         <li class="span_2_of_12"><a id="lost">Lost</a></li>
         <li class="span_2_of_12"><a id="sighting">Sighting</a></li>
         <li class="span_2_of_12"><%= link_to "Logout", delete_session_path, method: :delete %></li>

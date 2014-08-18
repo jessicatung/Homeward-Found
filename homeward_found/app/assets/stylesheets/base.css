@@ -30,17 +30,19 @@ header h1{
   font-weight: bold;
 }
 
-header nav ul li a img{
-  width: auto;
-  padding-right: 20px;
-}
 
 
 header nav span{
   /*font-size: 15px;*/
 }
 
-
+header #logo{
+  height: 45px;
+  width: auto;
+  float: left;
+  margin-top: -16px;
+  padding-right: 10px;
+}
 nav,
 nav ul,
 nav ul li,
