@@ -24,6 +24,7 @@ RouteController.prototype = {
     $("#sighting").on("click", this.sightingForm);
     $("#lost").on("click", this.lostingForm);
     $("#home").on("click", this.homePage);
+    $("lost_side").on("click", this.homePage)
   },
   lostingForm: function(e){
     e.preventDefault()
@@ -47,10 +48,9 @@ RouteController.prototype = {
   e.preventDefault()
   $.ajax({
    method: "get",
-   url: "/"
+   url: "/lostings"
  }).done(function(data){
-  debugger
-    // $(document).html(data)
+  $("#event-container").html(data)
   })
 }
 }
