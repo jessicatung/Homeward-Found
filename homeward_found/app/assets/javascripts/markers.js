@@ -32,24 +32,26 @@ Marker.prototype = {
     }
   },
   addNewMarker: function(lat, lon){
-    var newMarkerCoordinate = new google.maps.LatLng(lat, lon)
-      this.lostings.animalArray.push(newMarkerCoordinate);
+    var newMarkerCoordinate = new google.maps.LatLng(lat, lon);
+    var lostings = this.lostings.animalArray
+      lostings.push(newMarkerCoordinate);
+      debugger
       this.markers.push(new google.maps.Marker({
-        position: this.lostings.last,
+        position: lostings[lostings.length - 1],
         map: this.map,
         draggable: false,
-        icon: this.animalType(this.lostings.last.animal_type),
+        icon: this.animalType(lostings[lostings.length - 1].animal_type),
         animation: google.maps.Animation.DROP
       }));
   },
 
   placeMarker: function(location, map){
     var formType = $("form").parent().attr("id")
-    // debugger
+    debugger
     var marker = new google.maps.Marker({
       position: location,
       map: map,
-      icon: this.animalType($("#" + formType + "_animal_type"))
+      icon: this.animalType($("#" + formType + "_animal_type").val())
     });
     $("#" + formType + "_Lat").val(location.k)
     $("#" + formType + "_Lng").val(location.B)
