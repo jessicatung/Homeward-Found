@@ -45,16 +45,29 @@ Marker.prototype = {
 
   placeMarker: function(location, map){
     var formType = $("form").parent().attr("id")
+    // debugger
     var marker = new google.maps.Marker({
       position: location,
       map: map,
-      draggable: true,
       icon: this.animalType($("#" + formType + "_animal_type"))
     });
     $("#" + formType + "_Lat").val(location.k)
     $("#" + formType + "_Lng").val(location.B)
 
     this.addNewMarker(marker.position.k, marker.position.B)
+  },
+  setAllMap: function(map) {
+  for (var i = 0; i < this.markers.length; i++) {
+    this.markers[i].setMap(map);
+  }
+  // this.showMarkers()
+},
+
+  clearMarkers: function(){
+    this.setAllMap(null)
+  },
+  showMarkers: function(map){
+    this.setAllMap(map);
   },
   animalType: function(animal_type){
     if (animal_type === "dog") {
