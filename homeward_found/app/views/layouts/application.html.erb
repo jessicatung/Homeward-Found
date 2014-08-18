@@ -39,34 +39,35 @@
   <!-- form stuff -->
 
   <div id="logindiv">
-    <form class="form" action="#" id="login">
-      <!-- Login form -->
-      <h3>Login</h3>
 
-      <label>Email: </label>
-      <input type="email" id="email" placeholder="jeuel@homewardfound.com" required="required" />
-      <br>
+    <!-- Login form -->
 
-      <label>Password: </label>
-      <input type="text" id="password" placeholder="name@email.com" required="required" />
-      <br>
+    <%= form_for :users, url: {controller: "sessions", action: "create"} do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :password, "Password: " %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.submit "Login" %>
+    <% end %>
 
-      <input type="button" id="loginbtn" value="Login">
+    <!-- Create Account Form -->
 
-      <p class="change_link">Don't have an acount?<a href="#toregister">Sign up!</a></p>
-    </form>
+    <%= form_for @user, {action: "create"} do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :password, "Password:" %>
+    <%= f.password_field :password %>
+    <br>
+    <%=f.label :password_confirmation %>
+    <%=f.password_field :password_confirmation %>
+    <br>
+    <%= f.submit "Sign up" %>
+    <% end %>
+
   </div>
-
-    <!-- Sign up form -->
-
-<!--   <div id="signupdiv" class="animate form">
-    <form action="#">
-      <h3>Sign Up</h3>
-
-      <label for="emailsignup" class"youmail">Email: </label>
-      <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="name@email.com" />
-    </form>
-  </div> -->
 
   <!-- end form stuff -->
 

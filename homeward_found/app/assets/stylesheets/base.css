@@ -246,15 +246,15 @@ footer p{
 /*--------- start login form stuff --------------------------- */
 
 #logindiv{
-    opacity:0.92;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background: #000;
-    display: none;
-    z-index: 999;
+  opacity:0.92;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
+  z-index: 999;
 }
 
 .form {
@@ -264,16 +264,17 @@ footer p{
   font-size:14px;
   font-weight:bold;
   width:350px;
-  margin:20px 250px 0 35px;
-  float:left;
+  /*margin:20px 250px 0 35px;*/
+  margin: auto;
+  /*overflow: hidden;*/
 }
 
 .form label {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 .form h3 {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 #login{
