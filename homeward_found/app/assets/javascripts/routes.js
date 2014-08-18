@@ -1,7 +1,7 @@
 function RouteModel(){}
 RouteModel.prototype = {
   lostingForm: function(e){
-    e.stopImmediatePropagation()
+    e.stopPropagation()
     $.ajax({
       method: "get",
       url: "/lostings/new"
@@ -10,7 +10,7 @@ RouteModel.prototype = {
     })
   },
   sightingForm: function(e){
-    e.stopImmediatePropagation()
+    e.stopPropagation()
     $.ajax({
      method: "get",
      url: "/sightings/new"
@@ -19,7 +19,7 @@ RouteModel.prototype = {
   })
  },
  lostingRiver: function(e){
-  e.stopImmediatePropagation()
+  e.stopPropagation()
   $.ajax({
    method: "get",
    url: "/lostings"
@@ -31,7 +31,7 @@ RouteModel.prototype = {
 })
 },
 sightingRiver: function(e){
-  e.stopImmediatePropagation()
+  e.stopPropagation()
   $.ajax({
    method: "get",
    url: "/sightings"

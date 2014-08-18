@@ -4,7 +4,7 @@ function RiverController ( view ) {
 }
 
 RiverController.prototype = {
-  start: function () {
+  startLostings: function () {
     var reponse = $.ajax({
       url: "/lostings/recent",
       type: "GET"
