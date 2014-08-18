@@ -48,20 +48,23 @@ Marker.prototype = {
   },
 
   placeMarker: function(location, map){
-    this.iterator++
-    var marker;
-    var formType = $("form").parent().attr("id")
-    $("#" + formType + "_Lat").val(location.k)
-    $("#" + formType + "_Lng").val(location.B)
-    if(this.iterator != 1){
-      marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        icon: this.animalType($("#" + formType + "_animal_type").val())
-      });
-      this.addNewMarker(marker.position.k, marker.position.B)
-    } else if(this.iterator === 1){
-      this.clearMarkers()
+    if($("form").length > 0){
+
+      this.iterator++
+      var marker;
+      var formType = $("form").parent().attr("id")
+      $("#" + formType + "_Lat").val(location.k)
+      $("#" + formType + "_Lng").val(location.B)
+      if(this.iterator != 1){
+        marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          icon: this.animalType($("#" + formType + "_animal_type").val())
+        });
+        this.addNewMarker(marker.position.k, marker.position.B)
+      } else if(this.iterator === 1){
+        this.clearMarkers()
+      }
     }
   },
   setAllMap: function(map) {
@@ -93,6 +96,6 @@ Marker.prototype = {
     google.maps.event.addListener(map, 'click', function(event) {
       // self.deleteMarkers()
       self.placeMarker(event.latLng, map);
-    }.bind(window));
+    });
   }
 }
