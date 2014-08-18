@@ -165,9 +165,9 @@ MapModel.prototype = {
 
   animalType: function(animal_type){
     if (animal_type === "dog") {
-      return "http://placepuppy.it/50/50"
+      return "http://i.imgur.com/YUi5Qgh.png"
     } else {
-      return "http://placekitten.com/g/50/50"
+      return "http://i.imgur.com/gLzkSIG.png"
     }
   }
 }
