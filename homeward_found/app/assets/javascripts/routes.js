@@ -1,16 +1,17 @@
 function RouteModel(){}
 RouteModel.prototype = {
   lostingForm: function(e){
-    e.preventDefault()
+    e.stopImmediatePropagation()
     $.ajax({
       method: "get",
       url: "/lostings/new"
     }).done(function(data){
-    $("#event-container").html(data)
-  })
+      $("#event-container").html(data)
+    })
+    return false
   },
   sightingForm: function(e){
-    e.preventDefault()
+    e.stopImmediatePropagation()
     $.ajax({
      method: "get",
      url: "/sightings/new"
@@ -18,14 +19,29 @@ RouteModel.prototype = {
     $("#event-container").html(data)
   })
  },
- homePage: function(e){
-  e.preventDefault()
+ lostingRiver: function(e){
+  e.stopImmediatePropagation()
   $.ajax({
    method: "get",
    url: "/lostings"
  }).done(function(data){
   $("#event-container").html(data)
-  })
+  $("#sight_side").css("background-color", "#d3d3d3");
+  $("#all_side").css("background-color", "#d3d3d3");
+  $("#lost_side").css("background-color", "white");
+})
+},
+sightingRiver: function(e){
+  e.stopImmediatePropagation()
+  $.ajax({
+   method: "get",
+   url: "/sightings"
+ }).done(function(data){
+  $("#event-container").html(data)
+  $("#sight_side").css("background-color", "white");
+  $("#lost_side").css("background-color", "#d3d3d3");
+  $("#all_side").css("background-color", "#d3d3d3");
+})
 }
 }
 
@@ -40,7 +56,10 @@ RouteController.prototype = {
   bindListeners: function(){
     $("#sighting").on("click", this.model.sightingForm);
     $("#lost").on("click", this.model.lostingForm);
-    $("#home").on("click", this.model.homePage);
-    $("lost_side").on("click", this.model.homePage)
+    $("#home").on("click", this.model.lostingRiver);
+    $("#lost_side").on("click", this.model.lostingRiver);
+    $("#sight_side").on("click", this.model.sightingRiver);
   }
 }
+
+

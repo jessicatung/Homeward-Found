@@ -1,8 +1,8 @@
 class SightingsController < ApplicationController
 
   def index
-    sightings = Sighting.all
-    render json: sightings
+    # sightings = Sighting.all
+    # render json: sightings
   end
 
   def new # dont need this later

@@ -108,7 +108,6 @@ nav ul li a:hover{
 
 
 #aside_nav{
-  background-color: #EEF5F8;
   overflow: hidden;
   border-right: 1px solid blue;
   position: absolute;
@@ -173,6 +172,14 @@ aside{
   padding-bottom: 65.25%;
   overflow: hidden;
   height: 0;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+#aside_nav ul li a:hover{
+  background-color: DarkGray;
 }
 
 aside #event-container{
@@ -324,42 +331,3 @@ footer p{
 .goBack{
   margin-bottom: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
