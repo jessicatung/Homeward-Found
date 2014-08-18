@@ -30,17 +30,19 @@ header h1{
   font-weight: bold;
 }
 
-header nav ul li a img{
-  width: auto;
-  padding-right: 20px;
-}
 
 
 header nav span{
   /*font-size: 15px;*/
 }
 
-
+header #logo{
+  height: 45px;
+  width: auto;
+  float: left;
+  margin-top: -16px;
+  padding-right: 10px;
+}
 nav,
 nav ul,
 nav ul li,
@@ -108,7 +110,6 @@ nav ul li a:hover{
 
 
 #aside_nav{
-  background-color: #EEF5F8;
   overflow: hidden;
   border-right: 1px solid blue;
   position: absolute;
@@ -173,6 +174,14 @@ aside{
   padding-bottom: 65.25%;
   overflow: hidden;
   height: 0;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+#aside_nav ul li a:hover{
+  background-color: DarkGray;
 }
 
 aside #event-container{
@@ -243,3 +252,84 @@ footer p{
   font-weight: bold;
 }
 
+/*--------- start login form stuff --------------------------- */
+
+#logindiv{
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.85);
+  display: none;
+  z-index: 999;
+}
+
+#loginForm, #signupForm{
+  display: none;
+  position: relative;
+  top: 30%;
+}
+
+#logindiv .form {
+  border-radius:2px;
+  padding:20px 30px;
+  box-shadow:0 0 15px;
+  font-size:14px;
+  font-weight:bold;
+  width:350px;
+  margin: auto;
+}
+
+#logindiv .form label {
+  font-family: sans-serif;
+}
+
+#logindiv .form h3 {
+  font-family: sans-serif;
+}
+
+
+#logindiv input[type=button]{
+    background-color:#123456;
+    border:1px solid white;
+    font-family: sans-serif;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+#logindiv input{
+    width:20%;
+    height:35px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+
+
+#buttons{
+  list-style: none;
+  position: absolute;
+  top: 40%;
+  left: 34%;
+  padding: 0;
+}
+
+#buttons li{
+  display: inline-block;
+}
+
+#buttons li button, .goBack{
+    width: 200px;
+    height:45px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+.goBack{
+  margin-bottom: 10px;
+}
