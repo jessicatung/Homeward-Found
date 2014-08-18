@@ -1,21 +1,34 @@
-$( document ).ready( function () {
-
-  // wait 2 seconds then call popup
-  setTimeout(popup, 500);
-
-  // show form div
-  function popup() {
-      $("#logindiv").css("display", "block")
+function LoginModel(){}
+LoginModel.prototype = {
+  displayLoginForm: function(){
+    $("#loginForm").css("display", "block");
+    $("#login").css("display", "none");
+    $("#signup").css("display", "none");
+    $(".goBack").css("display", "block");
+  },
+  displaySignupForm: function(){
+    $("#signupForm").css("display", "block");
+    $("#login").css("display", "none");
+    $("#signup").css("display", "none");
+    $(".goBack").css("display", "block");
+  },
+  goBack: function(){
+    $("#login").css("display", "block");
+    $("#signup").css("display", "block");
+    $(".goBack").css("display", "none");
+    $("#loginForm").css("display", "none");
+    $("#signupForm").css("display", "none");
   }
+}
 
-  // when click on the login button, form goes away
-  $("#loginbtn").click( function () {
+function LoginController(model){
+  this.model = model;
+}
 
-    // // AJAX call needs to go here, sending off user info
-
-    $("#logindiv").remove()
-
-    // // may need validations within JS ???
-
-  });
-});
+LoginController.prototype = {
+  initialize: function(){
+    $("#login").on("click", this.model.displayLoginForm)
+    $("#signup").on("click", this.model.displaySignupForm)
+    $(".goBack").on("click", this.model.goBack)
+  }
+}

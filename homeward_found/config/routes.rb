@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'lostings/recent', to: 'lostings#recent'
+  get 'sightings/recent', to: 'sightings#recent'
 
   resources :users, only: [:new, :create]
   resources :lostings

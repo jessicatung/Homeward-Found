@@ -1,9 +1,3 @@
-$( document ).ready(function () {
-  var riverView       = new RiverView ();
-  var riverController = new RiverController ( riverView );
-  riverController.start();
-})
-
 // === River Controller ===================================
 function RiverController ( view ) {
   this.view = view;
@@ -11,8 +5,14 @@ function RiverController ( view ) {
 
 RiverController.prototype = {
   start: function () {
-    var request = $.ajax({
+    var reponse = $.ajax({
       url: "/lostings/recent",
+      type: "GET"
+    }).done(this.view.render)
+  },
+  startSightings: function(){
+    var reponse = $.ajax({
+      url: "/sightings/recent",
       type: "GET"
     }).done(this.view.render)
   }

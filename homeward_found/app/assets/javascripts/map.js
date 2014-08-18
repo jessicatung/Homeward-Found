@@ -1,14 +1,3 @@
-
-$(document).ready(function() {
-  var mapModel = new MapModel();
-  var mapView = new MapView()
-  var mapController = new MapController(mapModel);
-  mapController.getLocation();
-  mapModel.getLostings()
-  // mapModel.getSightings()
-  // $("h1").on("click", mapModel.addNewMarker(37.780514, -122.415477));
-});
-
 function MapController(model){
   this.model = model;
 }
@@ -116,11 +105,26 @@ MapModel.prototype = {
   },
 
   placeMarker: function(location){
-    var marker = new google.maps.Marker({
-      position: location,
-      map: this.map
-    });
-    this.addNewMarker(marker.position.k, marker.position.B)
+    if($("form")[0].className === "new_losting"){
+      var marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
+
+      $("#losting_Lat").val(location.k)
+      $("#losting_Lng").val(location.B)
+      this.addNewMarker(marker.position.k, marker.position.B)
+
+    } else if ($("form")[0].className === "new_sighting"){
+      var marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
+      $("#sighting_Lat").val(location.k)
+      $("#sighting_Lng").val(location.B)
+      this.addNewMarker(marker.position.k, marker.position.B)
+
+    }
   },
 
   getLostings: function(){
