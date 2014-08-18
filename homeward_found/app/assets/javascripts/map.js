@@ -45,15 +45,15 @@ RouteController.prototype = {
   })
  },
  homePage: function(e){
-e.preventDefault()
-    $.ajax({
-     method: "get",
-     url: "/"
-   }).done(function(data){
-    debugger
+  e.preventDefault()
+  $.ajax({
+   method: "get",
+   url: "/"
+ }).done(function(data){
+  debugger
     // $(document).html(data)
   })
- }
+}
 }
 
 function MapController(model){
@@ -163,13 +163,26 @@ MapModel.prototype = {
   },
 
   placeMarker: function(location){
-    var marker = new google.maps.Marker({
-      position: location,
-      map: this.map
-    });
-    $("#losting_Lat").val(location.k)
-    $("#losting_Lng").val(location.B)
-    this.addNewMarker(marker.position.k, marker.position.B)
+    if($("form")[0].className === "new_losting"){
+      var marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
+
+      $("#losting_Lat").val(location.k)
+      $("#losting_Lng").val(location.B)
+      this.addNewMarker(marker.position.k, marker.position.B)
+
+    } else if ($("form")[0].className === "new_sighting"){
+      var marker = new google.maps.Marker({
+        position: location,
+        map: this.map
+      });
+      $("#sighting_Lat").val(location.k)
+      $("#sighting_Lng").val(location.B)
+      this.addNewMarker(marker.position.k, marker.position.B)
+
+    }
   },
 
   getLostings: function(){
