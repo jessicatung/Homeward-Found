@@ -2,7 +2,7 @@
   var formController = new FormController()
   formController.initialize()
 </script>
-
+<div id="sighting">
 <h3>Sighting</h3>
 <%= form_for @sighting, {action: "create", remote: true} do |f| %>
 <%= f.label :animal_type, "Animal type:" %>
@@ -48,3 +48,4 @@
 <%= f.submit %>
 <% end %>
 
+</div>

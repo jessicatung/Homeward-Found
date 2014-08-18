@@ -180,6 +180,10 @@ aside #event-container{
   height: 100%;
 }
 
+/*aside #event-collection{
+  margin-top: 10px;
+}*/
+
 label{
   text-align: right;
   float: left;

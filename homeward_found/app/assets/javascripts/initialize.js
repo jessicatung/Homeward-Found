@@ -1,11 +1,14 @@
 $(document).ready(function() {
   //  ---------------------------- MAP
   var mapModel = new MapModel();
-  var mapView = new MapView()
-  var mapController = new MapController(mapModel);
+  var lostings = new Lostings();
+  var sightings = new Sightings()
+  var markers = new Marker(lostings, sightings)
+  var mapController = new MapController(mapModel, markers);
   mapController.getLocation();
-  mapModel.getLostings()
-  mapModel.getSightings()
+  lostings.getLostings()
+  // sightings.getSightings()
+  // mapController.initialize();
 
 
   //  ---------------------------- ROUTES
