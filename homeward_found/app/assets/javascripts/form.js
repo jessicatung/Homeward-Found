@@ -6,7 +6,6 @@ FormController.prototype = {
   },
 
   animalCheck: function(event, type){
-    debugger
     var lostingAnimalType = $("#losting_animal_type").val()
     var sightingAnimalType = $("#sighting_animal_type").val()
     if(lostingAnimalType === "cat" || sightingAnimalType === "cat"){
