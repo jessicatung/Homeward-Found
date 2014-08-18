@@ -3,6 +3,7 @@ class SightingsController < ApplicationController
   def index
     # sightings = Sighting.all
     # render json: sightings
+    render partial: "index"
   end
 
   def new # dont need this later

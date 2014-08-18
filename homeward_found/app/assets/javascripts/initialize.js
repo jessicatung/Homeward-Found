@@ -20,9 +20,9 @@ $(document).ready(function() {
 
 
   //  ---------------------------- RIVER
-  var riverView       = new RiverView ();
-  var riverController = new RiverController ( riverView );
-  riverController.start();
+  // var riverView       = new RiverView ();
+  // var riverController = new RiverController ( riverView );
+  // riverController.startLostings();
 
 
   //  ---------------------------- LOGIN
