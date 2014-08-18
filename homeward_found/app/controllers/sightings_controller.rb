@@ -25,7 +25,6 @@ class SightingsController < ApplicationController
 
   def create
     sighting = Sighting.new(strong_params)
-    binding.pry
     if sighting.save
       # algorithm = Algorithm.new(sighting, Losting.all)
       # sightings = algorithm.search
