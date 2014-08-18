@@ -10,35 +10,36 @@ class LostingsController < ApplicationController
 
   def new # dont need this later
     @losting = Losting.new
-   @cat_breeds = []
-   @dog_breeds = []
-   responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
-   responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
+    @cat_breeds = []
+    @dog_breeds = []
+    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
+    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
 
-   cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
-   cat_breeds.each do |k,v|
-    @cat_breeds << k.values
+    cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
+    cat_breeds.each do |k,v|
+      @cat_breeds << k.values
+    end
+    @cat_breeds.flatten
+
+    dog_breeds = responseDog["petfinder"]["breeds"]["breed"]
+    dog_breeds.each do |k,v|
+      @dog_breeds << k.values
+    end
+    @dog_breeds.flatten
+    render :partial => "new"
   end
-  @cat_breeds.flatten
 
-  dog_breeds = responseDog["petfinder"]["breeds"]["breed"]
-  dog_breeds.each do |k,v|
-    @dog_breeds << k.values
-  end
-  @dog_breeds.flatten
-  render :partial => "new"
-end
+  def create
+    losting = Losting.new(strong_params)
+    losting.pet_name = losting.pet_name.capitalize
+    User.find(session[:user_id]).lostings << losting
 
-def create
-  losting = Losting.new(strong_params)
-  User.find(session[:user_id]).lostings << losting
-
-  if losting.save
-    algorithm = Algorithm.new(losting, Sighting.all)
-    ordered_sightings = algorithm.search
-    top_results = ordered_sightings[0..19]
-    render json: top_results
-  else
+    if losting.save
+      algorithm = Algorithm.new(losting, Sighting.all)
+      ordered_sightings = algorithm.search
+      top_results = ordered_sightings[0..19]
+      render json: top_results
+    else
       # errors
     end
   end
