@@ -105,6 +105,7 @@ MapModel.prototype = {
   },
 
   placeMarker: function(location){
+    // this.markers = []
     if($("form")[0].className === "new_losting"){
       var marker = new google.maps.Marker({
         position: location,
