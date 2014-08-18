@@ -8,7 +8,6 @@ RouteModel.prototype = {
     }).done(function(data){
       $("#event-container").html(data)
     })
-    return false
   },
   sightingForm: function(e){
     e.stopImmediatePropagation()
@@ -26,9 +25,9 @@ RouteModel.prototype = {
    url: "/lostings"
  }).done(function(data){
   $("#event-container").html(data)
-  $("#sight_side").css("background-color", "#d3d3d3");
-  $("#all_side").css("background-color", "#d3d3d3");
-  $("#lost_side").css("background-color", "white");
+  // $("#sight_side").css("background-color", "#d3d3d3");
+  // $("#all_side").css("background-color", "#d3d3d3");
+  // $("#lost_side").css("background-color", "white");
 })
 },
 sightingRiver: function(e){
@@ -38,9 +37,9 @@ sightingRiver: function(e){
    url: "/sightings"
  }).done(function(data){
   $("#event-container").html(data)
-  $("#sight_side").css("background-color", "white");
-  $("#lost_side").css("background-color", "#d3d3d3");
-  $("#all_side").css("background-color", "#d3d3d3");
+  // $("#sight_side").css("background-color", "white");
+  // $("#lost_side").css("background-color", "#d3d3d3");
+  // $("#all_side").css("background-color", "#d3d3d3");
 })
 }
 }
