@@ -246,15 +246,19 @@ footer p{
 /*--------- start login form stuff --------------------------- */
 
 #logindiv{
-  opacity:0.92;
   position: absolute;
   top: 0px;
-  left: 0px;
   height: 100%;
   width: 100%;
-  background: #000;
+  background: rgba(0,0,0, 0.85);
   display: none;
   z-index: 999;
+}
+
+#loginForm, #signupForm{
+  display: none;
+  position: relative;
+  top: 30%;
 }
 
 #logindiv .form {
@@ -264,9 +268,7 @@ footer p{
   font-size:14px;
   font-weight:bold;
   width:350px;
-  /*margin:20px 250px 0 35px;*/
   margin: auto;
-  /*overflow: hidden;*/
 }
 
 #logindiv .form label {
@@ -277,18 +279,6 @@ footer p{
   font-family: sans-serif;
 }
 
-#logindiv #login{
-    width:350px;
-    margin:0px;
-    background-color:white;
-    font-family: sans-serif;
-    position: relative;
-    border: 5px solid rgb(90, 158, 181);
-    left: 50%;
-    top: 50%;
-    margin-left:-210px;
-    margin-top:-158px;
-}
 
 #logindiv input[type=button]{
     background-color:#123456;
@@ -310,11 +300,30 @@ footer p{
 
 
 
+#buttons{
+  list-style: none;
+  position: absolute;
+  top: 40%;
+  left: 34%;
+  padding: 0;
+}
 
+#buttons li{
+  display: inline-block;
+}
 
+#buttons li button, .goBack{
+    width: 200px;
+    height:45px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
 
-
-
+.goBack{
+  margin-bottom: 10px;
+}
 
 
 
