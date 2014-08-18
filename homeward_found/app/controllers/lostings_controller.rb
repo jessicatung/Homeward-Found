@@ -4,7 +4,6 @@ class LostingsController < ApplicationController
   require 'json'
 
   def index
-
   end
 
   def new # dont need this later
@@ -25,7 +24,6 @@ class LostingsController < ApplicationController
       @dog_breeds << k.values
     end
     @dog_breeds.flatten
-
   end
 
   def create
@@ -46,6 +44,10 @@ class LostingsController < ApplicationController
     Losting.ordered_json
     lostings = Losting.ordered_json
     render json: lostings
+  end
+
+  def show
+    @losting = Losting.find(params[:id])
   end
 
   private
