@@ -24,7 +24,6 @@ RouteController.prototype = {
     $("#sighting").on("click", this.sightingForm);
     $("#lost").on("click", this.lostingForm);
     $("#home").on("click", this.homePage);
-
   },
   lostingForm: function(e){
     e.preventDefault()
