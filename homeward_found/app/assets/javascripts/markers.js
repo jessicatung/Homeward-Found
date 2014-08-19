@@ -3,6 +3,7 @@ function Marker(lostings, sightings){
   this.lostings = lostings;
   this.sightings = sightings;
   this.iterator = 0;
+  this.windowiterator = 0;
   this.lostingsMarkers = []
   this.sightingsMarkers = []
   this.lostingsInfo = []
@@ -19,16 +20,36 @@ Marker.prototype = {
     var self = this;
     var iterator = this.lostings.iterator;
     var lostingsArray = this.lostings.animalArray;
+
+
     for (var i = 0; i < lostingsArray.length; i++) {
-      var marker = new google.maps.Marker({
+      self.lostingsInfo[iterator] = new google.maps.InfoWindow()
+      self.lostingsMarkers[iterator] = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
         map: map,
         draggable: false,
         icon: self.animalType(lostingsArray[iterator].animal_type)
           // animation: google.maps.Animation.DROP
         })
-      self.lostingsMarkers.push(marker);
+      var url = "/lostings/" + lostingsArray[i].id
+      $.ajax({
+        method: "get",
+        url: url
+      }).done(function(data){
+        self.lostingsInfo[self.iterator].setContent(data)
+      }.bind(this))
+      google.maps.event.addListener(self.lostingsMarkers[iterator], 'click', function(innerKey) {
+        self.lostingsInfo[innerKey].open(map, self.lostingsMarkers[innerKey])
+      }(iterator));
+    iterator++
+    }
 
+  },
+  placeInfoWindow: function(map){
+    var self = this;
+    var iterator = this.lostings.iterator;
+    var lostingsArray = this.lostings.animalArray;
+    for (var i = 0; i < lostingsArray.length; i++) {
       var url = "/lostings/" + lostingsArray[iterator].id
       $.ajax({
         method: "get",
@@ -40,14 +61,15 @@ Marker.prototype = {
         })
         self.lostingsInfo.push(infowindow)
         $.each(self.lostingsMarkers, function(val, i){
-            var value = val
+          var value = val
           google.maps.event.addListener(i, 'click', function() {
             debugger
-            infowindow.open(map,i);
+            self.lostingsInfo[self.windowiterator].open(map, i)
+            // infowindow.open(map,i);
           });
-
         })
       })
+      self.windowiterator++
       iterator++;
     }
   },
