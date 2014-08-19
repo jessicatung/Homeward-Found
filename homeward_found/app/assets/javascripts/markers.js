@@ -3,33 +3,54 @@ function Marker(lostings, sightings){
   this.lostings = lostings;
   this.sightings = sightings;
   this.iterator = 0;
-  this.markers = []
+  this.lostingsMarkers = []
+  this.sightingsMarkers = []
+  this.markers = this.lostingsMarkers.concat(this.sightingsMarkers)
 }
 
 Marker.prototype = {
   initializeMarkers: function(map){
-    var self = this;
-    this.addInitialMarkers(map, this.lostings);
-
+    this.addInitialLostingMarkers(map);
+    // this.addInitialSightingMarkers(map);
+    // $("#sight_side").on("click", this.addInitialSightingMarkers(map))
+    // $("#sight_side").addListener($(""), "click", this.addInitialSightingMarkers(map, this.sightings))
     $("#my_map").on("click", this.checkMap(map))
-    $("a").on("click", this.adjustMap)
+    $("#sight_side").on("click", this.checkMarkers(map))
     // this.sightings.addInitialSightingMarkers(map);
   },
-  addInitialMarkers: function(map, markerType){
+  addInitialLostingMarkers: function(map){
     var self = this;
-    this.clearMarkers()
-    for (var i = 0; i < markerType.animalArray.length; i++) {
-
+    var lostingsArray = this.lostings.animalArray
+    for (var i = 0; i < lostingsArray.length; i++) {
       setTimeout(function() {
-        self.markers.push(new google.maps.Marker({
-          position: new google.maps.LatLng(parseFloat(markerType.animalArray[self.iterator].Lat), parseFloat(markerType.animalArray[self.iterator].Lng)),
+        self.lostingsMarkers.push(new google.maps.Marker({
+          position: new google.maps.LatLng(parseFloat(lostingsArray[self.iterator].Lat), parseFloat(lostingsArray[self.iterator].Lng)),
           map: map,
           draggable: false,
-          icon: self.animalType(markerType.animalArray[self.iterator].animal_type),
+          icon: self.animalType(lostingsArray[self.iterator].animal_type)
           // animation: google.maps.Animation.DROP
         }));
         self.iterator++;
-    }, i ); //* (100 * i)
+    }); //* (100 * i)
+    }
+  },
+  addInitialSightingMarkers: function(map){
+    var self = this;
+    var iterator = this.sightings.iterator;
+    var sightingsArray = this.sightings.animalArray
+    // this.clearMarkers()
+    for (var i = 0; i < sightingsArray.length; i++) {
+
+      setTimeout(function() {
+        self.sightingsMarkers.push(new google.maps.Marker({
+          position: new google.maps.LatLng(parseFloat(sightingsArray[iterator].Lat), parseFloat(sightingsArray[iterator].Lng)),
+          map: map,
+          draggable: false,
+          icon: self.animalType(sightingsArray[iterator].animal_type)
+          // animation: google.maps.Animation.DROP
+        }));
+        iterator++;
+    }); //* (100 * i)
     }
   },
   addNewMarker: function(marker){
@@ -45,14 +66,13 @@ Marker.prototype = {
       $("#" + formType + "_Lat").val(location.k)
       $("#" + formType + "_Lng").val(location.B)
 
-        this.clearMarkers()
-        this.markers = []
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map,
-          icon: this.animalType($("#" + formType + "_animal_type").val())
-        });
-        this.addNewMarker(marker)
+      this.deleteMarkers()
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: this.animalType($("#" + formType + "_animal_type").val())
+      });
+      this.addNewMarker(marker)
     }
   },
   setAllMap: function(map) {
@@ -69,7 +89,8 @@ Marker.prototype = {
   },
   deleteMarkers: function(){
     this.clearMarkers()
-    this.markers = []
+    this.sightingsMarkers = []
+    this.lostingsMarkers = []
   },
   animalType: function(animal_type){
     if (animal_type === "dog") {
@@ -81,9 +102,23 @@ Marker.prototype = {
 
   checkMap: function(map){
     var self = this;
-    // $("#lost_side").on("click", this.showMarkers(map))
+    // $("#sight_side").on("click", this.addInitialSightingMarkers(map, this.sightings))
     google.maps.event.addListener(map, 'click', function(event) {
       self.placeMarker(event.latLng, map);
     });
+  },
+  checkMarkers: function(map){
+    var self = this;
+    $("#sight_side").on("click", function(event){
+      self.removeTypeMarker(self.lostingsMarkers)
+        self.addInitialSightingMarkers(map)
+    })
+    // this.lostingsMarkers = []
+    // sighting
+  },
+  removeTypeMarker: function(markerType){
+for (var i = 0; i < markerType.length; i++) {
+      markerType[i].setMap(null);
+    }
   }
 }
