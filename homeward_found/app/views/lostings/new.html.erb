@@ -4,6 +4,7 @@
   <%= f.text_field :pet_name %>
   <br>
   <%= f.label :animal_type, "Animal type:" %>
+    <!-- there's no better way to do this?  seems unusually verbose for rails -->
   <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
   <br>
   <div id="cat" style="display: none;">
@@ -19,12 +20,14 @@
 
 <div class="info" style="display: none;">
     <%= f.label :size, "Size:" %>
+    <!-- there's no better way to do this?  seems unusually verbose for rails -->
     <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
     <br>
     <%= f.label :coat_color, "Coat color:" %>
     <%= f.text_field :coat_color %>
     <br>
     <%= f.label :coat_length, "Coat length:" %>
+    <!-- there's no better way to do this?  seems unusually verbose for rails -->
     <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
     <%= f.hidden_field :Lat %>
     <%= f.hidden_field :Lng %>

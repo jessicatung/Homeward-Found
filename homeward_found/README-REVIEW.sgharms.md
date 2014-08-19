@@ -1,55 +1,54 @@
-## How I Do Evaluation
+## Basics
 
 1.  Clone it - OK
 2.  Can start a console: `bundle && rake db:create:all db:migrate db:seed db:test:prepare && rails c` - OK
-3.  Can run RSpec: `bundle exec rspec` - NO TESTS
-  * Are we not doing TDD?
-4.  Evaluate the Controllers:
-  1.  Flog `find app/controllers -name \*.rb -exec flog {} \; `
+3.  Can run RSpec: `bundle exec rspec` - NO TESTS? Are we not doing TDD?
 
-        20.3: LostingsController#new           app/controllers/lostings_controller.rb:10
-        17.1: LostingsController#create        app/controllers/lostings_controller.rb:31
-        24.7: flog total
-        12.4: flog/method average
+## Controllers:
 
-        21.4: SessionsController#create        app/controllers/sessions_controller.rb:3
-        50.8: flog total
-         8.5: flog/method average
+Overall the controllers are really solid.  I'm pretty pleased with what I
+saw.  The general pattern that needs to be applied here is that you move
+complex logic into models.  There's too much going on inside of these methods
+e.g. `#each` and whatnot.
 
-        20.3: SightingsController#new          app/controllers/sightings_controller.rb:8
-        16.8: SightingsController#create       app/controllers/sightings_controller.rb:28
-        18.9: flog total
-         4.7: flog/method average
+SightingsController really needs some love
+ * You could definitely DRY out your Enumerable method use
+ * You're totally giving away your Ruby rookie status by misusing #each.
+   Enumerable has many better methods for doing what you want: map,
+   each_with_object, etc.
+ * Don't hard code special parameters e.g. `key`
+ * Fetching should be in a class like `DogBreedFetcher` or something like
+   that
+ * If there's an error you should return **something** this whole fail silently
+   thing sucks hard.  Try returning an unprocessable_entity or something.  Use
+   the Golden Rule: how pissed would you be if Ruby just silently returned
+   _nothing_ when you made an error.  Not nice.
 
-        10.9: UsersController#create           app/controllers/users_controller.rb:8
-         3.6: UsersController#user_params      app/controllers/users_controller.rb:24
+## Views
 
+* Don't commit commented out code.
+* **FIX YOUR FUCKING INDENTATION**:  100% giveaway of a developer who
+  *JDGAF*, i.e. someone I won't hire.
+* There's handlebars_assets which will compile handlebars for you
+* Seems weird that you told me "welcome back" after my initial registration
 
+## Layout
 
-  2.  Manual investigation of the controllers
-    A. Long method smell
-    B. Private methods?
-    C. Proper use of AR association has_many methods `.build(), .create()`
-    D. Use of helpers (gross)
-5.  Investigate the Models
-  1.  Appropriate concerns
-  2.  Any non-DB Models? Are they tested?
-6.  Evaluate the views
-  1.  Logic in view?
-  2.  Views over-large
-  3.  Corect use of partials
-7.  Evaluate the JavaScript
-  1. Any sense of code organization (OO) or is it jQuery soup?
-  2. Any file division?
-  3. Did they use templates?
-8. Examine the migrations
-  1. Constraints used properly
-9. Examine the tests
-  1. Any tests beyond mere validations and trivial ActiveRecord testing?
-  2. Are critical controller routes tested?
-  3. Are they testing implementation over interface?
+* Love your icons and the gradients.  Pretty!
+* Sighting bleeds under *all*
 
-## MISC
+## JavaScript
 
-1.  Misuse of Enumerables
+* Why does Home#index necessitate 2 calls to Lostings#recent?
+* I don't seem to have any JavaScript working
+* Very much like the use of handlebars. Why isn't it global through out your
+  JS app?  Seems like you're halfway through something.
 
+## Migrations
+
+Your migrations are vulnerable to bad data.  No constraints, no default values.
+I'm going to upload some total shit in there.
+
+## Tests
+
+None?  Really?

@@ -1,3 +1,7 @@
+# Good OO call here.  Really good
+#
+# I think the name sucks though...what kind of algorithm is it?  But still, v.
+# proud of your OO on this.
 class Algorithm
 
   def initialize (listing, collection)

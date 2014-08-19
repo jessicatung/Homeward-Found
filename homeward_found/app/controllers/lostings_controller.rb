@@ -67,6 +67,7 @@ class LostingsController < ApplicationController
   private
 
   def strong_params
+    # I like to see these in a constant
     params.require(:losting).permit(
       :pet_name,
       :animal_type,

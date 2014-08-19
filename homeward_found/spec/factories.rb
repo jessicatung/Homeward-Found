@@ -1,6 +1,9 @@
 FactoryGirl.define do
 
   factory :losting do
+    # You don't need to use blocks.  Simple strings work.  This thing
+    # telegraphs to me you didn't read the docs.  Don't tip your hand like
+    # that.  There **are** legitimate times to use a block in FG, but not here.
     pet_name { "fido" }
     animal_type { "dog" }
     size { "medium" }

@@ -1,11 +1,18 @@
+// <3 acreilly.  You understand Javascript and the rant about widgets.  You've
+// clearly worked hard to implement that here.  Thank you.
+
 $(document).ready(function() {
   //  ---------------------------- MAP
   var mapModel = new MapModel();
+  // This doesn't seem to do anything (since you're using Google to provide you
+  // the view....no need to instantiate something that isn't used).
   var mapView = new MapView()
   var mapController = new MapController(mapModel);
-  mapController.getLocation();
-  mapModel.getLostings()
-  mapModel.getSightings()
+
+  // Good, but these things should be called by the MVC's "innards"
+  mapController.getLocation(); // controller calls this on initialization?
+  mapModel.getLostings() // controller invokes this on the `this.model` instance?
+  mapModel.getSightings()// controller invokes this on the `this.model` instance?
 
 
   //  ---------------------------- ROUTES
@@ -19,8 +26,9 @@ $(document).ready(function() {
   formController.initialize()
 
 
+  // FLOP, TURN, RIVER :P  FULL HOUSE!
   //  ---------------------------- RIVER
-  var riverView       = new RiverView ();
+  var riverView       = new RiverView (); // OK that's unconventional, a space between the function and the ()
   var riverController = new RiverController ( riverView );
   riverController.start();
 
@@ -29,6 +37,7 @@ $(document).ready(function() {
   var loginModel = new LoginModel()
   var loginController = new LoginController(loginModel)
   loginController.initialize()
+  // Is that strictly aesthetic?
   // wait 2 seconds then call popup
   setTimeout(popup, 500);
   // show form div

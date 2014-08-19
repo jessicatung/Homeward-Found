@@ -75,6 +75,7 @@ MapModel.prototype = {
     }
   },
 
+  // Leave no trace.
   // addInitialSightingMarkers: function(map){
   //   var self = this;
   //   for (var i = 0; i < this.sightings.length; i++) {

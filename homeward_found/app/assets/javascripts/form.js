@@ -25,6 +25,7 @@ FormController.prototype = {
 
 }
 
+// Don't commit commented out code.
 // function FormView(){}
 // FormView.prototype = {
 //   catForm: function(){

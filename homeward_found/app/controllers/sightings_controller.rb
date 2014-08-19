@@ -49,11 +49,13 @@ class SightingsController < ApplicationController
   private
 
   def notify_user
+    # Wow!  You used a Mailer!  And you used it correctly!  Holy shit.
     user = User.find(@ordered_lostings[0].user_id)
     NotificationMailer.possible_match_notification(user).deliver
   end
 
   def strong_params
+    # this Array of symbols would be a sweet constant
     params.require(:sighting).permit(
       :animal_type,
       :size,
