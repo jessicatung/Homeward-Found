@@ -12,6 +12,7 @@ Marker.prototype = {
     this.addInitialMarkers(map, this.lostings);
 
     $("#my_map").on("click", this.checkMap(map))
+    $("a").on("click", this.adjustMap)
     // this.sightings.addInitialSightingMarkers(map);
   },
   addInitialMarkers: function(map, markerType){
@@ -31,40 +32,27 @@ Marker.prototype = {
     }, i ); //* (100 * i)
     }
   },
-  addNewMarker: function(lat, lon){
-    this.iterator = 0;
-    var newMarkerCoordinate = new google.maps.LatLng(lat, lon);
+  addNewMarker: function(marker){
+    var newMarkerCoordinate = new google.maps.LatLng(marker.position.k, marker.position.B);
     var lostings = this.lostings.animalArray
-    var formType = $("form").parent().attr("id")
-
     lostings.push(newMarkerCoordinate);
-    this.markers.push(new google.maps.Marker({
-      position: lostings[lostings.length - 1],
-      map: this.map,
-      draggable: false,
-      icon: this.animalType($("#" + formType + "_animal_type").val()),
-      animation: google.maps.Animation.DROP
-    }));
+    this.markers.push(marker)
   },
 
   placeMarker: function(location, map){
-    if($("form").length > 0){
-
-      this.iterator++
-      var marker;
+    if($(".info").css("display") === "block"){
       var formType = $("form").parent().attr("id")
       $("#" + formType + "_Lat").val(location.k)
       $("#" + formType + "_Lng").val(location.B)
-      if(this.iterator != 1){
-        marker = new google.maps.Marker({
+
+        this.clearMarkers()
+        this.markers = []
+        var marker = new google.maps.Marker({
           position: location,
           map: map,
           icon: this.animalType($("#" + formType + "_animal_type").val())
         });
-        this.addNewMarker(marker.position.k, marker.position.B)
-      } else if(this.iterator === 1){
-        this.clearMarkers()
-      }
+        this.addNewMarker(marker)
     }
   },
   setAllMap: function(map) {
@@ -94,7 +82,6 @@ Marker.prototype = {
   checkMap: function(map){
     var self = this;
     google.maps.event.addListener(map, 'click', function(event) {
-      // self.deleteMarkers()
       self.placeMarker(event.latLng, map);
     });
   }
