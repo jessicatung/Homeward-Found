@@ -15,7 +15,7 @@ Marker.prototype = {
     // $("#sight_side").on("click", this.addInitialSightingMarkers(map))
     // $("#sight_side").addListener($(""), "click", this.addInitialSightingMarkers(map, this.sightings))
     $("#my_map").on("click", this.checkMap(map))
-    $("#sight_side").on("click", this.checkMarkers(map))
+    $("aside").on("click", this.checkMarkers(map))
     // this.sightings.addInitialSightingMarkers(map);
   },
   addInitialLostingMarkers: function(map){
@@ -121,6 +121,14 @@ Marker.prototype = {
     $("#all_side").on("click", function(event){
       self.addInitialLostingMarkers(map)
       self.addInitialSightingMarkers(map)
+    })
+    $("#lost").on("click", function(event){
+      self.removeTypeMarker(self.sightingsMarkers)
+      self.removeTypeMarker(self.lostingsMarkers)
+    })
+    $("#sighting").on("click", function(event){
+      self.removeTypeMarker(self.sightingsMarkers)
+      self.removeTypeMarker(self.lostingsMarkers)
     })
   },
   removeTypeMarker: function(markerType){
