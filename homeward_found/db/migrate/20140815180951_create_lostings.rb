@@ -3,7 +3,7 @@ class CreateLostings < ActiveRecord::Migration
     create_table :lostings do |t|
       t.belongs_to :user
       t.string :pet_name
-      t.string :animal_type
+      t.string :animal_type # e.g. , null: false, length: 50
       t.string :size
       t.string :breed
       t.string :coat_color

@@ -51,4 +51,7 @@ I'm going to upload some total shit in there.
 
 ## Tests
 
-None?  Really?
+* Given that you're a single page app, you really need soem controller tests to
+  assure that your endpoints work
+* Also given that you're doing so much javascript and you have such nice OO
+  classes, some jasmine-rails would be hella sweet
