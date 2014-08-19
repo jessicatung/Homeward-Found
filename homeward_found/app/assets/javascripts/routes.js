@@ -44,22 +44,18 @@ sightingRiver: function(e){
 },
 createLosting: function(e){
   e.stopPropagation()
-  debugger
   $.ajax({
     method: "post",
     url: "/lostings"
   }).done(function(data){
-    debugger
   })
 },
 createSighting: function(e){
   e.stopPropagation()
-  debugger
   $.ajax({
     method: "post",
     url: "/lostings"
   }).done(function(data){
-    debugger
   })
 }
 }
