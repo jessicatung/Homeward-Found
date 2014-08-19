@@ -1,44 +1,28 @@
 class SightingsController < ApplicationController
 
   def index
-    # sightings = Sighting.all
-    # render json: sightings
     render partial: "index"
   end
 
-  def new # dont need this later
+  def new
     @sighting = Sighting.new
-    @cat_breeds = []
-    @dog_breeds = []
-    responseCat = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=cat&format=json")
-    responseDog = HTTParty.get("http://api.petfinder.com/breed.list?key=8a031807c83ba378f85a9b9cb98420d8&animal=dog&format=json")
 
-    cat_breeds = responseCat["petfinder"]["breeds"]["breed"]
-    cat_breeds.each do |k,v|
-      @cat_breeds << k.values
-    end
-    @cat_breeds.flatten
+    api = PetFinder::Client.new
+    @cat_breeds = api.get_breeds("cat")
+    @dog_breeds = api.get_breeds("dog")
 
-    dog_breeds = responseDog["petfinder"]["breeds"]["breed"]
-    dog_breeds.each do |k,v|
-      @dog_breeds << k.values
-    end
-    @dog_breeds.flatten
     render :partial => "new"
   end
 
   def create
-    sighting = Sighting.new(strong_params)
+    sighting = Sighting.create(strong_params)
     User.find(session[:user_id]).sightings << sighting
 
-    if sighting.save
-      algorithm = Algorithm.new(sighting, Losting.all)
-      @ordered_lostings = algorithm.search
-      notify_user
-      render json: @ordered_lostings
-    else
-      # errors
-    end
+    algorithm = Algorithm.new(sighting, Losting.all)
+    ordered_lostings = algorithm.search
+    notify_user(ordered_lostings)
+
+    render json: ordered_lostings
   end
 
   def recent
@@ -49,8 +33,8 @@ class SightingsController < ApplicationController
 
   private
 
-  def notify_user
-    user = User.find(@ordered_lostings[0].user_id)
+  def notify_user(ordered_lostings)
+    user = User.find(ordered_lostings[0].user_id)
     NotificationMailer.possible_match_notification(user).deliver
   end
 
