@@ -36,11 +36,10 @@ class LostingsController < ApplicationController
     User.find(session[:user_id]).lostings << losting
 
     if losting.save
-      # algorithm = Algorithm.new(losting, Sighting.all)
-      # ordered_sightings = algorithm.search
-      # top_results = ordered_sightings[0..19]
-      # top_results.to_json
-      # render partial: 'index'
+      algorithm = Algorithm.new(losting, Sighting.all)
+      ordered_sightings = algorithm.search
+      top_results = ordered_sightings[0..19]
+      top_results.to_json
       # render json: top_results
       redirect_to root_path
     else
