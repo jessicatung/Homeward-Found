@@ -14,7 +14,6 @@ MapController.prototype = {
 
   initialize: function(position){
     this.model.createMap(position);
-    this.markers.getInfo()
     this.markers.initializeMarkers(this.model.map)
     this.markers.setAllMap(this.model.map)
     this.markers.showMarkers(this.model)
@@ -70,6 +69,8 @@ MapModel.prototype = {
 
 function Lostings(){
   this.animalArray = [];
+  this.lostingsMarkers = [];
+  this.lostingsInfo = [];
   this.iterator = 0;
 }
 
@@ -83,6 +84,21 @@ Lostings.prototype = {
         this.animalArray.push(data[i])
       }
     }.bind(this))
+  },
+  getLostingInfo: function(){
+    var content = []
+    for(var i = 0; i < this.animalArray.length; i++){
+      var url = "/lostings/" + this.animalArray[i].id
+      iter = i
+      content.push($.ajax({
+        method: "get",
+        async: false,
+        url: url
+      }).done(function(data){
+        this.lostingsInfo[iter] = data
+      }.bind(this)))
+    }
+    return content
   }
 }
 
@@ -92,6 +108,8 @@ Lostings.prototype = {
 
 function Sightings(){
   this.animalArray = [];
+  this.sightingsMarkers = [];
+  this.sightingsInfo = [];
   this.iterator = 0;
 }
 
@@ -105,5 +123,20 @@ Sightings.prototype = {
         this.animalArray.push(data[i])
       }
     }.bind(this))
+  },
+  getSightingInfo: function(){
+    var content = []
+    for(var i = 0; i < this.animalArray.length; i++){
+      var url = "/sightings/" + this.animalArray[i].id
+      iter = i
+      content.push($.ajax({
+        method: "get",
+        async: false,
+        url: url
+      }).done(function(data){
+        this.sightingsInfo[iter] = data
+      }.bind(this)))
+    }
+    return content
   }
 }

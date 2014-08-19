@@ -5,7 +5,6 @@ $(document).ready(function() {
   var sightings = new Sightings()
   var markers = new Marker(lostings, sightings)
   var mapController = new MapController(mapModel, markers);
-markers.getInfo()
   mapController.getLocation();
   lostings.getLostings()
   sightings.getSightings()
