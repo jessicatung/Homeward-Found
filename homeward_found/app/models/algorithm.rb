@@ -1,14 +1,12 @@
 class Algorithm
-  # will make this "not too wide, not too tall if time allows"
+
   def initialize (listing, collection)
     @listing = listing
     @collection = collection
   end
 
   def search
-    result = @collection.sort_by { |match| score(match) }.reverse!
-    # returns the top 20 scores in descending score order
-    result[0..20]
+    @collection.sort_by { |match| score(match) }.reverse
   end
 
   def score(match)
@@ -26,6 +24,7 @@ class Algorithm
     date_index = ((match.event_date - @listing.event_date)/86400).abs
     points = (date_index * 30).floor
     score -= points if points > 0
+    score
   end
 
   def distance_between(match)
