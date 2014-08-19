@@ -41,6 +41,26 @@ sightingRiver: function(e){
   // $("#lost_side").css("background-color", "#d3d3d3");
   // $("#all_side").css("background-color", "#d3d3d3");
 })
+},
+createLosting: function(e){
+  e.stopPropagation()
+  debugger
+  $.ajax({
+    method: "post",
+    url: "/lostings"
+  }).done(function(data){
+    debugger
+  })
+},
+createSighting: function(e){
+  e.stopPropagation()
+  debugger
+  $.ajax({
+    method: "post",
+    url: "/lostings"
+  }).done(function(data){
+    debugger
+  })
 }
 }
 
@@ -58,6 +78,7 @@ RouteController.prototype = {
     $("#home").on("click", this.model.lostingRiver);
     $("#lost_side").on("click", this.model.lostingRiver);
     $("#sight_side").on("click", this.model.sightingRiver);
+
   }
 }
 
