@@ -51,12 +51,15 @@ sightingRiver: function(e){
 })
 },
 createLosting: function(e){
+  e.preventDefault()
   e.stopPropagation()
   $.ajax({
     method: "post",
-    url: "/lostings"
-  }).done(function(data){
-  })
+    url: "/lostings",
+    data: $("#new_losting").serialize()
+  }).done(
+
+  )
 },
 createSighting: function(e){
   e.stopPropagation()

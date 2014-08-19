@@ -17,26 +17,22 @@ $(document).ready(function() {
   $("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- FORM
-  // var formController = new FormController();
-  // formController.initialize()
+  var formController = new FormController();
+  formController.initialize()
 
 
   //  ---------------------------- RIVER
-  // var riverView       = new RiverView ();
-  // var riverController = new RiverController ( riverView );
-  // riverController.startLostings();
+  var riverView       = new RiverView ();
+  var riverController = new RiverController ( riverView );
+  riverController.startLostings();
+
 
 
   //  ---------------------------- LOGIN
   var loginModel = new LoginModel()
   var loginController = new LoginController(loginModel)
   loginController.initialize()
-  // wait 2 seconds then call popup
-  // setTimeout(popup, 500);
-  // show form div
-  // function popup() {
-  //     $("#logindiv").css("display", "block")
-  // }
-  // when click on the login button, form goes away
 
+
+$("#event-container").on("submit", "#new_losting", routeModel.createLosting)
 });
