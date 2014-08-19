@@ -37,7 +37,7 @@ var routeModel = new RouteModel();
   <h3>Lost</h3>
   <%= form_for @losting do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
-  <%= f.text_field :pet_name %>
+  <%= f.text_field :pet_name, required: true %>
   <br>
   <%= f.label :animal_type, "Animal type:" %>
   <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
