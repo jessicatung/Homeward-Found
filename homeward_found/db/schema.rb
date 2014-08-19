@@ -18,17 +18,17 @@ ActiveRecord::Schema.define(version: 20140816010450) do
 
   create_table "lostings", force: true do |t|
     t.integer  "user_id"
-    t.string   "pet_name"
-    t.string   "animal_type"
-    t.string   "size"
-    t.string   "breed"
-    t.string   "coat_color"
-    t.string   "coat_length"
-    t.decimal  "Lat"
-    t.decimal  "Lng"
+    t.string   "pet_name",            limit: 20, null: false
+    t.string   "animal_type",         limit: 20, null: false
+    t.string   "size",                limit: 50, null: false
+    t.string   "breed",               limit: 50, null: false
+    t.string   "coat_color",          limit: 50, null: false
+    t.string   "coat_length",         limit: 50, null: false
+    t.decimal  "Lat",                            null: false
+    t.decimal  "Lng",                            null: false
     t.string   "tag"
     t.text     "detail"
-    t.datetime "event_date"
+    t.datetime "event_date",                     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar_file_name"
@@ -39,16 +39,16 @@ ActiveRecord::Schema.define(version: 20140816010450) do
 
   create_table "sightings", force: true do |t|
     t.integer  "user_id"
-    t.string   "animal_type"
-    t.string   "size"
-    t.string   "breed"
-    t.string   "coat_color"
-    t.string   "coat_length"
-    t.decimal  "Lat"
-    t.decimal  "Lng"
+    t.string   "animal_type",         limit: 20, null: false
+    t.string   "size",                limit: 20, null: false
+    t.string   "breed",               limit: 50, null: false
+    t.string   "coat_color",          limit: 50, null: false
+    t.string   "coat_length",         limit: 50, null: false
+    t.decimal  "Lat",                            null: false
+    t.decimal  "Lng",                            null: false
     t.string   "tag"
     t.text     "detail"
-    t.datetime "event_date"
+    t.datetime "event_date",                     null: false
     t.boolean  "found"
     t.datetime "created_at"
     t.datetime "updated_at"
