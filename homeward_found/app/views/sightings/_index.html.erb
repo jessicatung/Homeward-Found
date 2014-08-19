@@ -1,6 +1,6 @@
 <script>
-    var riverView     = new RiverView ();
-  var riverController = new RiverController ( riverView );
+  var riverView       = new RiverView ();
+  var riverController = new RiverController(riverView);
   riverController.startSightings();
   function expandInfo(){$(event.target).next().css("display", "block");
                         $(event.target).css("display", "none")};
@@ -14,9 +14,11 @@
 
 
 </script>
-  <ul id="event-collection">
-    <script id="event-template" type="text/x-handlebars-template">
+
+<ul id="event-collection">
+  <script id="event-template" type="text/x-handlebars-template">
     <li class="event">
+
     <div class="event-content">
     <h3>{{pet_name}}</h3>
     <p>{{coat_color}} {{breed}} {{animal_type}}</p>
@@ -32,8 +34,7 @@
     <button onclick="collapseInfo()">&#9650;</button>
     </div>
 
-
     </li><hr>
-    </script>
+  </script>
 </ul>
 
