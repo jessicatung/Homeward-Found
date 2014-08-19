@@ -18,35 +18,35 @@ class Algorithm
     score -= 20 if @listing.coat_color != match.coat_color
     score -= 20 if @listing.coat_length != match.coat_length
 
-    points = ((distance_between(match) - 1) * 5).floor
+    points = ((distance_between(@listing.Lat, @listing.Lng, match) - 1) * 5).floor
     score -= points if points > 0
 
-    date_index = ((match.event_date - @listing.event_date)/86400).abs
-    points = (date_index * 30).floor
+    points = (days_apart(@listing.event_date, match.event_date) * 30).floor
     score -= points if points > 0
     score
   end
 
-  def distance_between(match)
-    latOne = @listing.Lat
-    latTwo = match.Lat
-
-    lngOne = @listing.Lng
-    lngTwo = match.Lng
+  def distance_between(target_lat, target_lng, match)
+    match_lat = match.Lat
+    match_lng = match.Lng
 
     r = 6371
     pi_const = Math::PI / 180
 
-    theta1 = latOne * pi_const
-    theta2 = latTwo * pi_const
+    theta1 = target_lat * pi_const
+    theta2 = match_lat * pi_const
 
-    deltaTheta = (latTwo - latOne) * pi_const
-    deltaLambda = (lngTwo - lngOne) * pi_const
+    deltaTheta = (match_lat - target_lat) * pi_const
+    deltaLambda = (match_lng - target_lng) * pi_const
 
     a = Math.sin(deltaTheta/2) ** 2
     a += Math.cos(theta1) * Math.cos(theta2) * Math.sin(deltaLambda/2) ** 2
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
     distance = r * c
+  end
+
+  def days_apart(target_date, match_date)
+    ((target_date - match_date)/86400).abs
   end
 
 end
