@@ -32,10 +32,11 @@ class SightingsController < ApplicationController
     User.find(session[:user_id]).sightings << sighting
 
     if sighting.save
-      algorithm = Algorithm.new(sighting, Losting.all)
-      @ordered_lostings = algorithm.search
-      notify_user
-      render json: @ordered_lostings
+      # algorithm = Algorithm.new(sighting, Losting.all)
+      # @ordered_lostings = algorithm.search
+      # notify_user
+      # render json: @ordered_lostings
+      redirect_to root_path
     else
       # errors
     end

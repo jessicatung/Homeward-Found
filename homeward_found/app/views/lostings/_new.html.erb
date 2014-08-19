@@ -1,10 +1,15 @@
 <script>
   var formController = new FormController()
   formController.initialize()
+var routeModel = new RouteModel();
+  var routeController = new RouteController(routeModel)
+  routeController.initialize()
+
+  $("#new_losting").on("submit", routeController.model.createLosting);
 </script>
 <div id="losting">
   <h3>Lost</h3>
-  <%= form_for @losting, {remote: true} do |f| %>
+  <%= form_for @losting, {remote: true, :authenticity_token => true} do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
   <%= f.text_field :pet_name %>
   <br>

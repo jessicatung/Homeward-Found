@@ -10,12 +10,12 @@ $(document).ready(function() {
   sightings.getSightings()
   // mapController.initialize();
 
-
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
   var routeController = new RouteController(routeModel)
   routeController.initialize()
 
+  $("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- FORM
   // var formController = new FormController();
