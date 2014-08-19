@@ -35,6 +35,11 @@ class LostingsController < ApplicationController
     render json: lostings
   end
 
+  def show
+    @losting = Losting.find(params[:id])
+    render partial: "show"
+  end
+
   private
 
   def strong_params

@@ -32,6 +32,11 @@ class SightingsController < ApplicationController
     render json: sightings
   end
 
+  def show
+    @sighting = Sighting.find(params[:id])
+    render partial: "show"
+  end
+
   private
 
   def notify_user(ordered_lostings)

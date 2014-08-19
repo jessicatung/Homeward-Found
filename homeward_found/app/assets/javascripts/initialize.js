@@ -9,7 +9,6 @@ $(document).ready(function() {
   lostings.getLostings()
   sightings.getSightings()
   // mapController.initialize();
-
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
   var routeController = new RouteController(routeModel)
