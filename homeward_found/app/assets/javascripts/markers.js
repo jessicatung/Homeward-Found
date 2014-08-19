@@ -3,7 +3,6 @@ function Marker(lostings, sightings){
   this.lostings = lostings;
   this.sightings = sightings;
   this.iterator = 0;
-  this.windowiterator = 0;
   this.markers = this.lostings.lostingsMarkers.concat(this.sightings.sightingsMarkers)
 }
 
