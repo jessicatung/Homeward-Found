@@ -74,7 +74,6 @@ RouteController.prototype = {
     $("#home").on("click", this.model.lostingRiver);
     $("#lost_side").on("click", this.model.lostingRiver);
     $("#sight_side").on("click", this.model.sightingRiver);
-
   }
 }
 

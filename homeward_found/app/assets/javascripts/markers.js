@@ -5,6 +5,7 @@ function Marker(lostings, sightings){
   this.iterator = 0;
   this.lostingsMarkers = []
   this.sightingsMarkers = []
+  this.lostingsInfo = []
   this.markers = this.lostingsMarkers.concat(this.sightingsMarkers)
 }
 
@@ -17,18 +18,37 @@ Marker.prototype = {
   addInitialLostingMarkers: function(map){
     var self = this;
     var iterator = this.lostings.iterator;
-    var lostingsArray = this.lostings.animalArray
+    var lostingsArray = this.lostings.animalArray;
     for (var i = 0; i < lostingsArray.length; i++) {
-      setTimeout(function() {
-        self.lostingsMarkers.push(new google.maps.Marker({
-          position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
-          map: map,
-          draggable: false,
-          icon: self.animalType(lostingsArray[iterator].animal_type)
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
+        map: map,
+        draggable: false,
+        icon: self.animalType(lostingsArray[iterator].animal_type)
           // animation: google.maps.Animation.DROP
-        }));
-        iterator++;
-    }); //* (100 * i)
+        })
+      self.lostingsMarkers.push(marker);
+
+      var url = "/lostings/" + lostingsArray[iterator].id
+      $.ajax({
+        method: "get",
+        url: url
+      }).done(function(data){
+        var infowindow = new google.maps.InfoWindow({
+          content: data,
+          position: new google.maps.LatLng(parseFloat(self.lostings.animalArray[self.lostings.iterator].Lat), parseFloat(self.lostings.animalArray[self.lostings.iterator].Lng))
+        })
+        self.lostingsInfo.push(infowindow)
+        $.each(self.lostingsMarkers, function(val, i){
+            var value = val
+          google.maps.event.addListener(i, 'click', function() {
+            debugger
+            infowindow.open(map,i);
+          });
+
+        })
+      })
+      iterator++;
     }
   },
   addInitialSightingMarkers: function(map){
