@@ -35,7 +35,8 @@ class SightingsController < ApplicationController
       algorithm = Algorithm.new(sighting, Losting.all)
       @ordered_lostings = algorithm.search
       notify_user
-      render json: @ordered_lostings
+      # render json: @ordered_lostings
+      redirect_to root_path
     else
       # errors
     end

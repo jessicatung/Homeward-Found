@@ -11,12 +11,8 @@ function Marker(lostings, sightings){
 Marker.prototype = {
   initializeMarkers: function(map){
     this.addInitialLostingMarkers(map);
-    // this.addInitialSightingMarkers(map);
-    // $("#sight_side").on("click", this.addInitialSightingMarkers(map))
-    // $("#sight_side").addListener($(""), "click", this.addInitialSightingMarkers(map, this.sightings))
     $("#my_map").on("click", this.checkMap(map))
-    $("aside").on("click", this.checkMarkers(map))
-    // this.sightings.addInitialSightingMarkers(map);
+    $("nav").on("click", this.checkMarkers(map))
   },
   addInitialLostingMarkers: function(map){
     var self = this;

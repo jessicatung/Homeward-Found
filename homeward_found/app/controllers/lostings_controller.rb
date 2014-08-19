@@ -3,6 +3,8 @@ class LostingsController < ApplicationController
   include HTTParty
   require 'json'
 
+
+
   def index
     render partial: "index"
   end
@@ -37,7 +39,9 @@ class LostingsController < ApplicationController
       algorithm = Algorithm.new(losting, Sighting.all)
       ordered_sightings = algorithm.search
       top_results = ordered_sightings[0..19]
-      render json: top_results
+      top_results.to_json
+      # render json: top_results
+      redirect_to root_path
     else
       # errors
     end
