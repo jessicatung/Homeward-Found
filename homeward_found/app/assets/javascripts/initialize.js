@@ -7,7 +7,7 @@ $(document).ready(function() {
   var mapController = new MapController(mapModel, markers);
   mapController.getLocation();
   lostings.getLostings()
-  // sightings.getSightings()
+  sightings.getSightings()
   // mapController.initialize();
 
 
