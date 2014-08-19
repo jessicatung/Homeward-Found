@@ -45,11 +45,13 @@ Marker.prototype = {
         map: map,
         draggable: false,
         icon: self.animalType(lostingsArray[iterator].animal_type)
-          // animation: google.maps.Animation.DROP
         })
+
       google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
+        return function(){
         infoWindow.setContent(content)
         infoWindow.open(map, marker)
+        }
       }(marker, self.lostingsInfo[iterator], infoWindow));
     iterator++
     }
