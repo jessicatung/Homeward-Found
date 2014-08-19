@@ -81,6 +81,7 @@ Marker.prototype = {
 
   checkMap: function(map){
     var self = this;
+    // $("#lost_side").on("click", this.showMarkers(map))
     google.maps.event.addListener(map, 'click', function(event) {
       self.placeMarker(event.latLng, map);
     });
