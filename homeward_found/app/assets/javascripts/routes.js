@@ -3,7 +3,6 @@ RouteModel.prototype = {
   lostingForm: function(e){
     e.stopPropagation()
 
-    // debugger
     // login form interupt
     $("#logindiv").css("display", "block");
 
@@ -16,6 +15,10 @@ RouteModel.prototype = {
   },
   sightingForm: function(e){
     e.stopPropagation()
+
+    // login form interupt
+    $("#logindiv").css("display", "block");
+
     $.ajax({
      method: "get",
      url: "/sightings/new"
