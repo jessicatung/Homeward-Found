@@ -58,7 +58,7 @@ createLosting: function(e){
     url: "/lostings",
     data: $("#new_losting").serialize()
   }).done(
-
+$(document).trigger('reloadLostings')
   )
 },
 createSighting: function(e){
@@ -80,6 +80,7 @@ RouteController.prototype = {
     this.bindListeners()
   },
   bindListeners: function(){
+    $(document).on('reloadLostings',this.model.lostingRiver);
     $("#sighting").on("click", this.model.sightingForm);
     $("#lost").on("click", this.model.lostingForm);
     $("#home").on("click", this.model.lostingRiver);
