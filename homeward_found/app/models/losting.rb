@@ -4,7 +4,11 @@ class Losting < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.ordered_json
-    order("event_date DESC").limit(10).to_json
+    order("event_date DESC").limit(10).to_json(methods: [:long_date])
+  end
+
+  def long_date
+    event_date.to_formatted_s(:long_ordinal)
   end
 
 end
