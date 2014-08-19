@@ -2,16 +2,38 @@
   var riverView       = new RiverView ();
   var riverController = new RiverController(riverView);
   riverController.startSightings();
+  function expandInfo(){$(event.target).next().css("display", "block");
+                        $(event.target).css("display", "none")};
+  function collapseInfo(){$(event.target).parent().css("display", "none");
+                          $(event.target).parent().prev().css("display", "block")};
+
+  //  http://maps.google.com/maps/api/geocode/json?latlng=37.781774,-122.489219
+
+  // &key=API_KEY
+
+
+
 </script>
 
 <ul id="event-collection">
   <script id="event-template" type="text/x-handlebars-template">
     <li class="event">
-      <div class="event-content">
-        <h3>{{pet_name}}</h3>
-        <p>{{coat_color}} {{breed}} {{animal_type}}</p>
-        <p>{{event_date}}</p>
-      </div>
+
+    <div class="event-content">
+    <h3>{{pet_name}}</h3>
+    <p>{{coat_color}} {{breed}} {{animal_type}}</p>
+    <p>{{event_date}}</p>
+    </div>
+
+    <button onclick="expandInfo()">&#9660; </button>
+    <div style="display:none" class="hidden_div">
+    Size: {{size}} <br>
+    Breed: {{breed}} <br>
+    Coat Color: {{coat_color}} <br>
+    Coat Lenth: {{coat_length}} <br>
+    <button onclick="collapseInfo()">&#9650;</button>
+    </div>
+
     </li><hr>
   </script>
 </ul>

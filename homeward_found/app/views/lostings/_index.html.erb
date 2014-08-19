@@ -1,7 +1,13 @@
 <script>
-    var riverView       = new RiverView ();
+  var riverView = new RiverView ();
   var riverController = new RiverController ( riverView );
   riverController.startLostings();
+  function expandInfo(){$(event.target).next().css("display", "block");
+                        $(event.target).css("display", "none")};
+  function collapseInfo(){$(event.target).parent().css("display", "none");
+                          $(event.target).parent().prev().css("display", "block")};
+
+
 </script>
 
   <ul id="event-collection">
@@ -12,6 +18,23 @@
     <p>{{coat_color}} {{breed}} {{animal_type}}</p>
     <p>{{event_date}}</p>
     </div>
-    </li><hr>
+
+    <button onclick="expandInfo()"> &#9660; </button>
+    <div style="display:none" class="hidden_div">
+    Size: {{size}} <br>
+    Breed: {{breed}} <br>
+    Coat Color: {{coat_color}} <br>
+    Coat Lenth: {{coat_length}} <br>
+    <button onclick="collapseInfo()"> &#9650;</button>
+    </div>
+
+    </li>
+    <hr>
+
+
+
+
     </script>
-</ul>
+
+
+  </ul>
