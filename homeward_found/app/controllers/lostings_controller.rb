@@ -67,7 +67,8 @@ class LostingsController < ApplicationController
       :Lng,
       :tag,
       :detail,
-      :event_date
+      :event_date,
+      :avatar
       )
   end
 end

@@ -67,7 +67,8 @@ class SightingsController < ApplicationController
       :event_date,
       :tag,
       :detail,
-      :found
+      :found,
+      :avatar
       )
   end
 
