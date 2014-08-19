@@ -14,6 +14,7 @@ MapController.prototype = {
 
   initialize: function(position){
     this.model.createMap(position);
+    this.markers.getInfo()
     this.markers.initializeMarkers(this.model.map)
     this.markers.setAllMap(this.model.map)
     this.markers.showMarkers(this.model)

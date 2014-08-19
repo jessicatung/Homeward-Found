@@ -5,11 +5,11 @@ $(document).ready(function() {
   var sightings = new Sightings()
   var markers = new Marker(lostings, sightings)
   var mapController = new MapController(mapModel, markers);
+markers.getInfo()
   mapController.getLocation();
   lostings.getLostings()
   sightings.getSightings()
   // mapController.initialize();
-
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
   var routeController = new RouteController(routeModel)

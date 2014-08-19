@@ -16,34 +16,43 @@ Marker.prototype = {
     $("#my_map").on("click", this.checkMap(map))
     $("nav").on("click", this.checkMarkers(map))
   },
+  getInfo: function(){
+    var content = []
+    for(var i = 0; i < this.lostings.animalArray.length; i++){
+      var url = "/lostings/" + this.lostings.animalArray[i].id
+      iter = i
+      content.push($.ajax({
+        method: "get",
+        async: false,
+        url: url
+      }).done(function(data){
+        this.lostingsInfo[iter] = data
+      }.bind(this)))
+    }
+    return content
+  },
   addInitialLostingMarkers: function(map){
     var self = this;
     var iterator = this.lostings.iterator;
     var lostingsArray = this.lostings.animalArray;
-
-
+// var lostingsInfo = []
+      // self.lostingsInfo[iterator] = new google.maps.InfoWindow()
+    var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < lostingsArray.length; i++) {
-      self.lostingsInfo[iterator] = new google.maps.InfoWindow()
-      self.lostingsMarkers[iterator] = new google.maps.Marker({
+      this.lostingsInfo.push(this.getInfo()[i].responseText)
+      var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
         map: map,
         draggable: false,
         icon: self.animalType(lostingsArray[iterator].animal_type)
           // animation: google.maps.Animation.DROP
         })
-      var url = "/lostings/" + lostingsArray[i].id
-      $.ajax({
-        method: "get",
-        url: url
-      }).done(function(data){
-        self.lostingsInfo[self.iterator].setContent(data)
-      }.bind(this))
-      google.maps.event.addListener(self.lostingsMarkers[iterator], 'click', function(innerKey) {
-        self.lostingsInfo[innerKey].open(map, self.lostingsMarkers[innerKey])
-      }(iterator));
+      google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
+        infoWindow.setContent(content)
+        infoWindow.open(map, marker)
+      }(marker, self.lostingsInfo[iterator], infoWindow));
     iterator++
     }
-
   },
   placeInfoWindow: function(map){
     var self = this;
