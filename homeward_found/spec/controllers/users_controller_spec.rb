@@ -1,8 +1,11 @@
 require 'spec_helper'
 
-user = FactoryGirl.create(:user)
-
-user_with_losting = FactoryGirl.create(:user_with_losting)
-
-user_with_sighting = FactoryGirl.create(:user_with_sighting)
+describe UsersController do
+  context '#create' do
+    it 'should create a new user' do
+      user = FactoryGirl.create(:user)
+      expect( User.count ).to eq(1)
+    end
+  end
+end
 

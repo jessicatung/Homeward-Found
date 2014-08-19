@@ -2,6 +2,10 @@ function RouteModel(){}
 RouteModel.prototype = {
   lostingForm: function(e){
     e.stopPropagation()
+
+    // login form interupt
+    $("#logindiv").css("display", "block");
+
     $.ajax({
       method: "get",
       url: "/lostings/new"
@@ -11,6 +15,10 @@ RouteModel.prototype = {
   },
   sightingForm: function(e){
     e.stopPropagation()
+
+    // login form interupt
+    $("#logindiv").css("display", "block");
+
     $.ajax({
      method: "get",
      url: "/sightings/new"

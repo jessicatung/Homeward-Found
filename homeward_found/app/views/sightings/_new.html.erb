@@ -1,56 +1,82 @@
 <script>
-  var formController = new FormController()
-  formController.initialize()
-  var routeModel = new RouteModel();
-  var routeController = new RouteController(routeModel)
-  routeController.initialize()
+var formController = new FormController()
+formController.initialize()
+var routeModel = new RouteModel();
+var routeController = new RouteController(routeModel)
+routeController.initialize()
 
-  $("#new_sighting").on("submit", routeController.model.createSighting);
-</script>
-<div id="sighting">
-<h3>Sighting</h3>
-<%= form_for @sighting, {action: "create", remote: true, :authenticity_token => true} do |f| %>
-<%= f.label :animal_type, "Animal type:" %>
-<%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
+  // $("#new_sighting").on("submit", routeController.model.createSighting);
 
-<div id="cat" style="display: none;">
-  <%= f.label :breed, "Breed:" %>
-  <%= f.select :breed, options_for_select(@cat_breeds) %>
-</div>
+  var form = $("#new_sighting");
 
-<div id="dog" style="display: none;">
-  <%= f.label :breed, "Breed:" %>
-  <%= f.select :breed, options_for_select(@dog_breeds) %>
-</div>
+  $("#new_sighting").on("submit", function(event){
+    event.preventDefault();
+    console.log("hello")
 
-<div class="info" style="display: none;">
-  <%= f.label :size, "Size:" %>
-  <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
-  <br>
-  <%= f.label :coat_color, "Coat color:" %>
-  <%= f.text_field :coat_color %>
-  <br>
-  <%= f.label :coat_length, "Coat length:" %>
-  <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
-  <%= f.hidden_field :Lat %>
-  <%= f.hidden_field :Lng %>
-  <br>
-  <%= f.label :tag, "Tag:" %>
-  <%= f.text_field :tag %>
-  <br>
-  <%= f.label :detail, "Details:" %>
-  <%= f.text_area :detail %>
-  <br>
-  <%= f.label :event_date, "Date seen:" %>
-  <%= f.datetime_select :event_date %>
-  <br>
-  <%= f.label :found, "In my possession:" %>
-  <%= f.check_box :found, checked: false %>
-  <br><br>
-</div>
+    $.ajax({
+     url: "/sightings",
+     type: "post",
+     data: form.serialize(),
+   }).done(function(data){
+    $("#event-container").html("<h2>Relevant Lost Pets For Your Entry </h2>");
+    for(i=0; i < data.length; i++){
+      $("#event-container").append(
+        i + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"]
+        + "<br> Seen on: " + data[i]["event_date"] + "<hr>")
+    }
+  })
 
-<br><br>
-<%= f.submit %>
-<% end %>
 
-</div>
+ });
+
+  </script>
+  <div id="sighting">
+    <h3>Sighting</h3>
+    <%= form_for @sighting do |f| %>
+    <%= f.label :animal_type, "Animal type:" %>
+    <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
+
+    <div id="cat" style="display: none;">
+      <%= f.label :breed, "Breed:" %>
+      <%= f.select :breed, options_for_select(@cat_breeds) %>
+    </div>
+
+    <div id="dog" style="display: none;">
+      <%= f.label :breed, "Breed:" %>
+      <%= f.select :breed, options_for_select(@dog_breeds) %>
+    </div>
+
+    <div class="info" style="display: none;">
+      <%= f.label :size, "Size:" %>
+      <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
+      <br>
+      <%= f.label :coat_color, "Coat color:" %>
+      <%= f.text_field :coat_color %>
+      <br>
+      <%= f.label :coat_length, "Coat length:" %>
+      <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
+      <%= f.hidden_field :Lat %>
+      <%= f.hidden_field :Lng %>
+      <br>
+      <%= f.label :tag, "Tag:" %>
+      <%= f.text_field :tag %>
+      <br>
+      <%= f.label :detail, "Details:" %>
+      <%= f.text_area :detail %>
+      <br>
+      <%= f.label :event_date, "Date seen:" %>
+      <%= f.datetime_select :event_date %>
+      <br>
+      <%= f.label :found, "In my possession:" %>
+      <%= f.check_box :found, checked: false %>
+      <br>
+      <%= f.label :avatar, "Image" %>
+      <%= f.file_field :avatar %>
+      <br><br>
+    </div>
+
+    <br><br>
+    <%= f.submit %>
+    <% end %>
+
+  </div>
