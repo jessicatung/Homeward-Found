@@ -25,8 +25,8 @@ class LostingsController < ApplicationController
     ordered_sightings = algorithm.search
     top_results = ordered_sightings[0..19]
 
-    # render json: top_results
-    redirect_to root_path
+    render json: top_results
+    # redirect_to root_path
   end
 
   def recent

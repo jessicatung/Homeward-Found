@@ -15,4 +15,3 @@
 //= require turbolinks
 //= require handlebars
 //= require_tree
-
