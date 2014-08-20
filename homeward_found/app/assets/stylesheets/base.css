@@ -89,9 +89,10 @@ nav > ul > li > a{
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-left: 1%;
 }
 
-nav ul li a:hover{
+nav ul li:hover{
   background: #32a9c3;
   background: rgba(0,0,0.1);
 }
