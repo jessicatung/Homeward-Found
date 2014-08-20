@@ -5,13 +5,13 @@ function RiverController ( view ) {
 
 RiverController.prototype = {
   startLostings: function () {
-    var reponse = $.ajax({
+    var response = $.ajax({
       url: "/lostings/recent",
-      type: "GET"
+      method: "GET"
     }).done(this.view.render)
   },
   startSightings: function(){
-    var reponse = $.ajax({
+    var response = $.ajax({
       url: "/sightings/recent",
       type: "GET"
     }).done(this.view.render)

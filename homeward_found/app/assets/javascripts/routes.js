@@ -1,4 +1,6 @@
-function RouteModel(){}
+function RouteModel(view){
+  this.view = view;
+}
 RouteModel.prototype = {
   lostingForm: function(e){
     e.stopPropagation()
@@ -27,27 +29,21 @@ RouteModel.prototype = {
   })
  },
  lostingRiver: function(e){
-  e.stopPropagation()
+  e.preventDefault()
   $.ajax({
    method: "get",
    url: "/lostings"
  }).done(function(data){
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
-  // $("#lost_side").css("background-color", "white");
 })
 },
 sightingRiver: function(e){
-  e.stopPropagation()
+  e.preventDefault()
   $.ajax({
    method: "get",
    url: "/sightings"
  }).done(function(data){
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "white");
-  // $("#lost_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
 })
 },
 createLosting: function(e){
@@ -57,36 +53,63 @@ createLosting: function(e){
     method: "post",
     url: "/lostings",
     data: $("#new_losting").serialize()
-  }).done(
-$(document).trigger('reloadLostings')
-  )
+  }).done($(document).trigger('reloadLostings'))
 },
 createSighting: function(e){
   e.stopPropagation()
   $.ajax({
     method: "post",
-    url: "/lostings"
-  }).done(function(data){
-  })
+    url: "/sightings",
+    data: $("#new_sighting").serialize()
+  }).done($(document).trigger('reloadSightings'))
+},
+blah: function(){
+  debugger
+  this.model.lostingRiver
 }
 }
 
-function RouteController(model){
+function RouteController(model, view){
   this.model = model;
+  this.view = view;
 }
 
 RouteController.prototype = {
   initialize: function(){
     this.bindListeners()
+    this.startLostings()
   },
   bindListeners: function(){
     $(document).on('reloadLostings',this.model.lostingRiver);
+    $(document).on('reloadSightings',this.model.sightingRiver);
     $("#sighting").on("click", this.model.sightingForm);
     $("#lost").on("click", this.model.lostingForm);
-    $("#home").on("click", this.model.lostingRiver);
+    $("#aside_nav").on("click", "a", this.model.riverLoad)
     $("#lost_side").on("click", this.model.lostingRiver);
     $("#sight_side").on("click", this.model.sightingRiver);
+  },
+  startLostings: function () {
+    var response = $.ajax({
+      url: "/lostings/recent",
+      method: "GET"
+    }).done(this.view.render)
+  },
+  startSightings: function(){
+    var response = $.ajax({
+      url: "/sightings/recent",
+      type: "GET"
+    }).done(this.view.render)
   }
 }
 
+function RouteView(){}
 
+RouteView.prototype = {
+  render: function ( dataArray ) {
+    $.each(dataArray,function(index, data) {
+      var source = $( "#event-template" ).html();
+      var template = Handlebars.compile( source )
+      $( '#event-container' ).append(template(data))
+    });
+  }
+}

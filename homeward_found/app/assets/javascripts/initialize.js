@@ -10,11 +10,10 @@ $(document).ready(function() {
   sightings.getSightings()
   // mapController.initialize();
   //  ---------------------------- ROUTES
+  var routeView = new RouteView()
   var routeModel = new RouteModel();
-  var routeController = new RouteController(routeModel)
+  var routeController = new RouteController(routeModel,routeView)
   routeController.initialize()
-
-  $("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- FORM
   var formController = new FormController();
@@ -22,9 +21,9 @@ $(document).ready(function() {
 
 
   //  ---------------------------- RIVER
-  var riverView       = new RiverView ();
-  var riverController = new RiverController ( riverView );
-  riverController.startLostings();
+  // var riverView = new RiverView();
+  // var riverController = new RiverController(riverView);
+  // riverController.startLostings();
 
 
 
@@ -32,7 +31,29 @@ $(document).ready(function() {
   var loginModel = new LoginModel()
   var loginController = new LoginController(loginModel)
   loginController.initialize()
+  $("#aside_nav").on("click", "#lost_side", lostingRiverLoad)
+  $("#aside_nav").on("click", "#sight_side", sightingRiverLoad)
+  $("#event-container").on("submit", "#new_sighting", routeModel.createSighting)
+  $("#event-container").on("submit", "#new_losting", routeModel.createLosting)
 
-
-$("#event-container").on("submit", "#new_losting", routeModel.createLosting)
 });
+
+  function lostingRiverLoad(){
+    var riverView = new RiverView();
+    var riverController = new RiverController(riverView);
+      riverController.startLostings()
+  }
+
+  function sightingRiverLoad(){
+    var riverView = new RiverView();
+    var riverController = new RiverController(riverView);
+    riverController.startSightings()
+  }
+
+function formSubmission(){
+if(this.id === "new_losting"){
+routeModel.createLosting
+}else {
+routeModel.createSighting
+}
+}
