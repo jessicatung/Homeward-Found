@@ -42,7 +42,6 @@ MapModel.prototype = {
 
     this.map = new google.maps.Map($("#my_map")[0], mapOptions)
     // this.setMapBounds()
-
   },
 
   setMapBounds: function(){

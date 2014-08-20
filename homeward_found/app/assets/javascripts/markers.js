@@ -17,14 +17,14 @@ Marker.prototype = {
     var iterator = this.lostings.iterator;
     var lostingsArray = this.lostings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
+    if(self.lostings.lostingsInfo.length < self.lostings.animalArray.length){
+      self.lostings.lostingsInfo.push(self.lostings.getLostingInfo()[iterator].responseText)
+      self.lostings.lostingsMarkers.push(self.addMarker(lostingsArray[iterator], map))
     for (var i = 0; i < lostingsArray.length; i++) {
-      self.lostings.lostingsInfo.push(self.lostings.getLostingInfo()[i].responseText)
-
-      self.lostings.lostingsMarkers.push(marker)
-      self.addMarker(lostingsArray)
-      google.maps.event.addListener(marker, 'click', this.addInfoWindow(marker, self.lostings.lostingsInfo[iterator], infoWindow, map))
+      google.maps.event.addListener(self.addMarker(lostingsArray[iterator], map), 'click', this.addInfoWindow(self.addMarker(lostingsArray[iterator]), self.lostings.lostingsInfo[iterator], infoWindow, map))
 
       iterator++
+    }
     }
   },
   addInfoWindow: function(marker, content, infoWindow, map){
@@ -33,13 +33,13 @@ Marker.prototype = {
       infoWindow.open(map, marker)
     }
   },
-  addMarker: function(type){
+  addMarker: function(type, map){
     var self = this;
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
+        position: new google.maps.LatLng(parseFloat(type.Lat), parseFloat(type.Lng)),
         map: map,
         draggable: false,
-        icon: self.animalType(lostingsArray[iterator].animal_type)
+        icon: self.animalType(type.animal_type)
       })
     return marker
   },
@@ -48,20 +48,13 @@ Marker.prototype = {
     var iterator = this.sightings.iterator;
     var sightingsArray = this.sightings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
+    if(self.sightings.sightingsInfo.length < self.sightings.animalArray.length){
+      self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[iterator].responseText)
+      self.sightings.sightingsMarkers.push(self.addMarker(sightingsArray[iterator], map))
     for (var i = 0; i < sightingsArray.length; i++) {
-      self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[i].responseText)
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(parseFloat(sightingsArray[iterator].Lat), parseFloat(sightingsArray[iterator].Lng)),
-        map: map,
-        draggable: false,
-        icon: self.animalType(sightingsArray[iterator].animal_type)
-      })
-      self.sightings.sightingsMarkers.push(marker)
-
-
-      google.maps.event.addListener(marker, 'click', this.addInfoWindow(marker, self.sightings.sightingsInfo[iterator], infoWindow, map))
-
+      google.maps.event.addListener(self.addMarker(sightingsArray[iterator], map), 'click', this.addInfoWindow(self.addMarker(sightingsArray[iterator]), self.sightings.sightingsInfo[iterator], infoWindow, map))
       iterator++
+    }
     }
   },
   addNewMarker: function(marker){
@@ -92,8 +85,11 @@ Marker.prototype = {
     }
   },
 
-  clearMarkers: function(){
-    this.setAllMap(null)
+  clearMarkers: function(markerType){
+    for (var i = 0; i < markerType.length; i++) {
+      markerType[i].setVisible(false);
+    }
+
   },
   showMarkers: function(map){
     this.setAllMap(map);
@@ -121,17 +117,12 @@ Marker.prototype = {
     var self = this;
     $("#sight_side").on("click", function(event){
       self.removeTypeMarker(self.lostings.lostingsMarkers)
-      if(self.sightings.sightingsMarkers.length < self.sightings.animalArray.length){
-
+      self.clearMarkers(self.lostings.lostingsMarkers)
       self.addInitialSightingMarkers(map)
-      }
     })
     $("#lost_side").on("click", function(event){
       self.removeTypeMarker(self.sightings.sightingsMarkers)
-      if(self.lostings.lostingsMarkers.length < self.lostings.animalArray.length){
-
-        self.addInitialLostingMarkers(map)
-      }
+      self.addInitialLostingMarkers(map)
     })
     $("#all_side").on("click", function(event){
       self.addInitialLostingMarkers(map)
@@ -148,6 +139,7 @@ Marker.prototype = {
   },
   removeTypeMarker: function(markerType){
     for (var i = 0; i < markerType.length; i++) {
+      markerType[i].visible = false;
       markerType[i].setMap(null);
     }
 
