@@ -6,7 +6,7 @@
 function Sightings(){
   this.animalArray = [];
   this.sightingsMarkers = [];
-  this.sightingsInfo = [];
+  // this.sightingsInfo = [];
   this.iterator = 0;
 }
 
