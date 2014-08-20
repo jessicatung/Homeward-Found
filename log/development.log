@@ -1,0 +1,177 @@
+  [1m[36m (21.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (3.8ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateLostings (20140815180951)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (23.9ms)[0m  [1mCREATE TABLE "lostings" ("id" serial primary key, "user_id" integer, "pet_name" character varying(20) NOT NULL, "animal_type" character varying(20) NOT NULL, "size" character varying(50) NOT NULL, "breed" character varying(50) NOT NULL, "coat_color" character varying(50) NOT NULL, "coat_length" character varying(50) NOT NULL, "Lat" decimal NOT NULL, "Lng" decimal NOT NULL, "tag" character varying(255), "detail" text, "event_date" timestamp NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (5.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140815180951"]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSightings (20140815181016)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "sightings" ("id" serial primary key, "user_id" integer, "animal_type" character varying(20) NOT NULL, "size" character varying(20) NOT NULL, "breed" character varying(50) NOT NULL, "coat_color" character varying(50) NOT NULL, "coat_length" character varying(50) NOT NULL, "Lat" decimal NOT NULL, "Lng" decimal NOT NULL, "tag" character varying(255), "detail" text, "event_date" timestamp NOT NULL, "found" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140815181016"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20140815181023)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (3.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "password_digest" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140815181023"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddAttachmentAvatarToLostings (20140816010440)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (1.4ms)[0m  [1mALTER TABLE "lostings" ADD COLUMN "avatar_file_name" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "lostings" ADD COLUMN "avatar_content_type" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "lostings" ADD COLUMN "avatar_file_size" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "lostings" ADD COLUMN "avatar_updated_at" timestamp
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140816010440"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Migrating to AddAttachmentAvatarToSightings (20140816010450)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "sightings" ADD COLUMN "avatar_file_name" character varying(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "sightings" ADD COLUMN "avatar_content_type" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "sightings" ADD COLUMN "avatar_file_size" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "sightings" ADD COLUMN "avatar_updated_at" timestamp[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140816010450"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (1.6ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'dudley.ritchie@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (6.5ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.054857"], ["email", "dudley.ritchie@gmail.com"], ["password_digest", "$2a$10$ejm5f.hEu5xwR25DUvbpwuWU8UKyfx2YHU3rekch0QxxnnV9NPvHS"], ["updated_at", "2014-08-20 22:11:42.054857"]]
+  [1m[36m (5.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'mitchell@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.171384"], ["email", "mitchell@hotmail.com"], ["password_digest", "$2a$10$nBEeVskLq0CgGo.gp7eXk.24./b/S1M.6A.a9oRS/kfLaGI3PMAie"], ["updated_at", "2014-08-20 22:11:42.171384"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'ben.bednar@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.262376"], ["email", "ben.bednar@gmail.com"], ["password_digest", "$2a$10$jxS2VhwXubrm41fw/4Y/.us98fgui1VuZMCLLE2nsbI5im/rWu4QK"], ["updated_at", "2014-08-20 22:11:42.262376"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'mabel@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.355300"], ["email", "mabel@gmail.com"], ["password_digest", "$2a$10$NqXXKpGUXbhs0cFQ0cCk8OMc5z5FnvKQxA3rXLVFBbHEyoDJoM4uC"], ["updated_at", "2014-08-20 22:11:42.355300"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'alvah@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.446921"], ["email", "alvah@gmail.com"], ["password_digest", "$2a$10$bHRXEzBpsZS9jiSdsth9oO89Yi/HsFyzeR2xHK/qDprj.3HgYeTIS"], ["updated_at", "2014-08-20 22:11:42.446921"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'abner@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.537561"], ["email", "abner@yahoo.com"], ["password_digest", "$2a$10$CWgbufBc4B.IG652oNI6WOzqiRvTQEc1h4lyUkrZVksQV5eM5658q"], ["updated_at", "2014-08-20 22:11:42.537561"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'stephan_sipes@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.622476"], ["email", "stephan_sipes@yahoo.com"], ["password_digest", "$2a$10$P3vi0i0kiJq32Txf.K/gtOzv0QIX77JUoYr4O97Tv8YrtEge/Aam2"], ["updated_at", "2014-08-20 22:11:42.622476"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'maria.mcglynn@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.708957"], ["email", "maria.mcglynn@yahoo.com"], ["password_digest", "$2a$10$T3brJIFSjGbjI1U1M.zPIOLhlgvxT/.hsqeJ7RiVoY9u/GC6j2Yzi"], ["updated_at", "2014-08-20 22:11:42.708957"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'shane.turcotte@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.799907"], ["email", "shane.turcotte@hotmail.com"], ["password_digest", "$2a$10$UO/KPbl/4fdfI6gG2m4O..pnpRF/seCbBP/tIWv8QhXmc6ssEMpU2"], ["updated_at", "2014-08-20 22:11:42.799907"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'delbert_legros@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.889664"], ["email", "delbert_legros@gmail.com"], ["password_digest", "$2a$10$kFg3l8jSrYa2Q7SvEpglDOxukbJHC3qAQFiL/jZw81H2qO0QlmKxm"], ["updated_at", "2014-08-20 22:11:42.889664"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'cathrine@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:42.984356"], ["email", "cathrine@yahoo.com"], ["password_digest", "$2a$10$.6Fy/xghnFCseJrhLhkk/.LKYkTH5t/RnKUIaPyz4wT4w1XE88JsC"], ["updated_at", "2014-08-20 22:11:42.984356"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'patrick@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.072774"], ["email", "patrick@hotmail.com"], ["password_digest", "$2a$10$pIz7m6QBTgNR5fGdlrsS7O5uUEoM5Qj1AL670YVSLznpGF5xX8mU6"], ["updated_at", "2014-08-20 22:11:43.072774"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'earnest_zulauf@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.169321"], ["email", "earnest_zulauf@gmail.com"], ["password_digest", "$2a$10$9LRn8lPzxuuSXFe2OD3IJu5Z1d7mQBBCx.65t0wvT1ZxOSe7EvS6i"], ["updated_at", "2014-08-20 22:11:43.169321"]]
+  [1m[36m (7.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'emely@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.266067"], ["email", "emely@hotmail.com"], ["password_digest", "$2a$10$dGDS57uzS.dpQlMuCksbcO92yfJvXdqPUKil/pG7NQTKu20rYjOGq"], ["updated_at", "2014-08-20 22:11:43.266067"]]
+  [1m[36m (7.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'samson@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.364114"], ["email", "samson@yahoo.com"], ["password_digest", "$2a$10$k7M0WhC7LjpJUrM2MBSzw./Tkp5ZfOb794caeV3uHiqQPOzZ5hbjy"], ["updated_at", "2014-08-20 22:11:43.364114"]]
+  [1m[36m (7.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'omari_shields@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.466800"], ["email", "omari_shields@gmail.com"], ["password_digest", "$2a$10$HITaqAqLF88asUg7Gh1wzuplOAtSqbDkg18Tn8gRqfh6b.a4DVc.m"], ["updated_at", "2014-08-20 22:11:43.466800"]]
+  [1m[36m (7.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'ernest@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.567529"], ["email", "ernest@hotmail.com"], ["password_digest", "$2a$10$EK7IgujqZMbmYFFs9dNaMOh.wf7OWDLl8E1d1DW3loAcAB.ikpXvK"], ["updated_at", "2014-08-20 22:11:43.567529"]]
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'kian_gutkowski@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.666440"], ["email", "kian_gutkowski@yahoo.com"], ["password_digest", "$2a$10$Ca8NvnuhSK72.TPbnLfEWOErHBDg7FMEJuDmbIgZUGcv9o8NLrmAy"], ["updated_at", "2014-08-20 22:11:43.666440"]]
+  [1m[36m (8.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'lacy.gusikowski@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "password_digest", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-08-20 22:11:43.767064"], ["email", "lacy.gusikowski@yahoo.com"], ["password_digest", "$2a$10$Jd4v7qETWmjzAsCNL3gpf.uPp3UGM67qdQd67TwXdHNM1.2F4Hlte"], ["updated_at", "2014-08-20 22:11:43.767064"]]
+  [1m[36m (8.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'cathrine@yahoo.com' LIMIT 1[0m
+  [1m[35m (7.9ms)[0m  ROLLBACK
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  LIMIT 15[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (6.6ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.45"], ["animal_type", "dog"], ["breed", "boxer"], ["coat_color", "grey"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:43.946650"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "spot"], ["size", "medium"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:43.946650"], ["user_id", 1]]
+  [1m[35m (6.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.44"], ["animal_type", "dog"], ["breed", "bulldog"], ["coat_color", "white"], ["coat_length", "hairless"], ["created_at", "2014-08-20 22:11:43.964065"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "lucky"], ["size", "small"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.964065"], ["user_id", 2]]
+  [1m[36m (5.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.409849"], ["animal_type", "dog"], ["breed", "bulldog"], ["coat_color", "white"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:43.973847"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "lucky"], ["size", "medium"], ["tag", "owner"], ["updated_at", "2014-08-20 22:11:43.973847"], ["user_id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.4"], ["animal_type", "cat"], ["breed", "ragdoll"], ["coat_color", "calico"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:43.978775"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "ginger"], ["size", "small"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.978775"], ["user_id", 4]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.45"], ["animal_type", "dog"], ["breed", "persian"], ["coat_color", "grey"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:43.982397"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "clifford"], ["size", "large"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.982397"], ["user_id", 5]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.433396"], ["animal_type", "dog"], ["breed", "dobermann"], ["coat_color", "black"], ["coat_length", "hairless"], ["created_at", "2014-08-20 22:11:43.985803"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "spot"], ["size", "large"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.985803"], ["user_id", 6]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.397733"], ["animal_type", "dog"], ["breed", "bulldog"], ["coat_color", "brown"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:43.989236"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "bob"], ["size", "large"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.989236"], ["user_id", 7]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.75"], ["animal_type", "cat"], ["breed", "retriever"], ["coat_color", "brown"], ["coat_length", "short"], ["created_at", "2014-08-20 22:11:43.992251"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "fido"], ["size", "large"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:43.992251"], ["user_id", 8]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.397733"], ["animal_type", "dog"], ["breed", "terrier"], ["coat_color", "calico"], ["coat_length", "short"], ["created_at", "2014-08-20 22:11:43.996424"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "molly"], ["size", "small"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:43.996424"], ["user_id", 9]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.4"], ["animal_type", "dog"], ["breed", "burmese"], ["coat_color", "brown"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:44.001162"], ["event_date", "2014-08-20 15:11:43.000000"], ["pet_name", "molly"], ["size", "small"], ["tag", "owner"], ["updated_at", "2014-08-20 22:11:44.001162"], ["user_id", 10]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.4"], ["animal_type", "dog"], ["breed", "persian"], ["coat_color", "white"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:44.004570"], ["event_date", "2014-08-20 15:11:44.000000"], ["pet_name", "bob"], ["size", "small"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:44.004570"], ["user_id", 11]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.44"], ["animal_type", "dog"], ["breed", "retriever"], ["coat_color", "brown"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:44.007597"], ["event_date", "2014-08-20 15:11:44.000000"], ["pet_name", "spot"], ["size", "medium"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:44.007597"], ["user_id", 12]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.409849"], ["animal_type", "cat"], ["breed", "bengal"], ["coat_color", "white"], ["coat_length", "hairless"], ["created_at", "2014-08-20 22:11:44.010927"], ["event_date", "2014-08-20 15:11:44.000000"], ["pet_name", "ginger"], ["size", "medium"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:44.010927"], ["user_id", 13]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.411295"], ["animal_type", "dog"], ["breed", "shepherd"], ["coat_color", "grey"], ["coat_length", "medium"], ["created_at", "2014-08-20 22:11:44.014044"], ["event_date", "2014-08-20 15:11:44.000000"], ["pet_name", "fido"], ["size", "medium"], ["tag", "owner"], ["updated_at", "2014-08-20 22:11:44.014044"], ["user_id", 14]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "lostings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "pet_name", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.4"], ["animal_type", "cat"], ["breed", "bulldog"], ["coat_color", "brown"], ["coat_length", "short"], ["created_at", "2014-08-20 22:11:44.017402"], ["event_date", "2014-08-20 15:11:44.000000"], ["pet_name", "clifford"], ["size", "large"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:44.017402"], ["user_id", 15]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  LIMIT 5[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "sightings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "found", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.75"], ["animal_type", "cat"], ["breed", "poodle"], ["coat_color", "white"], ["coat_length", "short"], ["created_at", "2014-08-20 22:11:44.037140"], ["event_date", "2014-08-20 15:11:44.000000"], ["found", "f"], ["size", "medium"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:44.037140"], ["user_id", 1]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sightings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "found", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.738"], ["animal_type", "cat"], ["breed", "tabby"], ["coat_color", "black"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:44.041720"], ["event_date", "2014-08-20 15:11:44.000000"], ["found", "f"], ["size", "large"], ["tag", "owner"], ["updated_at", "2014-08-20 22:11:44.041720"], ["user_id", 2]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sightings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "found", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.409849"], ["animal_type", "cat"], ["breed", "bengal"], ["coat_color", "white"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:44.045135"], ["event_date", "2014-08-20 15:11:44.000000"], ["found", "t"], ["size", "small"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:44.045135"], ["user_id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sightings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "found", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["Lat", "37.785126"], ["Lng", "-122.408849"], ["animal_type", "cat"], ["breed", "shepherd"], ["coat_color", "calico"], ["coat_length", "long"], ["created_at", "2014-08-20 22:11:44.048449"], ["event_date", "2014-08-20 15:11:44.000000"], ["found", "t"], ["size", "small"], ["tag", "vet"], ["updated_at", "2014-08-20 22:11:44.048449"], ["user_id", 4]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sightings" ("Lat", "Lng", "animal_type", "breed", "coat_color", "coat_length", "created_at", "event_date", "found", "size", "tag", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["Lat", "37.785126"], ["Lng", "-122.411295"], ["animal_type", "cat"], ["breed", "terrier"], ["coat_color", "calico"], ["coat_length", "short"], ["created_at", "2014-08-20 22:11:44.051474"], ["event_date", "2014-08-20 15:11:44.000000"], ["found", "f"], ["size", "medium"], ["tag", "none"], ["updated_at", "2014-08-20 22:11:44.051474"], ["user_id", 5]]
+  [1m[35m (0.4ms)[0m  COMMIT
