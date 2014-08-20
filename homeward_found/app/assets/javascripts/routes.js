@@ -69,7 +69,8 @@ createSighting: function(e){
 }
 }
 
-function RouteController(model){
+function RouteController(model, map){
+  this.map = map;
   this.model = model;
 }
 

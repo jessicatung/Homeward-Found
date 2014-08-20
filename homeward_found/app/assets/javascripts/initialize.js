@@ -11,7 +11,7 @@ $(document).ready(function() {
   // mapController.initialize();
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
-  var routeController = new RouteController(routeModel)
+  var routeController = new RouteController(routeModel, mapController)
   routeController.initialize()
 
   //  ---------------------------- FORM
@@ -35,10 +35,10 @@ $(document).ready(function() {
   $("#aside_nav").on("click", "#sight_side", riverController.startSightings)
   $("#lost_side").on("click", routeModel.lostingRiver);
   $("#sight_side").on("click", routeModel.sightingRiver);
-    google.maps.event.addDomListener(window, 'load', mapController.createMap);
 
 
   $("#event-container").on("submit", "#new_losting", routeModel.createLosting)
   $("#event-container").on("submit", "#new_sighting", routeModel.createSighting)
+    google.maps.event.addDomListener(window, 'load', mapController.createMap);
 
 });

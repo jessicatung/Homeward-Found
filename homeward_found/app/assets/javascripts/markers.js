@@ -19,6 +19,7 @@ Marker.prototype = {
     var infoWindow = new google.maps.InfoWindow()
     if(self.lostings.lostingsInfo.length < self.lostings.animalArray.length){
       self.lostings.lostingsInfo.push(self.lostings.getLostingInfo()[iterator].responseText)
+      self.markers.push(self.addMarker(lostingsArray[iterator], map))
       self.lostings.lostingsMarkers.push(self.addMarker(lostingsArray[iterator], map))
     for (var i = 0; i < lostingsArray.length; i++) {
       google.maps.event.addListener(self.addMarker(lostingsArray[iterator], map), 'click', this.addInfoWindow(self.addMarker(lostingsArray[iterator]), self.lostings.lostingsInfo[iterator], infoWindow, map))
@@ -41,6 +42,7 @@ Marker.prototype = {
         draggable: false,
         icon: self.animalType(type.animal_type)
       })
+    // self.markers.push(marker)
     return marker
   },
   addInitialSightingMarkers: function(map){
@@ -116,13 +118,13 @@ Marker.prototype = {
   checkMarkers: function(map){
     var self = this;
     $("#sight_side").on("click", function(event){
+      debugger
       self.removeTypeMarker(self.lostings.lostingsMarkers)
-      self.clearMarkers(self.lostings.lostingsMarkers)
       self.addInitialSightingMarkers(map)
     })
     $("#lost_side").on("click", function(event){
-      self.removeTypeMarker(self.sightings.sightingsMarkers)
-      self.addInitialLostingMarkers(map)
+      self.removeTypeMarker(self.markers);
+      self.addInitialLostingMarkers(map);
     })
     $("#all_side").on("click", function(event){
       self.addInitialLostingMarkers(map)
@@ -139,8 +141,8 @@ Marker.prototype = {
   },
   removeTypeMarker: function(markerType){
     for (var i = 0; i < markerType.length; i++) {
-      markerType[i].visible = false;
       markerType[i].setMap(null);
+      markerType[i].setVisible(false)
     }
 
   }
