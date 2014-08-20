@@ -11,32 +11,37 @@ $(document).ready(function() {
   // mapController.initialize();
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
-  var routeController = new RouteController(routeModel)
+  var routeController = new RouteController(routeModel, mapController)
   routeController.initialize()
 
-  $("#new_losting").on("ajax:success", routeModel.lostingRiver);
-
   //  ---------------------------- FORM
-  // var formController = new FormController();
-  // formController.initialize()
+  var formController = new FormController();
+  formController.initialize()
 
 
   //  ---------------------------- RIVER
-  // var riverView       = new RiverView ();
-  // var riverController = new RiverController ( riverView );
-  // riverController.startLostings();
+  var riverView = new RiverView();
+  var riverController = new RiverController(riverView);
+  riverController.startLostings();
 
+
+// $("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- LOGIN
   var loginModel = new LoginModel()
   var loginController = new LoginController(loginModel)
   loginController.initialize()
-  // wait 2 seconds then call popup
-  // setTimeout(popup, 500);
-  // show form div
-  // function popup() {
-  //     $("#logindiv").css("display", "block")
-  // }
-  // when click on the login button, form goes away
+  $("#aside_nav").on("click", "#lost_side", riverController.startLostings)
+  $("#aside_nav").on("click", "#sight_side", riverController.startSightings)
+  $("#lost_side").on("click", routeModel.lostingRiver);
+  $("#sight_side").on("click", routeModel.sightingRiver);
+
+
+  $("#event-container").on("submit", "#new_losting", routeModel.createLosting)
+  $("#event-container").on("submit", "#new_sighting", routeModel.createSighting)
+
+    // $("#event-container").on("submit", "#new_losting", markers.addInitialLostingMarkers(mapModel.map))
+    // $("#event-container").on("submit", "#new_sighting", markers.addInitialSightingMarkers(mapModel.map))
+    google.maps.event.addDomListener(window, 'load', mapController.createMap);
 
 });

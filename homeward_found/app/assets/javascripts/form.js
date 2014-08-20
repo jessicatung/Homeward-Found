@@ -19,8 +19,8 @@ FormController.prototype = {
 
   },
   changeCheck: function(){
-    $("#losting_animal_type").on("change", this.animalCheck)
-    $("#sighting_animal_type").on("change", this.animalCheck)
+    $("#event-container").on("change", "#losting_animal_type", this.animalCheck)
+    $("#event-container").on("change", "#sighting_animal_type", this.animalCheck)
   }
 
 }
