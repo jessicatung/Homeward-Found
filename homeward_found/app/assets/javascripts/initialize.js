@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  //  ---------------------------- MAP
+
+  // window.onload = function() {setTimeout(function(){document.body.style.opacity="100";},500);};
+
+      setTimeout(function() {
+        $('#bigloading').addClass('ready');
+      }, 4000);
+//  ---------------------------- MAP
   var mapModel = new MapModel();
   var lostings = new Lostings();
   var sightings = new Sightings()

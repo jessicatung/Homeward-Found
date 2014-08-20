@@ -1,8 +1,9 @@
 <head>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
   <script type="text/javascript"
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9wB74qE2kN-soCB_PFNsPajbg-BK-OE">
+  </script>
+  <script>
+
   </script>
 </head>
 <header>
@@ -80,8 +81,6 @@
   <div class="col_no_mar span_9_of_12 body_container">
     <% if logged_in? %>
     <h1>Welcome back, <%= current_user.email %>.</h1>
-
-    <%= link_to "Logout", delete_session_path, method: :delete %>
     <% end %>
 
     <% if logged_in? %>
@@ -98,4 +97,15 @@
 
 <div class="section group">
   <footer class="col_no_mar span_12_of_12"><p>copyright homewardfound</p></footer>
+</div>
+<div id="bigloading">
+  <div id="loading">
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  </div>
+  <div id="lefthalf"></div>
+  <div id="righthalf"></div>
 </div>
