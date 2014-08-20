@@ -84,7 +84,5 @@ RouteController.prototype = {
     $(document).on('reloadLostings', this.model.lostingRiver);
     $(document).on('reloadSightings', this.model.sightingRiver);
     $("#home").on("click", this.model.lostingRiver);
-    $("#lost_side").on("click", this.model.lostingRiver);
-    $("#sight_side").on("click", this.model.sightingRiver);
   }
 }
