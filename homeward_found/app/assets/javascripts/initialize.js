@@ -6,8 +6,8 @@ $(document).ready(function() {
   var markers = new Marker(lostings, sightings)
   var mapController = new MapController(mapModel, markers);
   mapController.getLocation();
-  lostings.getLostings()
-  sightings.getSightings()
+  lostings.getLostings();
+  sightings.getSightings();
   // mapController.initialize();
   //  ---------------------------- ROUTES
   var routeModel = new RouteModel();
