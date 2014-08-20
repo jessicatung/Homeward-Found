@@ -33,9 +33,6 @@ RouteModel.prototype = {
    url: "/lostings"
  }).done(function(data){
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
-  // $("#lost_side").css("background-color", "white");
 })
 },
 sightingRiver: function(e){
@@ -45,9 +42,6 @@ sightingRiver: function(e){
    url: "/sightings"
  }).done(function(data){
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "white");
-  // $("#lost_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
 })
 },
 createLosting: function(e){

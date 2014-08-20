@@ -41,7 +41,6 @@ Marker.prototype = {
     var sightingsArray = this.sightings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < sightingsArray.length; i++) {
-      // self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[i].responseText)
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(sightingsArray[iterator].Lat), parseFloat(sightingsArray[iterator].Lng)),
         map: map,
