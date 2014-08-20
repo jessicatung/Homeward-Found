@@ -24,7 +24,6 @@ class LostingsController < ApplicationController
     algorithm = Algorithm.new(losting, Sighting.all)
     ordered_sightings = algorithm.search
     top_results = ordered_sightings[0..19]
-
     # render json: top_results
     render nothing: true
     # redirect_to root_path
