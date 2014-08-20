@@ -34,9 +34,9 @@ class SightingsController < ApplicationController
   end
 
   def relevant_listings
-    lat = 37.784633
-    lng = -122.397403
-    #params[:lat], params[:lng]
+    lat = params['coords']['lat'].to_d
+    lng = params['coords']['lng'].to_d
+
     listings = Sighting.all
     listings = listings.get_listings(lat, lng, 5, 3)
 
