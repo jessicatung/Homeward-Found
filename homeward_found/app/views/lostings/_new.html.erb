@@ -1,38 +1,3 @@
-<script>
-  var formController = new FormController()
-  formController.initialize()
-var routeModel = new RouteModel();
-  var routeController = new RouteController(routeModel)
-  routeController.initialize()
-
-  // $("#new_losting").on("submit", routeController.model.createLosting);
-
-  var form = $("#new_losting");
-
-  $("#new_losting").on("submit", function(event){
-  event.preventDefault();
-
-  $.ajax({
-   url: "/lostings",
-   type: "post",
-   data: form.serialize(),
- }).done(function(data){
-  $("#event-container").html("<h2>Relevant Sightings For Your Entry </h2>");
-  for(i=0; i < data.length; i++){
-  $("#event-container").append(
-    i + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"]
-     + "<br> Seen on: " + data[i]["event_date"] + "<hr>")
-}
-})
-
-
-});
-
-
-
-
-
-</script>
 <div id="losting">
   <h3>Lost</h3>
   <%= form_for @losting do |f| %>

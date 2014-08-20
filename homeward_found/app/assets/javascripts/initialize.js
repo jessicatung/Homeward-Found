@@ -39,6 +39,9 @@ $(document).ready(function() {
 
   $("#event-container").on("submit", "#new_losting", routeModel.createLosting)
   $("#event-container").on("submit", "#new_sighting", routeModel.createSighting)
+
+    // $("#event-container").on("submit", "#new_losting", markers.addInitialLostingMarkers(mapModel.map))
+    // $("#event-container").on("submit", "#new_sighting", markers.addInitialSightingMarkers(mapModel.map))
     google.maps.event.addDomListener(window, 'load', mapController.createMap);
 
 });

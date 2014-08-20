@@ -134,5 +134,10 @@ Marker.prototype = {
     for (var i = 0; i < markerType.length; i++) {
       markerType[i].setMap(null);
     }
+  },
+  showTypeMarker: function(markerType, map){
+    for (var i = 0; i < markerType.length; i++) {
+      markerType[i].setMap(map);
+    }
   }
 }
