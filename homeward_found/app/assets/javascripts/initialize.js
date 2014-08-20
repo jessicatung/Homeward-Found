@@ -16,16 +16,16 @@ $(document).ready(function() {
   routeController.initialize()
 
   //  ---------------------------- FORM
-  var formController = new FormController();
-  formController.initialize()
+  // var formController = new FormController();
+  // formController.initialize()
 
 
   //  ---------------------------- RIVER
-  var riverView = new RiverView();
-  var riverController = new RiverController(riverView);
-  riverController.startLostings();
+  // var riverView = new RiverView();
+  // var riverController = new RiverController(riverView);
+  // riverController.startLostings();
 
-
+$("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- LOGIN
   var loginModel = new LoginModel()
