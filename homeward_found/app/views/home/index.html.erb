@@ -36,7 +36,7 @@
     <div id="loginForm">
       <button class="goBack">Go Back</button>
       <%= form_for :users, url: {controller: "sessions", action: "create"} do |f| %>
-      <%= f.text_field :email, required: true, placeholder: "E-MAIL" %>
+      <%= f.text_field :email, required: true, type: "email", pattern: "[^@]+@[^@]+\.[a-zA-Z]{2,6}", placeholder: "E-MAIL" %>
       <br>
       <%= f.password_field :password, required: true, placeholder: "PASSWORD" %>
       <br>
@@ -47,7 +47,7 @@
     <div id="signupForm">
       <button class="goBack">Go Back</button>
       <%= form_for @user, {action: "create"} do |f| %>
-      <%= f.text_field :email, required: true, placeholder: "E-MAIL" %>
+      <%= f.text_field :email, required: true, type: "email", pattern: "[^@]+@[^@]+\.[a-zA-Z]{2,6}", placeholder: "E-MAIL" %>
       <br>
       <%= f.password_field :password, required: true, placeholder: "PASSWORD" %>
       <br>
