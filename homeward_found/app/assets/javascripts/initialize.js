@@ -32,7 +32,7 @@ $(document).ready(function() {
   var loginController = new LoginController(loginModel)
   loginController.initialize()
   $("#aside_nav").on("click", "#lost_side", riverController.startLostings)
-  $("#aside_nav").on("click", "#sight_side", riverController.startLostings)
+  $("#aside_nav").on("click", "#sight_side", riverController.startSightings)
   $("#lost_side").on("click", routeModel.lostingRiver);
   $("#sight_side").on("click", routeModel.sightingRiver);
 
