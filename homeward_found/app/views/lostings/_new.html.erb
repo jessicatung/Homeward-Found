@@ -5,7 +5,7 @@ var routeModel = new RouteModel();
   var routeController = new RouteController(routeModel)
   routeController.initialize()
 
-  // $("#new_losting").on("submit", routeController.model.createLosting);
+  $("#new_losting").on("submit", routeController.model.createLosting);
 
   var form = $("#new_losting");
 
@@ -16,12 +16,13 @@ var routeModel = new RouteModel();
    url: "/lostings",
    type: "post",
    data: form.serialize(),
- }).done(function(data){
-  $("#event-container").html("<h2>Relevant Sightings For Your Entry </h2>");
-  for(i=0; i < data.length; i++){
-  $("#event-container").append(
-    i + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"]
-     + "<br> Seen on: " + data[i]["event_date"] + "<hr>")
+  }).done(function(data){
+    $("#event-container").html("<h2>Relevant Sightings For Your Entry </h2>");
+    console.log(data)
+    for(i=0; i < data.length; i++){
+    $("#event-container").append(
+    (i +1) + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"]
+     + "<br> Seen on: " + data[i]["long_date"] + "<hr>")
 }
 })
 
@@ -40,7 +41,7 @@ var routeModel = new RouteModel();
   <%= f.text_field :pet_name, required: true %>
   <br>
   <%= f.label :animal_type, "Animal type:" %>
-  <%= f.select :animal_type, options_for_select([["Type", "default"],["Cat", "cat"], ["Dog", "dog"]], disabled: "Type", onclick: "formController.animalCheck") %>
+  <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]], onclick: "formController.animalCheck"), {:include_blank => '-- Select One --'}, :required => true %>
   <br>
   <div id="cat" style="display: none;">
     <%= f.label :breed, "Breed:" %>
@@ -52,18 +53,18 @@ var routeModel = new RouteModel();
     <%= f.select :breed, options_for_select(@dog_breeds) %>
 </div>
 
-
 <div class="info" style="display: none;">
     <%= f.label :size, "Size:" %>
-    <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]) %>
+    <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]), {:include_blank => '-- Select One --'}, :required => true %>
     <br>
     <%= f.label :coat_color, "Coat color:" %>
-    <%= f.text_field :coat_color %>
+    <%= f.select :coat_color, options_for_select([["Black", "black"], ["Black/White", "black-white"],["Blue", "blue"],["Brown", "brown"],["Buff", "buff"],["Calico", "calico"],["Cinnamon", "cinnamon"],["Golden", "golden"],["Grey", "grey"],["Orange", "orange"],["Other", "other"],["Silver", "silver"],["Tortoiseshell", "tortoiseshell"],["White", "white"]]), {:include_blank => '-- Select One --'}, :required => true %>
     <br>
     <%= f.label :coat_length, "Coat length:" %>
-    <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]) %>
-    <%= f.hidden_field :Lat %>
-    <%= f.hidden_field :Lng %>
+    <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]), {:include_blank => '-- Select One --'}, :required => true %>
+    <%= f.hidden_field :Lat, :value => 37.760821 %>
+    <%= f.hidden_field :Lng, :value => -122.450303 %>
+
     <br>
     <%= f.label :tag, "Tag:" %>
     <%= f.text_field :tag %>
@@ -77,9 +78,12 @@ var routeModel = new RouteModel();
     <%= f.label :avatar, "Image" %>
     <%= f.file_field :avatar %>
     <br><br>
+    <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
 </div>
 
 
 <%= f.submit %>
 <% end %>
-</div>
+
+
+

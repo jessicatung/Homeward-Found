@@ -25,7 +25,7 @@ class LostingsController < ApplicationController
     ordered_sightings = algorithm.search
     top_results = ordered_sightings[0..19]
 
-    render json: top_results
+    render json: top_results.to_json(methods: [:long_date])
     # redirect_to root_path
   end
 
