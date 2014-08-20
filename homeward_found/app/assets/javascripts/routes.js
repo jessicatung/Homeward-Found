@@ -80,13 +80,15 @@ RouteController.prototype = {
     this.startLostings()
   },
   bindListeners: function(){
-    $(document).on('reloadLostings',this.model.lostingRiver);
-    $(document).on('reloadSightings',this.model.sightingRiver);
     $("#sighting").on("click", this.model.sightingForm);
     $("#lost").on("click", this.model.lostingForm);
-    $("#aside_nav").on("click", "a", this.model.riverLoad)
-    $("#lost_side").on("click", this.model.lostingRiver);
-    $("#sight_side").on("click", this.model.sightingRiver);
+    $(document).on('reloadLostings', this.model.lostingRiver);
+    $(document).on('reloadSightings',this.model.sightingRiver);
+    // $("#aside_nav").on("click", "a", this.model.riverLoad)
+  // $("#aside_nav").on("click", "#lost_side", this.model.lostingRiver)
+  // $("#aside_nav").on("click", "#sight_side", this.model.sightingRiver)
+    // $("#lost_side").on("click", this.model.lostingRiver);
+    // $("#sight_side").on("click", this.model.sightingRiver);
   },
   startLostings: function () {
     var response = $.ajax({
