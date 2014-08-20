@@ -55,8 +55,9 @@ routeController.initialize()
       <br>
       <%= f.label :coat_length, "Coat length:" %>
       <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]), {:include_blank => '-- Select One --'}, :required => true %>
-      <%= f.hidden_field :Lat %>
-      <%= f.hidden_field :Lng %>
+      <br>
+      <%= f.hidden_field :Lat, :value => 37.760821 %>
+      <%= f.hidden_field :Lng, :value => -122.450303 %>
       <br>
       <%= f.label :tag, "Tag:" %>
       <%= f.text_field :tag %>
@@ -73,6 +74,7 @@ routeController.initialize()
       <%= f.label :avatar, "Image" %>
       <%= f.file_field :avatar %>
       <br><br>
+        <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
     </div>
 
     <br><br>
