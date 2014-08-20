@@ -5,16 +5,20 @@ function RiverController ( view ) {
 
 RiverController.prototype = {
   startLostings: function () {
-    var reponse = $.ajax({
+    $.ajax({
       url: "/lostings/relevant_listings",
       type: "GET"
     }).done(this.view.render)
   },
   startSightings: function(){
-    var reponse = $.ajax({
+    $.ajax({
       url: "/sightings/relevant_listings",
       type: "GET"
     }).done(this.view.render)
+  },
+  setLostingsDataListener: function () {
+    debugger
+    $(document).on("relevantLostingsRefresh", this.getLostingsData)
   }
 }
 

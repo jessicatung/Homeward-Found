@@ -15,58 +15,55 @@ RouteModel.prototype = {
     e.stopPropagation()
     $("#logindiv").css("display", "block");
     $.ajax({
-     method: "get",
-     url: "/sightings/new"
-   }).done(function(data){
+      method: "get",
+      url: "/sightings/new"
+    }).done(function(data){
+      $("#event-container").html(data)
+    })
+  },
+  lostingRiver: function(e){
+    e.stopPropagation()
+
+    var riverView = new RiverView ();
+    var riverController = new RiverController ( riverView );
+    riverController.setLostingsDataListener();
     $("#event-container").html(data)
-  })
- },
- lostingRiver: function(e){
-  e.stopPropagation()
-  $.ajax({
-   method: "get",
-   url: "/lostings"
- }).done(function(data){
-  var riverView = new RiverView ();
-  var riverController = new RiverController ( riverView );
-  riverController.startLostings();
-  $("#event-container").html(data)
-})
-},
-sightingRiver: function(e){
-  e.stopPropagation()
-  $.ajax({
-   method: "get",
-   url: "/sightings"
- }).done(function(data){
-  var riverView = new RiverView ();
-  var riverController = new RiverController ( riverView );
-  riverController.startSightings();
-  $("#event-container").html(data)
-})
-},
-createLosting: function(e){
-  e.preventDefault()
-  e.stopPropagation()
-  $.ajax({
-    method: "post",
-    url: "/lostings",
-    data: $("#new_losting").serialize()
-  }).done(function(){
-    $(document).trigger('reloadLostings')
-  })
-},
-createSighting: function(e){
-  e.preventDefault()
-  e.stopPropagation()
-  $.ajax({
-    method: "post",
-    url: "/sightings",
-    data: $("#new_sighting").serialize()
-  }).done(function(){
-    $(document).trigger('reloadSightings')
-  })
-}
+
+  },
+  sightingRiver: function(e){
+    e.stopPropagation()
+    $.ajax({
+      method: "get",
+      url: "/sightings"
+    }).done(function(data){
+      var riverView = new RiverView ();
+      var riverController = new RiverController ( riverView );
+      riverController.startSightings();
+      $("#event-container").html(data)
+    })
+  },
+  createLosting: function(e){
+    e.preventDefault()
+    e.stopPropagation()
+    $.ajax({
+      method: "post",
+      url: "/lostings",
+      data: $("#new_losting").serialize()
+    }).done(function(){
+      $(document).trigger('reloadLostings')
+    })
+  },
+  createSighting: function(e){
+    e.preventDefault()
+    e.stopPropagation()
+    $.ajax({
+      method: "post",
+      url: "/sightings",
+      data: $("#new_sighting").serialize()
+    }).done(function(){
+      $(document).trigger('reloadSightings')
+    })
+  }
 }
 
 function RouteController(model, map){
