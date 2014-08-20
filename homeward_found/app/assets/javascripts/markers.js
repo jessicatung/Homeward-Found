@@ -120,7 +120,17 @@ Marker.prototype = {
       this.addNewMarker(marker)
     }
   },
-    clearMarkers: function(){
+  setAllMap: function(map) {
+    for (var i = 0; i < this.markers.length; i++) {
+      this.markers[i].setMap(map);
+    }
+  },
+  // clearMarkers: function(markerType){
+  //   for (var i = 0; i < markerType.length; i++) {
+  //     markerType[i].setVisible(false);
+  //   }
+  // },
+  clearMarkers: function(){
     this.setAllMap(null)
   },
   deleteMarkers: function(){
