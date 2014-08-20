@@ -19,11 +19,13 @@ MarkersController.prototype = {
     var self = this;
     var view = this.view;
     var model = this.model;
+    var lostingsArray = model.lostings.lostingsMarkers
+    var sightingsArray = model.sightings.sightingsMarkers
     $("#sight_side").on("click", function(){
-      view.showSightingMarkersOnly(model.lostings.lostingsMarkers, map, model)
+      view.showSightingMarkersOnly(lostingsArray, map, model)
     })
     $("#lost_side").on("click", function(event){
-      view.showLostingMarkersOnly(model.sightings.sightingsMarkers, map, model)
+      view.showLostingMarkersOnly(sightingsArray, map, model)
     })
     $("#all_side").on("click", function(event){
       view.showAllMarkers(map, model)
@@ -35,11 +37,11 @@ MarkersController.prototype = {
       view.removeAllMarkers(model)
     })
     $("#event-container").on("submit", "#new_sighting", function(event){
-      view.showSightingMarkers()
-    }.bind(view))
+      self.view.showSightingMarkersOnly(lostingsArray, map, model)
+    }.bind(self))
     $("#event-container").on("submit", "#new_losting", function(event){
-      view.showLostingMarkers()
-    }.bind(view))
+      self.view.showLostingMarkersOnly(sightingsArray, map, model)
+    }.bind(self))
   }
 }
 
@@ -60,7 +62,6 @@ Marker.prototype = {
     var iterator = this.lostings.iterator;
     var lostingsArray = this.lostings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
-
     for (var i = 0; i < lostingsArray.length; i++) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),

@@ -17,6 +17,7 @@ class LostingsController < ApplicationController
   def create
     losting = Losting.new(strong_params)
     losting.pet_name.capitalize!
+    losting.coat_color.capitalize
     losting.save
 
     User.find(session[:user_id]).lostings << losting
