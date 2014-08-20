@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash.now.alert = "Invalid email or password"
-      redirect_to new_user_path
+      redirect_to :back
     end
   end
 
