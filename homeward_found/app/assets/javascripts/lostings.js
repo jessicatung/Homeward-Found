@@ -4,7 +4,7 @@
 function Lostings(){
   this.animalArray = [];
   this.lostingsMarkers = [];
-  this.lostingsInfo = [];
+  // this.lostingsInfo = [];
   this.iterator = 0;
 }
 

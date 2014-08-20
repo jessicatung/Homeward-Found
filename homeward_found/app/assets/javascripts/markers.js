@@ -18,7 +18,6 @@ Marker.prototype = {
     var lostingsArray = this.lostings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < lostingsArray.length; i++) {
-      self.lostings.lostingsInfo.push(self.lostings.getLostingInfo()[i].responseText)
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
         map: map,
@@ -26,13 +25,13 @@ Marker.prototype = {
         icon: self.animalType(lostingsArray[iterator].animal_type)
         })
       self.lostings.lostingsMarkers.push(marker)
-      google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
+      google.maps.event.addListener(marker, 'click', function(marker, infoWindow, animal) {
         return function(){
-
-        infoWindow.setContent(content)
+        infoWindow.setContent("<strong>" + animal.pet_name + "</strong><br>" + animal.coat_color + " " + animal.breed +  " " + animal.animal_type + "<br>" + animal.long_date)
         infoWindow.open(map, marker)
+
         }
-      }(marker, self.lostings.lostingsInfo[iterator], infoWindow));
+      }(marker, infoWindow, lostingsArray[iterator]));
     iterator++
     }
   },
@@ -42,7 +41,7 @@ Marker.prototype = {
     var sightingsArray = this.sightings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < sightingsArray.length; i++) {
-      self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[i].responseText)
+      // self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[i].responseText)
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(sightingsArray[iterator].Lat), parseFloat(sightingsArray[iterator].Lng)),
         map: map,
@@ -51,13 +50,13 @@ Marker.prototype = {
         })
       self.sightings.sightingsMarkers.push(marker)
 
-      google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
+      google.maps.event.addListener(marker, 'click', function(marker, infoWindow, animal) {
         return function(){
-
-        infoWindow.setContent(content)
+        infoWindow.setContent("<strong>" + animal.animal_type + "</strong><br>" + animal.coat_color + " " + animal.breed + "<br>" + animal.long_date)
         infoWindow.open(map, marker)
+
         }
-      }(marker, self.sightings.sightingsInfo[iterator], infoWindow));
+      }(marker, infoWindow, sightingsArray[iterator]));
     iterator++
     }
   },
