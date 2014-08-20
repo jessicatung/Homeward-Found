@@ -1,4 +1,3 @@
-
 // === LOSTINGS ===================
 
 function Lostings(){
