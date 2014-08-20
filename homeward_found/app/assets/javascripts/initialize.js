@@ -24,6 +24,8 @@ $(document).ready(function() {
   // var riverController = new RiverController(riverView);
   // riverController.startLostings();
 
+lostingRiverLoad()
+
 // $("#new_losting").on("ajax:success", routeModel.lostingRiver);
 
   //  ---------------------------- LOGIN
@@ -52,3 +54,5 @@ $(document).ready(function() {
     var riverController = new RiverController(riverView);
     riverController.startSightings()
   }
+
+
