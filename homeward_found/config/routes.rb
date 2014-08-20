@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'lostings/recent', to: 'lostings#recent'
   get 'sightings/recent', to: 'sightings#recent'
+  get 'lostings/relevant_listings', to: 'lostings#relevant_listings'
+  get 'sightings/relevant_listings', to: 'sightings#relevant_listings'
 
   resources :users, only: [:new, :create]
   resources :lostings

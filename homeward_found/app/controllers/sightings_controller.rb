@@ -32,6 +32,16 @@ class SightingsController < ApplicationController
     render json: sightings
   end
 
+  def relevant_listings
+    lat = 37.784633
+    lng = -122.397403
+    #params[:lat], params[:lng]
+    listings = Sighting.all
+    listings = listings.get_listings(lat, lng, 5, 3)
+
+    render json: listings
+  end
+
   def show
     @sighting = Sighting.find(params[:id])
     render partial: "show"

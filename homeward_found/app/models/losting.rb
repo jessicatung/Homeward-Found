@@ -1,4 +1,5 @@
 class Losting < ActiveRecord::Base
+
   belongs_to :user
   validates :Lat, :Lng, presence: true
   has_attached_file :avatar, :style => {medium: "300x300>", thumb: "100x100>"}
@@ -9,9 +10,20 @@ class Losting < ActiveRecord::Base
     order("event_date DESC").limit(10).to_json(methods: [:long_date])
   end
 
+  def self.get_listings(lat, lng, max_dist, day_limit)
+    algorithm = Algorithm.new("", "")
+
+    filtered_listings = Losting.select do |match|
+      algorithm.days_apart(Time.now, match.event_date) < day_limit
+    end
+    filtered_listings = filtered_listings.sort_by do |match|
+      algorithm.distance_between(lat, lng, match)
+    end
+    filtered_listings[0..9]
+  end
+
   def long_date
     event_date.to_formatted_s(:long_ordinal)
   end
-
 
 end
