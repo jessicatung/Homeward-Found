@@ -15,6 +15,7 @@ MapController.prototype = {
   initialize: function(position){
     this.model.createMap(position);
     this.markers.initializeMarkers(this.model.map)
+    this.model.pollForUpdates();
   }
 }
 
@@ -57,5 +58,37 @@ MapModel.prototype = {
       }
       map.panTo(lastValidCenter);
     });
+  },
+
+  pollForUpdates: function() {
+    var currentCenter = this.map.getCenter();
+    var lastCenter = currentCenter;
+    var self = this;
+
+    intervalId = setInterval(function() {
+      currentCenter = self.map.getCenter();
+      if(lastCenter === currentCenter) {
+        $.ajax({
+          url: "/lostings/relevant_listings",
+          type: "GET",
+          data: { coords: {lat: currentCenter.k, lng: currentCenter.B} }
+        }).done ( function(data){
+          $(document).trigger("relevantLostingsRefresh", data)
+        })
+        $.ajax({
+          url: "/sightings/relevant_listings",
+          type: "GET",
+          data: { coords: {lat: currentCenter.k, lng: currentCenter.B} }
+        }).done ( function(data){
+          $(document).trigger("relevantSightingsRefresh", data)
+        })
+      }
+    })
   }
 }
+
+
+
+
+
+
