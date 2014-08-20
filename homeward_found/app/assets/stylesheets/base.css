@@ -1,7 +1,7 @@
 body{
   font-family: helvetica, sans-serif;
   overflow: hidden;
-  background-color: #F7FAFF;
+  background-color: #f7f7f7;
 }
 
 body, html {
@@ -61,7 +61,6 @@ nav > ul:after {
 
 header nav{
   width: auto;
-  font-family: 'Open Sans', Helvetica, sans-serif;
   background: #39b1cc;
   background: -moz-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #51bbd2), color-stop(100%, #2d97af));
@@ -132,7 +131,6 @@ nav ul li:hover{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  /*box-shadow: 0px 0px 5px #fff;*/
 }
 
 #aside_nav > ul > li{
@@ -167,7 +165,6 @@ width: 33.3%;
   height: 0;
 }
 
-
 #aside_nav ul li:hover{
   text-shadow: 0 0px 0 #d3d3d3;
   background: #E6E6E6;
@@ -196,7 +193,7 @@ aside #event-container{
   overflow-y: scroll;
   width: 100%;
   height: 100%;
-  background-color: #F7FAFF;
+  background-color: #F7F7F7;
 }
 
 aside li{
