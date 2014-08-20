@@ -42,6 +42,8 @@ group :development do
   gem 'binding_of_caller'
 end
 
+# For seed data
+gem 'faker'
 
 # Use unicorn as the app server
 gem 'unicorn'
@@ -58,7 +60,6 @@ end
 group :development, :test do
   gem 'rspec-rails', '~>2.14'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :test do
