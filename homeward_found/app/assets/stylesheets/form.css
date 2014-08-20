@@ -1,0 +1,74 @@
+#new_sighting_partial{
+  padding: 2rem;
+  display: inline;
+  text-align: center;
+}
+
+
+#sighting_breed {
+  width: 45%;
+}
+
+
+#sighting_tag{
+  margin: .5rem
+}
+
+#sighting_detail{
+  margin: .5rem
+}
+
+
+#new_sighting_partial p{
+  padding: 1rem;
+}
+
+
+/* losting form css ------ */
+#new_losting_partial{
+  padding: 2rem;
+  display: inline;
+  text-align: center;
+}
+
+#losting_breed{
+  width: 45%;
+}
+
+#losting_tag{
+  margin: .5rem
+}
+
+#losting_detail{
+  margin: .5rem
+}
+
+
+#new_losting_partial p{
+  padding: 1rem;
+}
+
+.icon {
+  padding: 0px;
+  margin: 0px;
+}
+
+.half_rem_padding {
+  margin: .25rem;
+  padding: 0px;
+}
+
+.submit_div{
+  text-align: center;
+}
+
+.git_icon{
+  width: 1.5rem;
+  height auto;
+  padding: 0 .2rem 0 .2rem;
+  margin: 0;
+}
+
+#footer_paragraph{
+
+}
