@@ -23,6 +23,21 @@ Rails.application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = true
 
+  # Do not precompile, since deploying to heroku does not load the whole application upon deployment
+  config.assets.initialize_on_precompile = false
+
+  # Send the email when delivery method is called using Gmail smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: 'gmail.com',
+    user_name: 'homewardfoundDBC',
+    password: 'purplemartins',
+    authentication: "plain"
+  }
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
