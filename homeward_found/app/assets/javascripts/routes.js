@@ -1,6 +1,5 @@
-function RouteModel(view){
-  this.view = view;
-}
+function RouteModel(){}
+
 RouteModel.prototype = {
   lostingForm: function(e){
     e.stopPropagation()
@@ -58,28 +57,26 @@ createLosting: function(e){
   })
 },
 createSighting: function(e){
+  e.preventDefault()
   e.stopPropagation()
   $.ajax({
     method: "post",
     url: "/sightings",
     data: $("#new_sighting").serialize()
-  }).done($(document).trigger('reloadSightings'))
-},
-blah: function(){
-  debugger
-  this.model.lostingRiver
+  }).done(function(){
+    $(document).trigger('reloadSightings')
+  })
 }
 }
 
-function RouteController(model, view){
+function RouteController(model){
   this.model = model;
-  this.view = view;
 }
 
 RouteController.prototype = {
   initialize: function(){
     this.bindListeners()
-    this.startLostings()
+    // this.startLostings()
   },
   bindListeners: function(){
     $("#sighting").on("click", this.model.sightingForm);
@@ -94,32 +91,20 @@ RouteController.prototype = {
   // $("#aside_nav").on("click", "#sight_side", this.model.sightingRiver)
     // $("#lost_side").on("click", this.model.lostingRiver);
     // $("#sight_side").on("click", this.model.sightingRiver);
-  },
-  startLostings: function () {
-    var response = $.ajax({
-      url: "/lostings/recent",
-      method: "GET"
-    }).done(this.view.render)
-  },
-  startSightings: function(){
-    var response = $.ajax({
-      url: "/sightings/recent",
-      type: "GET"
-    }).done(this.view.render)
   }
 }
 
-function RouteView(){}
+// function RouteView(){}
 
-RouteView.prototype = {
-  render: function ( dataArray ) {
-    $.each(dataArray,function(index, data) {
-      var source = $( "#event-template" ).html();
-      var template = Handlebars.compile( source )
-      $( '#event-container' ).append(template(data))
-    });
-  }
-}
+// RouteView.prototype = {
+//   render: function ( dataArray ) {
+//     $.each(dataArray,function(index, data) {
+//       var source = $( "#event-template" ).html();
+//       var template = Handlebars.compile( source )
+//       $( '#event-container' ).append(template(data))
+//     });
+//   }
+// }
 
 
 
