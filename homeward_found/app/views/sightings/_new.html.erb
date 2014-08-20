@@ -1,7 +1,6 @@
-  </script>
   <div id="sighting">
     <h3>Sighting</h3>
-    <%= form_for @sighting do |f| %>
+    <%= form_for @sighting, remote: true do |f| %>
     <%= f.label :animal_type, "Animal type:" %>
     <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]], onclick: "formController.animalCheck"), {:include_blank => '-- Select One --'}, :required => true %>
 
