@@ -26,7 +26,7 @@ class LostingsController < ApplicationController
     top_results = ordered_sightings[0..19]
 
     render json: top_results
-    render layout: :nothing
+    render :nothing => true
     # redirect_to root_path
   end
 
