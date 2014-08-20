@@ -119,6 +119,14 @@ Marker.prototype = {
       });
       this.addNewMarker(marker)
     }
+  },
+    clearMarkers: function(){
+    this.setAllMap(null)
+  },
+  deleteMarkers: function(){
+    this.clearMarkers()
+    this.sightings.sightingsMarkers = []
+    this.lostings.lostingsMarkers = []
   }
 }
 
