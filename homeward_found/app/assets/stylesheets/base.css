@@ -213,13 +213,22 @@ aside hr{
   margin-top: 10px;
 }*/
 
+#losting{
+  padding: 10px;
+}
+
+/*input, select{
+  width: 150px;
+  float: left;
+}
+
 label{
   text-align: right;
   float: left;
   margin: 0 20px 0 0;
   width: 150px;
   font-weight: 400;
-}
+}*/
 
 .container{
   margin: 20px;
