@@ -1,17 +1,13 @@
 source 'https://rubygems.org'
 
-
+# Set Ruby version *recommended 2.0.0 for Heroku
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem "pry"
 # Use Uglifier as compressor for JavaScript assets
-# gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
+gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -20,41 +16,33 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+# For API calls
 gem 'httparty'
-gem 'spring',        group: :development
-gem 'dotenv-rails', :groups => [:development, :test]
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+# For storing images in database
 gem 'paperclip', '~> 4.2'
-
-
+# For Javascript Templating
 gem 'handlebars_assets'
+# Generate seed data
+gem 'faker'
 
-
-group :development do
-  # gem 'better_errors'
-  gem 'rails_db_info'
-  # gem 'sextant'
-  gem 'binding_of_caller'
+group :production do
+  gem 'unicorn'
+  gem 'rails_12factor'
 end
 
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'spring'
+  gem 'rails_db_info'
+  gem 'binding_of_caller'
+  gem "pry"
+end
 
 group :development, :test do
   gem 'rspec-rails', '~>2.14'
   gem 'factory_girl_rails'
-  gem 'faker'
+  gem 'dotenv-rails'
 end
 
 group :test do
@@ -63,3 +51,10 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 end
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+
