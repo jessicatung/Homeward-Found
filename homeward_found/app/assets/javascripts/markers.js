@@ -18,7 +18,6 @@ Marker.prototype = {
     var lostingsArray = this.lostings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < lostingsArray.length; i++) {
-      self.lostings.lostingsInfo.push(self.lostings.getLostingInfo()[i].responseText)
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(lostingsArray[iterator].Lat), parseFloat(lostingsArray[iterator].Lng)),
         map: map,
@@ -26,13 +25,8 @@ Marker.prototype = {
         icon: self.animalType(lostingsArray[iterator].animal_type)
         })
       self.lostings.lostingsMarkers.push(marker)
-      google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
-        return function(){
+      google.maps.event.addListener(marker, 'click', self.addInfoWindow(marker, lostingsArray[iterator], infoWindow, map))
 
-        infoWindow.setContent(content)
-        infoWindow.open(map, marker)
-        }
-      }(marker, self.lostings.lostingsInfo[iterator], infoWindow));
     iterator++
     }
   },
@@ -42,7 +36,6 @@ Marker.prototype = {
     var sightingsArray = this.sightings.animalArray;
     var infoWindow = new google.maps.InfoWindow()
     for (var i = 0; i < sightingsArray.length; i++) {
-      self.sightings.sightingsInfo.push(self.sightings.getSightingInfo()[i].responseText)
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(parseFloat(sightingsArray[iterator].Lat), parseFloat(sightingsArray[iterator].Lng)),
         map: map,
@@ -51,14 +44,14 @@ Marker.prototype = {
         })
       self.sightings.sightingsMarkers.push(marker)
 
-      google.maps.event.addListener(marker, 'click', function(marker, content, infoWindow) {
-        return function(){
-
-        infoWindow.setContent(content)
-        infoWindow.open(map, marker)
-        }
-      }(marker, self.sightings.sightingsInfo[iterator], infoWindow));
+      google.maps.event.addListener(marker, 'click', self.addInfoWindow(marker, sightingsArray[iterator], infoWindow, map))
     iterator++
+    }
+  },
+  addInfoWindow: function(marker, animal, infoWindow, map){
+    return function(){
+      infoWindow.setContent("<strong>" + animal.pet_name + "</strong><br>" + animal.animal_type + " " + animal.coat_color + " " + animal.breed +  " " + animal.animal_type + "<br>" + animal.long_date + "<br>" + animal.avatar_url)
+      infoWindow.open(map, marker)
     }
   },
   addNewMarker: function(marker){
@@ -140,6 +133,11 @@ Marker.prototype = {
   removeTypeMarker: function(markerType){
     for (var i = 0; i < markerType.length; i++) {
       markerType[i].setMap(null);
+    }
+  },
+  showTypeMarker: function(markerType, map){
+    for (var i = 0; i < markerType.length; i++) {
+      markerType[i].setMap(map);
     }
   }
 }

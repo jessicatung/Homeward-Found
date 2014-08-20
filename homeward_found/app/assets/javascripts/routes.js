@@ -1,11 +1,9 @@
 function RouteModel(){}
+
 RouteModel.prototype = {
   lostingForm: function(e){
     e.stopPropagation()
-
-    // login form interupt
     $("#logindiv").css("display", "block");
-
     $.ajax({
       method: "get",
       url: "/lostings/new"
@@ -15,10 +13,7 @@ RouteModel.prototype = {
   },
   sightingForm: function(e){
     e.stopPropagation()
-
-    // login form interupt
     $("#logindiv").css("display", "block");
-
     $.ajax({
      method: "get",
      url: "/sightings/new"
@@ -32,10 +27,10 @@ RouteModel.prototype = {
    method: "get",
    url: "/lostings"
  }).done(function(data){
+  var riverView = new RiverView ();
+  var riverController = new RiverController ( riverView );
+  riverController.startLostings();
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
-  // $("#lost_side").css("background-color", "white");
 })
 },
 sightingRiver: function(e){
@@ -44,31 +39,38 @@ sightingRiver: function(e){
    method: "get",
    url: "/sightings"
  }).done(function(data){
+  var riverView = new RiverView ();
+  var riverController = new RiverController ( riverView );
+  riverController.startSightings();
   $("#event-container").html(data)
-  // $("#sight_side").css("background-color", "white");
-  // $("#lost_side").css("background-color", "#d3d3d3");
-  // $("#all_side").css("background-color", "#d3d3d3");
 })
 },
 createLosting: function(e){
+  e.preventDefault()
   e.stopPropagation()
   $.ajax({
     method: "post",
-    url: "/lostings"
-  }).done(function(data){
+    url: "/lostings",
+    data: $("#new_losting").serialize()
+  }).done(function(){
+    $(document).trigger('reloadLostings')
   })
 },
 createSighting: function(e){
+  e.preventDefault()
   e.stopPropagation()
   $.ajax({
     method: "post",
-    url: "/lostings"
-  }).done(function(data){
+    url: "/sightings",
+    data: $("#new_sighting").serialize()
+  }).done(function(){
+    $(document).trigger('reloadSightings')
   })
 }
 }
 
-function RouteController(model){
+function RouteController(model, map){
+  this.map = map;
   this.model = model;
 }
 
@@ -79,10 +81,10 @@ RouteController.prototype = {
   bindListeners: function(){
     $("#sighting").on("click", this.model.sightingForm);
     $("#lost").on("click", this.model.lostingForm);
+    $(document).on('reloadLostings', this.model.lostingRiver);
+    $(document).on('reloadSightings', this.model.sightingRiver);
     $("#home").on("click", this.model.lostingRiver);
     $("#lost_side").on("click", this.model.lostingRiver);
     $("#sight_side").on("click", this.model.sightingRiver);
   }
 }
-
-

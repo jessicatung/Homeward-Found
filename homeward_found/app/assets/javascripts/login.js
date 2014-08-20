@@ -1,5 +1,17 @@
-function LoginModel(){}
-LoginModel.prototype = {
+function LoginController(view){
+  this.view = view;
+}
+
+LoginController.prototype = {
+  initialize: function(){
+    $("#logindiv").on("click", "#login", this.view.displayLoginForm)
+    $("#logindiv").on("click", "#signup", this.view.displaySignupForm)
+    $("#logindiv").on("click", ".goBack", this.view.goBack)
+  }
+}
+
+function LoginView(){}
+LoginView.prototype = {
   displayLoginForm: function(){
     $("#loginForm").css("display", "block");
     $("#login").css("display", "none");
@@ -21,14 +33,3 @@ LoginModel.prototype = {
   }
 }
 
-function LoginController(model){
-  this.model = model;
-}
-
-LoginController.prototype = {
-  initialize: function(){
-    $("#login").on("click", this.model.displayLoginForm)
-    $("#signup").on("click", this.model.displaySignupForm)
-    $(".goBack").on("click", this.model.goBack)
-  }
-}
