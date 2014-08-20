@@ -115,7 +115,7 @@ Marker.prototype = {
       var marker = new google.maps.Marker({
         position: location,
         map: map,
-        icon: this.animalType($("#" + formType + "_animal_type").val())
+        icon: this.view.animalType($("#" + formType + "_animal_type").val())
       });
       this.addNewMarker(marker)
     }
