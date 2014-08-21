@@ -366,3 +366,8 @@ footer p{
   margin: 0;
   padding: 2px 0;
 }
+
+#my_map img{
+  width: 200px;
+  height: auto;
+}
