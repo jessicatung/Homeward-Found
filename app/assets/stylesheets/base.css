@@ -1,0 +1,393 @@
+body{
+  font-family: helvetica, sans-serif;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ====HEADER ==================*/
+
+header{
+  position: relative;
+}
+
+header h1{
+  font-size: 70px;
+  text-shadow: 2px 2px 1px #bad3ed;
+  font-weight: bold;
+}
+
+header #logo{
+  height: 45px;
+  width: auto;
+  float: left;
+  margin-top: -16px;
+  padding-right: 10px;
+}
+
+/* ==== MAIN NAV ==================*/
+nav,
+nav ul,
+nav ul li,
+nav ul li a{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+nav:after,
+nav > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+header nav{
+  width: auto;
+  background: #39b1cc;
+  background: -moz-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #51bbd2), color-stop(100%, #2d97af));
+  background: -webkit-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
+  background: -o-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
+  background: -ms-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
+  background: linear-gradient(to bottom, #51bbd2 0%, #2d97af 100%);
+}
+
+nav > ul{
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);
+}
+
+nav > ul > li{
+  float: left;
+  display: inline-block;
+}
+
+nav > ul > li > a{
+  padding: 18px 25px 21px 25px;
+  border-right: 1px solid rgba(80, 80, 80, 0.12);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 1%;
+}
+
+nav ul li:hover{
+  background: #32a9c3;
+  background: rgba(0,0,0.1);
+}
+
+/* ==== ASIDE NAV ==================*/
+
+#aside_nav{
+  width: auto;
+  overflow: hidden;
+  border-right: 1px solid blue;
+  /*position: absolute;
+  top: 0;
+  left: 0;*/
+  width: 100%;
+  /*height: 100%;*/
+  background: #E6E6E6;
+  background: -moz-linear-gradient(top, #E6E6E6 0%, #b8b8b8 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E6E6E6), color-stop(100%, #b8b8b8));
+  background: -webkit-linear-gradient(top, #E6E6E6 0%, #b8b8b8 100%);
+  background: -o-linear-gradient(top, #E6E6E6 0%, #b8b8b8 100%);
+  background: -ms-linear-gradient(top, #E6E6E6 0%, #b8b8b8 100%);
+  background: linear-gradient(to bottom, #E6E6E6 0%, #b8b8b8 100%);
+}
+
+#aside_nav,
+#aside_nav ul,
+#aside_nav ul li,
+#aside_nav ul li a{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#aside_nav > ul > li{
+  float: left;
+  display: inline-block;
+}
+
+#aside_nav ul li{
+width: 50%;
+}
+#aside_nav ul li a{
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2d97af;
+  text-shadow: 0 -1px 0 #d3d3d3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-right: 1px solid rgba(80, 80, 80, 0.12);
+  font-size: 10px;
+  padding: 10px 5px;
+}
+
+#aside_nav:after,
+#aside_nav > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+#aside_nav ul li:hover{
+  text-shadow: 0 0px 0 #d3d3d3;
+  background: #E6E6E6;
+  background: rgba(0,0,0.1);
+}
+
+#aside_nav ul li:hover, nav ul li:hover{
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+}
+
+/* ==== ASIDE CONTAINER ==================*/
+aside{
+  border-right: 1px solid #b8b8b8;
+  height: inherit;
+}
+
+.aside_container{
+  position: absolute;
+  padding-bottom: 45%;
+  overflow-y: auto;
+  height: 0;
+  width: inherit;
+}
+
+aside #event-container{
+  background-color: #F7F7F7;
+}
+
+aside li{
+margin-left: 20px;
+}
+
+aside hr{
+  border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0));
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0));
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0));
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0));
+}
+
+
+#losting{
+  padding: 10px;
+}
+
+#event-container #sighting{
+  padding: 10px;
+}
+
+.container{
+  margin: 20px;
+  width: 50%;
+  border: 1px solid gray;
+}
+
+.container form, h3{
+  margin: 20px;
+}
+
+.body_container{
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  overflow: hidden;
+  height: 0;
+}
+
+#my_map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.event {
+  list-style: none;
+  padding-left: 5px;
+}
+
+#event-container h3, p{
+  margin: 0;
+  color: #404040;
+}
+
+#event-content{
+  margin: 0;
+}
+
+
+/*--------- start login form stuff --------------------------- */
+
+#logindiv{
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.85);
+  display: none;
+  z-index: 999;
+}
+
+#loginForm, #signupForm{
+  display: none;
+  position: relative;
+  top: 30%;
+}
+
+#logindiv .form {
+  border-radius:2px;
+  padding:20px 30px;
+  box-shadow:0 0 15px;
+  font-size:14px;
+  font-weight:bold;
+  width:350px;
+  margin: auto;
+}
+
+#logindiv .form label {
+  font-family: sans-serif;
+}
+
+#logindiv .form h3 {
+  font-family: sans-serif;
+}
+
+
+#logindiv input[type=button]{
+    background-color:#123456;
+    border:1px solid white;
+    font-family: sans-serif;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+#logindiv input{
+    width:20%;
+    height:35px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+
+
+#buttons{
+  list-style: none;
+  position: absolute;
+  top: 40%;
+  left: 34%;
+  padding: 0;
+}
+
+#buttons li{
+  display: inline-block;
+}
+
+#buttons li button, .goBack{
+    width: 200px;
+    height:45px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+.goBack{
+  margin-bottom: 10px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+}
+
+footer p{
+  background-color: #2d97af;
+  text-align: center;
+  font-size: 11px;
+  color: white;
+  margin: 0;
+  padding: 2px 0;
+}
+
+#event-container label{
+  text-align: right;
+  float: left;
+  margin: 0 20px 0 0;
+  width: 90px;
+}
+
+#event-container input{
+  float: left;
+  width: 136px;
+}
+#losting_detail, #sighting_detail{
+  width: 136px;
+  height: 30px;
+}
+#event-container #losting_breed, #sighting_breed{
+  width: 136px;
+}
+
+#event-container input, #event-container label,#event-container select{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#event-container h2{
+  color: #2d97af;
+  /*border-bottom: 1px solid #2d97af;*/
+  text-shadow: 0 0px 0 #d3d3d3;
+}
+
+form input[name=commit]{
+  margin: 0 auto;
+}
+.event h2{
+  margin-bottom: 3px;
+}
+select[name="losting[event_date(1i)]"]{
+margin-left: -85px;
+}
