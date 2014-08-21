@@ -1,6 +1,9 @@
   <div id="sighting">
-    <h3>Sighting</h3>
-    <%= form_for @sighting, :html => {:multipart => true} do |f| %>
+    <center>
+    <h2>Animal Sighting</h2>
+    <hr>
+  </center>
+    <%= form_for @sighting do |f| %>
     <%= f.label :animal_type, "Animal type:" %>
     <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]], onclick: "formController.animalCheck"), {:include_blank => '-- Select One --'}, :required => true %>
 
@@ -44,9 +47,8 @@
       <br><br>
         <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
     </div>
+<br>
+<%= f.submit %>
+<% end %>
 
-    <br><br>
-    <%= f.submit %>
-    <% end %>
 
-  </div>

@@ -60,20 +60,21 @@
 </center>
 <!-- end form stuff -->
 <div class="section group">
-  <div class="col_no_mar span_3_of_12 aside_container">
-    <aside>
+  <div class="col_no_mar span_3_of_12">
       <div id="aside_nav">
         <ul>
           <li><a id="lost_side">Lost</a></li>
           <li><a id="sight_side">Sighting</a></li>
         </ul>
       </div>
+    <div class="aside_container">
+    <aside>
       <div id="event-container">
         <%= render partial: "lostings/index" %>
       </div>
     </aside>
   </div>
-
+</div>
   <div class="col_no_mar span_9_of_12 body_container">
     <% if logged_in? %>
     <h1>Welcome <%= current_user.email %>.</h1>
