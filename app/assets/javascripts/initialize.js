@@ -55,4 +55,3 @@ $("#event-container").on("submit", "#new_losting", routeModel.createLosting)
 $("#event-container").on("submit", "#new_sighting", routeModel.createSighting)
 
 });
-  document.getElementById("#event-container").style.overflowY="scroll";
