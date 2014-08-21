@@ -1,5 +1,8 @@
 <div id="losting">
-  <h3>Lost</h3>
+  <center>
+  <h2>Lost Pet Form</h2>
+  <hr>
+</center>
   <%= form_for @losting do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
   <%= f.text_field :pet_name, required: true %>
@@ -37,15 +40,15 @@
     <%= f.text_area :detail %>
     <br>
     <%= f.label :event_date, "Date lost:" %>
+    <br>
     <%= f.datetime_select :event_date %>
     <br>
-    <%= f.label :avatar, "Image" %>
+    <%= f.label :avatar, "Image:" %>
     <%= f.file_field :avatar %>
     <br><br>
     <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
 </div>
-
-
+<br>
 <%= f.submit %>
 <% end %>
 
