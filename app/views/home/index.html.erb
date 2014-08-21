@@ -1,0 +1,108 @@
+<head>
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9wB74qE2kN-soCB_PFNsPajbg-BK-OE">
+  </script>
+  <script>
+
+  </script>
+</head>
+<header>
+  <div class="section group">
+    <nav>
+      <ul>
+        <li class="span_3_of_12"><a id="home"><%= image_tag "logo.png", id: "logo" %><span>Homeward Found</span></a></li>
+        <li class="span_3_of_12"><a id="lost">Lost</a></li>
+        <li class="span_3_of_12"><a id="sighting">Sighting</a></li>
+        <% if logged_in? %>
+          <li class="span_3_of_12"><%= link_to "Logout", delete_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+<!-- form stuff -->
+<center>
+  <div id="logindiv">
+
+    <!-- Login form -->
+    <ul id="buttons">
+      <li><button id="login">Login</button></li>
+      <li><button id="signup">Sign up</button></li>
+    </ul>
+
+    <div id="loginForm">
+      <button class="goBack">Go Back</button>
+      <%= form_for :users, url: {controller: "sessions", action: "create"} do |f| %>
+      <%= f.text_field :email, required: true, type: "email", pattern: "[^@]+@[^@]+\.[a-zA-Z]{2,6}", placeholder: "E-MAIL" %>
+      <br>
+      <%= f.password_field :password, required: true, placeholder: "PASSWORD" %>
+      <br>
+      <%= f.submit "Login" %>
+      <% end %>
+    </div>
+    <!-- Create Account Form -->
+    <div id="signupForm">
+      <button class="goBack">Go Back</button>
+      <%= form_for @user, {action: "create"} do |f| %>
+      <%= f.text_field :email, required: true, type: "email", pattern: "[^@]+@[^@]+\.[a-zA-Z]{2,6}", placeholder: "E-MAIL" %>
+      <br>
+      <%= f.password_field :password, required: true, placeholder: "PASSWORD" %>
+      <br>
+      <%=f.password_field :password_confirmation, required: true, placeholder: "PASSWORD CONFIRMATION" %>
+      <br>
+      <%= f.submit "Sign up" %>
+      <% end %>
+    </div>
+  </div>
+</center>
+<!-- end form stuff -->
+<div class="section group">
+  <div class="col_no_mar span_3_of_12 aside_container">
+    <aside>
+      <div id="aside_nav">
+        <ul>
+          <li><a id="lost_side">Lost</a></li>
+          <li><a id="sight_side">Sighting</a></li>
+          <li><a id="all_side">All</a></li>
+        </ul>
+      </div>
+      <div id="event-container">
+        <%= render partial: "lostings/index" %>
+      </div>
+    </aside>
+  </div>
+
+  <div class="col_no_mar span_9_of_12 body_container">
+    <% if logged_in? %>
+    <h1>Welcome back, <%= current_user.email %>.</h1>
+    <% end %>
+
+    <% if logged_in? %>
+    <script>
+    $("#logindiv").remove()
+    </script>
+    <% end %>
+
+
+    <div id="my_map"></div>
+
+  </div>
+</div>
+
+<div class="section group">
+  <footer class="col_no_mar span_12_of_12"><p>copyright homewardfound</p></footer>
+</div>
+<div id="bigloading">
+  <div id="loading">
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  </div>
+  <div id="lefthalf"></div>
+  <div id="righthalf"></div>
+</div>
