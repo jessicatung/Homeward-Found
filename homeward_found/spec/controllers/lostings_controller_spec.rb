@@ -31,6 +31,7 @@ describe LostingsController do
       end
     end
   end
+
   context '#index' do
     # lostings page does not render anything?
     it 'should respond to an AJAX call that corresponds to the associated lostings' do
@@ -38,6 +39,7 @@ describe LostingsController do
       expect(response).to render_template(partial: "_index")
     end
   end
+  
   context '#create' do
     let(:user) {FactoryGirl.create(:user)}
     it 'should only create a losting associated to a user' do
@@ -50,6 +52,16 @@ describe LostingsController do
       losting = Losting.first
       expect(losting.user_id).to eq(user.id)
     end
+    describe 'when params are invalid' do
+      it 'should not create a losting' do
+        pending("need to create factory invalid losting")
+      end
+      
+    end
   end
+
+
 end
+
+
 
