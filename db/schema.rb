@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140816010450) do
     t.decimal  "Lat",                            null: false
     t.decimal  "Lng",                            null: false
     t.string   "tag"
+    t.string   "image_url"
     t.text     "detail"
     t.datetime "event_date",                     null: false
     t.datetime "created_at"
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140816010450) do
     t.decimal  "Lat",                            null: false
     t.decimal  "Lng",                            null: false
     t.string   "tag"
+    t.string   "image_url"
     t.text     "detail"
     t.datetime "event_date",                     null: false
     t.boolean  "found"

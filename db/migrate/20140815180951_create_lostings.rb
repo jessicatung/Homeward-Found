@@ -11,6 +11,7 @@ class CreateLostings < ActiveRecord::Migration
       t.decimal :Lat, null: false
       t.decimal :Lng, null: false
       t.string :tag
+      t.string :image_url
       t.text :detail, limit: 250
       t.datetime :event_date, null: false
       t.timestamps

@@ -58,7 +58,8 @@ class SightingsController < ApplicationController
       :tag,
       :detail,
       :found,
-      :avatar
+      :avatar,
+      :image_url
       )
   end
 

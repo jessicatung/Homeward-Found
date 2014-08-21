@@ -95,7 +95,7 @@ Marker.prototype = {
   },
   addInfoWindow: function(marker, animal, infoWindow, map){
     return function(){
-      infoWindow.setContent("<strong>" + animal.pet_name + "</strong><br>" + animal.coat_color + " " + animal.breed +  " " + animal.animal_type + "<br>" + "Last Seen: " +  animal.long_date)
+      infoWindow.setContent("<strong>" + animal.pet_name + "</strong><br>" + animal.coat_color + " " + animal.breed +  " " + animal.animal_type + "<br>" + "Last Seen: " +  animal.long_date + "<br><br>" + "<img src='" + animal.image_url + "'>")
       infoWindow.open(map, marker)
     }
   },

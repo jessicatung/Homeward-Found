@@ -353,6 +353,11 @@ footer p{
   padding: 2px 0;
 }
 
+#my_map img{
+  width: 200px;
+  height: auto;
+}
+
 #event-container label{
   text-align: right;
   float: left;

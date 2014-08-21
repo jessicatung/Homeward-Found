@@ -56,7 +56,8 @@ class LostingsController < ApplicationController
       :tag,
       :detail,
       :event_date,
-      :avatar
+      :avatar,
+      :image_url
       )
   end
 end
