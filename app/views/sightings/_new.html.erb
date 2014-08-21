@@ -1,6 +1,7 @@
   <div id="sighting">
     <center>
     <h2>Animal Sighting</h2>
+    <hr>
   </center>
     <%= form_for @sighting do |f| %>
     <%= f.label :animal_type, "Animal type:" %>
@@ -46,9 +47,10 @@
       <br><br>
         <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
     </div>
+<br>
+<center>
+<%= f.submit %>
+</center>
+<% end %>
 
-    <br><br>
-    <%= f.submit %>
-    <% end %>
 
-  </div>

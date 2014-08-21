@@ -214,7 +214,7 @@ aside hr{
   padding: 10px;
 }
 
-#sighting{
+#event-container #sighting{
   padding: 10px;
 }
 
@@ -377,4 +377,21 @@ footer p{
 #event-container input, #event-container label,#event-container select{
   margin-top: 5px;
   margin-bottom: 5px;
+}
+#event-container h2{
+  color: #2d97af;
+  /*border-bottom: 1px solid #2d97af;*/
+  text-shadow: 0 0px 0 #d3d3d3;
+}
+
+form input[type=submit]{
+  margin: 0 auto;
+}
+/*
+[name*=event_date]{
+  margin: auto;
+}*/
+
+select[name="losting[event_date(1i)]"]{
+margin-left: -85px;
 }
