@@ -1,5 +1,7 @@
   <div id="sighting">
-    <h3>Sighting</h3>
+    <center>
+    <h2>Animal Sighting</h2>
+  </center>
     <%= form_for @sighting do |f| %>
     <%= f.label :animal_type, "Animal type:" %>
     <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]], onclick: "formController.animalCheck"), {:include_blank => '-- Select One --'}, :required => true %>

@@ -209,26 +209,14 @@ aside hr{
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0));
 }
 
-/*aside #event-collection{
-  margin-top: 10px;
-}*/
 
 #losting{
   padding: 10px;
 }
 
-/*input, select{
-  width: 150px;
-  float: left;
+#sighting{
+  padding: 10px;
 }
-
-label{
-  text-align: right;
-  float: left;
-  margin: 0 20px 0 0;
-  width: 150px;
-  font-weight: 400;
-}*/
 
 .container{
   margin: 20px;
@@ -365,4 +353,28 @@ footer p{
   color: white;
   margin: 0;
   padding: 2px 0;
+}
+
+#event-container label{
+  text-align: right;
+  float: left;
+  margin: 0 20px 0 0;
+  width: 90px;
+}
+
+#event-container input{
+  float: left;
+  width: 136px;
+}
+#losting_detail, #sighting_detail{
+  width: 136px;
+  height: 30px;
+}
+#event-container #losting_breed, #sighting_breed{
+  width: 136px;
+}
+
+#event-container input, #event-container label,#event-container select{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
