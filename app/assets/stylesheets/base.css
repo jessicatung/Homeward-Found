@@ -383,14 +383,12 @@ footer p{
   text-shadow: 0 0px 0 #d3d3d3;
 }
 
-form input[type=submit]{
+form input[name=commit]{
   margin: 0 auto;
 }
-/*
-[name*=event_date]{
-  margin: auto;
-}*/
-
+.event h2{
+  margin-bottom: 3px;
+}
 select[name="losting[event_date(1i)]"]{
 margin-left: -85px;
 }
