@@ -27,7 +27,7 @@ MarkersController.prototype = {
     $("#lost_side").on("click", function(event){
       view.showLostingMarkersOnly(sightingsArray, map, model)
     })
-    $("#all_side").on("click", function(event){
+    $("#home").on("click", function(event){
       view.showAllMarkers(map, model)
     })
     $("#lost").on("click", function(event){

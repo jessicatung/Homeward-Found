@@ -22,8 +22,8 @@ class SightingsController < ApplicationController
     ordered_lostings = algorithm.search
     notify_user(ordered_lostings)
 
-    # render json: ordered_lostings
-    render nothing: true
+    render json: ordered_lostings.to_json(methods: [:long_date])
+    # render nothing: true
     # redirect_to root_path
   end
 
