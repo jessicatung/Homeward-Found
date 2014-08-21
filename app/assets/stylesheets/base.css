@@ -71,7 +71,6 @@ header nav{
 }
 
 nav > ul{
-  /*background: url('images/bg.png');*/
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);
 }
 
@@ -139,7 +138,7 @@ nav ul li:hover{
 }
 
 #aside_nav ul li{
-width: 33.3%;
+width: 50%;
 }
 #aside_nav ul li a{
   text-align: center;
