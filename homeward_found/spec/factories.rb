@@ -7,6 +7,9 @@ FactoryGirl.define do
     breed { "retriever" }
     coat_color { "golden" }
     coat_length { "medium" }
+    Lat { 37.785126 }
+    Lng { -122.411295 }
+    event_date { Time.now }
   end
 
   factory :sighting do
@@ -15,6 +18,9 @@ FactoryGirl.define do
     breed { "tabby" }
     coat_color { "calico" }
     coat_length { "short" }
+    Lat { 37.785126 }
+    Lng { -122.411295 }
+    event_date { Time.now }
   end
 
   factory :user do
