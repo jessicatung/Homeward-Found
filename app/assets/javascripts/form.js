@@ -9,10 +9,10 @@ FormController.prototype = {
     var lostingAnimalType = $("#losting_animal_type").val()
     var sightingAnimalType = $("#sighting_animal_type").val()
     if(lostingAnimalType === "cat" || sightingAnimalType === "cat"){
-      $("#dog").css("display", "none");
+      $("#dog").empty();
       $("#cat").css("display", "block");
     } else if (lostingAnimalType === "dog" || sightingAnimalType === "dog"){
-      $("#cat").css("display", "none");
+      $("#cat").empty();
       $("#dog").css("display", "block");
     }
       $(".info").css("display", "block")
