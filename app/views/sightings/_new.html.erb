@@ -1,0 +1,52 @@
+  <div id="sighting">
+    <h3>Sighting</h3>
+    <%= form_for @sighting, remote: true do |f| %>
+    <%= f.label :animal_type, "Animal type:" %>
+    <%= f.select :animal_type, options_for_select([["Cat", "cat"], ["Dog", "dog"]], onclick: "formController.animalCheck"), {:include_blank => '-- Select One --'}, :required => true %>
+
+    <div id="cat" style="display: none;">
+      <%= f.label :breed, "Breed:" %>
+      <%= f.select :breed, options_for_select(@cat_breeds) %>
+    </div>
+
+    <div id="dog" style="display: none;">
+      <%= f.label :breed, "Breed:" %>
+      <%= f.select :breed, options_for_select(@dog_breeds) %>
+    </div>
+
+    <div class="info" style="display: none;">
+      <%= f.label :size, "Size:" %>
+      <%= f.select :size, options_for_select([["Small", "small"], ["Medium", "medium"], ["Large", "large"]]), {:include_blank => '-- Select One --'}, :required => true %>
+      <br>
+      <%= f.label :coat_color, "Coat color:" %>
+      <%= f.select :coat_color, options_for_select([["Black", "black"], ["Black/White", "black-white"],["Blue", "blue"],["Brown", "brown"],["Buff", "buff"],["Calico", "calico"],["Cinnamon", "cinnamon"],["Golden", "golden"],["Grey", "grey"],["Orange", "orange"],["Other", "other"],["Silver", "silver"],["Tortoiseshell", "tortoiseshell"],["White", "white"]]), {:include_blank => '-- Select One --'}, :required => true %>
+      <br>
+      <%= f.label :coat_length, "Coat length:" %>
+      <%= f.select :coat_length, options_for_select([["Long", "long"], ["Medium", "medium"], ["Short", "short"], ["Hairless", "hairless"]]), {:include_blank => '-- Select One --'}, :required => true %>
+      <br>
+      <%= f.hidden_field :Lat, :value => 37.760821 %>
+      <%= f.hidden_field :Lng, :value => -122.450303 %>
+      <br>
+      <%= f.label :tag, "Tag:" %>
+      <%= f.text_field :tag %>
+      <br>
+      <%= f.label :detail, "Details:" %>
+      <%= f.text_area :detail %>
+      <br>
+      <%= f.label :event_date, "Date seen:" %>
+      <%= f.datetime_select :event_date %>
+      <br>
+      <%= f.label :found, "In my possession:" %>
+      <%= f.check_box :found, checked: false %>
+      <br>
+      <%= f.label :avatar, "Image" %>
+      <%= f.file_field :avatar %>
+      <br><br>
+        <p>To process your entry correctly, please click on the map to drop a pin where the animal was last seen.</p>
+    </div>
+
+    <br><br>
+    <%= f.submit %>
+    <% end %>
+
+  </div>
