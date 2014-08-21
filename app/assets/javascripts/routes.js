@@ -52,8 +52,11 @@ createLosting: function(e){
     method: "post",
     url: "/lostings",
     data: $("#new_losting").serialize()
-  }).done(function(){
-    $(document).trigger('reloadLostings')
+  }).done(function(data){
+    $("#event-container").html("<h2>Relevant Sightings For Your Lost Pet </h2>");
+
+    for(i=0; i < data.length; i++){
+  $("#event-container").append((i+1) + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"] + "<br> Tag:" + data[i]["tag"] + "<br>Detail: " + data[i]["detail"] + "<br> Last Seen: " + data[i]["long_date"] + "<hr>") }
   })
 },
 createSighting: function(e){
@@ -63,8 +66,11 @@ createSighting: function(e){
     method: "post",
     url: "/sightings",
     data: $("#new_sighting").serialize()
-  }).done(function(){
-    $(document).trigger('reloadSightings')
+  }).done(function(data){
+    $("#event-container").html("<h2>Relevant Lost Pets For Your Sighting </h2>");
+
+    for(i=0; i < data.length; i++){
+  $("#event-container").append((i+1) + ".  " + data[i]["coat_color"] + " " + data[i]["breed"] + " " + data[i]["animal_type"] + "<br> Tag:" + data[i]["tag"] + "<br>Detail: " + data[i]["detail"] + "<br> Last Seen: " + data[i]["long_date"] + "<hr>") }
   })
 }
 }
