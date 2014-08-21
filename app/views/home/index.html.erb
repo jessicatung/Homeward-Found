@@ -76,7 +76,7 @@
 
   <div class="col_no_mar span_9_of_12 body_container">
     <% if logged_in? %>
-    <h1>Welcome back, <%= current_user.email %>.</h1>
+    <h1>Welcome <%= current_user.email %>.</h1>
     <% end %>
 
     <% if logged_in? %>
