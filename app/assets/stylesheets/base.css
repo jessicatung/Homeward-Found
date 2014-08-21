@@ -102,11 +102,11 @@ nav ul li:hover{
   width: auto;
   overflow: hidden;
   border-right: 1px solid blue;
-  position: absolute;
+  /*position: absolute;
   top: 0;
-  left: 0;
+  left: 0;*/
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
   background: #E6E6E6;
   background: -moz-linear-gradient(top, #E6E6E6 0%, #b8b8b8 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E6E6E6), color-stop(100%, #b8b8b8));
@@ -179,18 +179,18 @@ width: 50%;
 /* ==== ASIDE CONTAINER ==================*/
 aside{
   border-right: 1px solid #b8b8b8;
+  height: inherit;
 }
 
 .aside_container{
-  position: relative;
-  padding-bottom: 65.25%;
+  position: absolute;
+  padding-bottom: 45%;
   overflow-y: auto;
   height: 0;
+  width: inherit;
 }
 
 aside #event-container{
-  width: 100%;
-  height: 100%;
   background-color: #F7F7F7;
 }
 
