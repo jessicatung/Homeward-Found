@@ -1,6 +1,6 @@
 <div id="losting">
   <h3>Lost</h3>
-  <%= form_for @losting do |f| %>
+  <%= form_for @losting, :html => {:multipart => true} do |f| %>
   <%= f.label :pet_name, "Pet name:" %>
   <%= f.text_field :pet_name, required: true %>
   <br>
